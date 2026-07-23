@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Brief — Thursday, July 23, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #225EDC;
+    --radius: 18px;
+  }
+  html[data-theme="dark"] {
+    --bg: #000405;
+    --text-95: rgba(255,255,255,0.95);
+    --text-60: rgba(255,255,255,0.60);
+    --text-38: rgba(255,255,255,0.38);
+    --card-bg: rgba(255,255,255,0.045);
+    --card-border: rgba(255,255,255,0.08);
+    --pill-bg: rgba(34,94,220,0.16);
+    --hairline: rgba(255,255,255,0.10);
+  }
+  html[data-theme="light"] {
+    --bg: #FBFBF9;
+    --text-95: rgba(10,10,10,0.92);
+    --text-60: rgba(10,10,10,0.62);
+    --text-38: rgba(10,10,10,0.40);
+    --card-bg: rgba(10,10,10,0.03);
+    --card-border: rgba(10,10,10,0.08);
+    --pill-bg: rgba(34,94,220,0.10);
+    --hairline: rgba(10,10,10,0.08);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-60);
+    font-family: 'Inter', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .date-line {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-38);
+  }
+  .toggle-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text-60);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  h1.greeting {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-95);
+    margin: 4px 0 40px;
+    letter-spacing: -0.01em;
+  }
+  .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: block;
+  }
+  section { margin-bottom: 44px; }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+  }
+  .quote-card {
+    padding: 26px 26px;
+  }
+  .quote-text {
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--text-95);
+    font-weight: 500;
+    margin: 0 0 10px;
+  }
+  .quote-attr {
+    font-size: 13px;
+    color: var(--text-38);
+  }
+  .win-item, .decision-item, .read-item {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .win-item:last-child, .decision-item:last-child, .read-item:last-child { border-bottom: none; }
+  .num {
+    font-family: 'DM Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--accent);
+    min-width: 22px;
+    flex-shrink: 0;
+  }
+  .item-body { flex: 1; }
+  .item-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-95);
+    margin: 0 0 6px;
+  }
+  .item-title a { color: var(--text-95); text-decoration: none; border-bottom: 1px solid var(--text-38); }
+  .item-line {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--text-60);
+    margin: 0 0 10px;
+  }
+  .pill {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    color: var(--accent);
+    background: var(--pill-bg);
+    padding: 4px 12px;
+    border-radius: 999px;
+  }
+  .rec-pill {
+    display: block;
+    margin-top: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    color: var(--accent);
+    background: var(--pill-bg);
+    padding: 8px 14px;
+    border-radius: 12px;
+    line-height: 1.4;
+  }
+  .rec-pill b {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-38);
+    display: block;
+    margin-bottom: 5px;
+  }
+  .cut-note {
+    font-size: 13px;
+    color: var(--text-38);
+    margin-top: 14px;
+    font-style: italic;
+  }
+  .quiet-line {
+    font-size: 15px;
+    color: var(--text-60);
+    line-height: 1.6;
+  }
+  .free-time-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-60);
+    margin: 0;
+  }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top-row">
+    <span class="date-line">Thursday · July 23, 2026</span>
+    <button class="toggle-btn" id="themeToggle">Toggle theme</button>
+  </div>
+  <h1 class="greeting">Morning, Mukta. Wide open today — first one like it in months.</h1>
+
+  <section>
+    <span class="label">Line for the day</span>
+    <div class="card quote-card">
+      <p class="quote-text">"We tell ourselves stories in order to live."</p>
+      <p class="quote-attr">— Joan Didion, <em>The White Album</em> (1979)</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="label">Win conditions for today</span>
+    <div class="card">
+      <div class="win-item">
+        <span class="num">1</span>
+        <div class="item-body">
+          <p class="item-title">Open the Strategic Foundation doc and get a real first pass on Q4</p>
+          <p class="item-line">You emailed it to yourself last night from your phone — no note, just the file. That's a sign it was on your mind on the flight back. Give it an hour before the day fills in around it.</p>
+          <span class="pill">→ ties to: Q4 strategic plan</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <span class="num">2</span>
+        <div class="item-body">
+          <p class="item-title">Sort the kids' summer class schedule</p>
+          <p class="item-line">They're still on holiday and it's the one thing that quietly costs you focus all day if it's not settled.</p>
+          <span class="pill">→ ties to: home + kids organized</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <span class="num">3</span>
+        <div class="item-body">
+          <p class="item-title">Rough out the July review — even a skeleton</p>
+          <p class="item-line">August can't get planned until July is actually closed out. Doesn't need to be polished, needs to exist.</p>
+          <span class="pill">→ ties to: July review + August plan</span>
+        </div>
+      </div>
+      <p class="cut-note">Cut from today: the Sun Edit email send and the monthly Shopify/Klaviyo/Instagram audits. Real work, but maintenance — they survive one more day without cost. Today's calendar is too rare to spend on upkeep.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="label">Urgent decisions</span>
+    <div class="card">
+      <div class="decision-item">
+        <div class="item-body">
+          <p class="item-title">Reply on the DrRoze consignment agreement</p>
+          <p class="item-line">Hima at Pacifica sent the DRROZE.com listing agreement yesterday (cc'd Prija), asking if any changes are needed before it moves forward.</p>
+          <div class="rec-pill"><b>Recommend</b>Skim exclusivity, payment terms, and contract length today. A same-week reply keeps the September launch timeline intact — this is the kind of thing that quietly slips a launch by two weeks if it sits.</div>
+        </div>
+      </div>
+      <div class="decision-item">
+        <div class="item-body">
+          <p class="item-title">Confirm Qiyorro/Pacifica exposure before month-end</p>
+          <p class="item-line">Rolled over from last week: Qiyorro (your Rahua and Ere Perez distributor) is shutting down retail/distribution at the end of this month. You flagged it to Hima but haven't confirmed whether there are open orders or accounts still exposed.</p>
+          <div class="rec-pill"><b>Recommend</b>One email to Hima today asking for a straight yes/no on open exposure. You've got about a week before the door closes — better to know now than to find out in August.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="label">What to be prepped for</span>
+    <div class="card">
+      <p class="quiet-line">No meetings today — or tomorrow, or the day after. The calendar is genuinely clear through the weekend. That hasn't happened in months, so don't let it quietly fill itself with small talk and reflexive replies. Protect it.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="label">Five things to read</span>
+    <div class="card">
+      <div class="read-item">
+        <div class="item-body">
+          <span class="tag">First Round Review</span>
+          <p class="item-title"><a href="https://review.firstround.com/annual-planning-in-uncertain-times-6-tactics-for-rethinking-your-companys-end-of-year-exercise/" target="_blank" rel="noopener">Annual Planning in Uncertain Times: 6 Tactics for Rethinking Your Company's End-of-Year Exercise</a></p>
+          <p class="item-line">You're doing exactly this today, for Q4. Six tactics for planning when the ground's still moving under you.</p>
+        </div>
+      </div>
+      <div class="read-item">
+        <div class="item-body">
+          <span class="tag">Beauty Independent</span>
+          <p class="item-title"><a href="https://www.beautyindependent.com/beauty-2026-ma-forecast-measured-acceleration-bifurcation-selectivity/" target="_blank" rel="noopener">Beauty's 2026 M&A Forecast: Measured Acceleration, Bifurcation and Selectivity</a></p>
+          <p class="item-line">The consolidation wave that just took Qiyorro down, mapped out at the industry level. Useful context before your Pacifica email.</p>
+        </div>
+      </div>
+      <div class="read-item">
+        <div class="item-body">
+          <span class="tag">Business of Fashion</span>
+          <p class="item-title"><a href="https://www.businessoffashion.com/articles/beauty/estee-lauder-companies-wont-sell-too-faced-smashbox-and-dr-jart/" target="_blank" rel="noopener">Estée Lauder Companies Won't Sell Too Faced, Smashbox and Dr. Jart</a></p>
+          <p class="item-line">A much bigger company making the same call you're making with FANCL and Rahua — keep less, keep it sharper.</p>
+        </div>
+      </div>
+      <div class="read-item">
+        <div class="item-body">
+          <span class="tag">Emirates Woman</span>
+          <p class="item-title"><a href="https://emirateswoman.com/self-made-beauties-3-passional-arab-makeup-artists-representing-their-roots-globally/" target="_blank" rel="noopener">Self Made Beauties: 3 Passionate Arab Makeup Artists Representing Their Roots Globally</a></p>
+          <p class="item-line">The regional storytelling lane PIGMNT keeps circling — worth seeing how someone else is telling it.</p>
+        </div>
+      </div>
+      <div class="read-item">
+        <div class="item-body">
+          <span class="tag">TimeOut Dubai</span>
+          <p class="item-title"><a href="https://www.timeoutdubai.com/things-to-do/best-things-to-do-dubai-2026-guide" target="_blank" rel="noopener">102 Must-Do Experiences in Dubai for 2026</a></p>
+          <p class="item-line">Dubai Summer Surprises runs to August 30 — decent raw material for win condition #2 today.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="label">If you have time</span>
+    <div class="card free-time-card">
+      <p>You just landed back into your own timezone after two weeks in Italy. Before the inbox eats the whole day — take twenty minutes outside, daylight, no phone. Reset your own clock before you go reset the business's.</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var stored = localStorage.getItem('brief-theme');
+    var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme = stored || (systemDark ? 'dark' : 'light');
+    root.setAttribute('data-theme', theme);
+
+    document.getElementById('themeToggle').addEventListener('click', function() {
+      var current = root.getAttribute('data-theme');
+      var next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('brief-theme', next);
+    });
+  })();
+</script>
+</body>
+</html>
