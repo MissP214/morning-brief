@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Brief — Saturday, July 25</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #225EDC;
+  --radius: 18px;
+}
+html[data-theme="dark"] {
+  --bg: #000405;
+  --text-95: rgba(255,255,255,0.95);
+  --text-60: rgba(255,255,255,0.60);
+  --text-38: rgba(255,255,255,0.38);
+  --card-bg: rgba(255,255,255,0.04);
+  --card-border: rgba(255,255,255,0.08);
+  --pill-bg: rgba(34,94,220,0.16);
+}
+html[data-theme="light"] {
+  --bg: #FBFBF9;
+  --text-95: rgba(10,10,8,0.95);
+  --text-60: rgba(10,10,8,0.60);
+  --text-38: rgba(10,10,8,0.38);
+  --card-bg: rgba(10,10,8,0.03);
+  --card-border: rgba(10,10,8,0.08);
+  --pill-bg: rgba(34,94,220,0.10);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-95);
+  font-family: 'Inter', -apple-system, sans-serif;
+  line-height: 1.55;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 36px;
+}
+.date-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-60);
+}
+.toggle-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-60);
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.toggle-btn:hover { color: var(--text-95); }
+h1.masthead {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px;
+}
+.sub-masthead {
+  color: var(--text-60);
+  font-size: 15px;
+  margin: 0 0 40px;
+}
+section {
+  margin-bottom: 40px;
+}
+.label {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--text-38);
+  margin: 0 0 14px;
+}
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.quote-text {
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 500;
+  margin: 0 0 12px;
+}
+.quote-attr {
+  color: var(--text-60);
+  font-size: 14px;
+}
+.win-item {
+  display: flex;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--card-border);
+}
+.win-item:last-child { border-bottom: none; }
+.win-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--accent);
+  flex-shrink: 0;
+  width: 24px;
+}
+.win-body p {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+.tie-pill {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--pill-bg);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.cut-note {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--text-38);
+  font-style: italic;
+}
+.decision-item {
+  margin-bottom: 20px;
+}
+.decision-item:last-child { margin-bottom: 0; }
+.decision-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+.decision-context {
+  font-size: 15px;
+  color: var(--text-60);
+  margin: 0 0 10px;
+}
+.rec-pill {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 13px;
+  background: var(--pill-bg);
+  color: var(--text-95);
+  padding: 8px 14px;
+  border-radius: 999px;
+}
+.rec-pill b { color: var(--accent); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; flex-shrink: 0; }
+.plain-note {
+  font-size: 15px;
+  color: var(--text-60);
+}
+.prep-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+.read-item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--card-border);
+}
+.read-item:last-child { border-bottom: none; }
+.read-tag {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-38);
+  margin-bottom: 6px;
+}
+.read-title a {
+  color: var(--text-95);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+}
+.read-title a:hover { color: var(--accent); }
+.read-why {
+  color: var(--text-60);
+  font-size: 14px;
+  margin: 6px 0 0;
+}
+.time-body p {
+  font-size: 16px;
+  margin: 0;
+}
+footer {
+  margin-top: 56px;
+  font-size: 12px;
+  color: var(--text-38);
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.03em;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top-row">
+    <div>
+      <div class="date-label">Saturday, July 25, 2026</div>
+    </div>
+    <button class="toggle-btn" id="themeToggle">Light</button>
+  </div>
+
+  <h1 class="masthead">Morning Brief</h1>
+  <p class="sub-masthead">MissPalettable · Dubai</p>
+
+  <section>
+    <p class="label">Line for the day</p>
+    <div class="card">
+      <p class="quote-text">"It is not that we have a short time to live, but that we waste a lot of it."</p>
+      <p class="quote-attr">— Seneca, <em>On the Shortness of Life</em> (c. 49 AD)</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Win conditions for today</p>
+    <div class="card">
+      <div class="win-item">
+        <div class="win-num">1</div>
+        <div class="win-body">
+          <p>It's Saturday, kids are still on summer break, and nothing's forcing this today except you. Actually book the classes — don't just shortlist them again.</p>
+          <span class="tie-pill">Home / kids organized</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">2</div>
+        <div class="win-body">
+          <p>The PIGMNT growth plan you built yesterday has a "before July 25" baseline: bio link, Highlight covers, hashtag set, first Reel scripted. That deadline is today — do the four items, not the whole 5-week plan.</p>
+          <span class="tie-pill">Q4 rebuild: audience</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">3</div>
+        <div class="win-body">
+          <p>Two Notion tasks are dated today: review/schedule the Substack, and draft the "beauty M&A through a GCC lens" piece. Get the first one out the door; the M&A piece can be a rough draft, not a finished one.</p>
+          <span class="tie-pill">August content plan</span>
+        </div>
+      </div>
+      <p class="cut-note">Cut from today's top 3: the Shopify backlog (GA4 install, trust badges, Conscious Clearance audit). All dated July 27 onward — genuinely Monday's problem, not today's.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Urgent decisions</p>
+    <div class="card">
+      <div class="decision-item">
+        <p class="decision-title">CLE Cosmetics Q3 PO — price drop on CCC Cream</p>
+        <p class="decision-context">Alyssa at CLE emailed Hima (you're cc'd) offering 9 CCC Cream shades at $13.30, down from $19 — aging inventory they're clearing. Neutral Fair 101 is the last run before it's discontinued. No hard deadline, just "while stock lasts."</p>
+        <p class="rec-pill"><b>Lean</b> Don't auto-reorder because it's cheap. 41% of your own catalog is already sitting in Conscious Clearance — tell Hima to order only the shades with proven sell-through, and skip Neutral Fair 101 unless it's actually a mover. Cheap dead stock is still dead stock.</p>
+      </div>
+      <div class="decision-item">
+        <p class="decision-title">Glow Loyalty — lock in pricing before August 31</p>
+        <p class="decision-context">Your current plan and rate don't change either way. The lock-in only matters if you're planning to grow the loyalty program before the increase hits.</p>
+        <p class="rec-pill"><b>Lean</b> "Build loyalty/rewards programme" is already on your list for mid-August. If that's genuinely happening this quarter, lock today's pricing now. If it's not, ignore this — no reason to decide before month-end.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">What to be prepped for</p>
+    <div class="card">
+      <p class="prep-title">No meetings today.</p>
+      <p class="plain-note">Checked every calendar — MissP, Work, Personal, Family, the shared one with Sameer, Side Hustle, Todoist — all clear. The only thing on the books in the next few days is a call with Sheetal, Monday July 27, 2–3pm Dubai time. Nothing to prep for that yet.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Five things to read</p>
+    <div class="card">
+      <div class="read-item">
+        <span class="read-tag">Beauty Independent</span>
+        <p class="read-title"><a href="https://www.beautyindependent.com/mass-market-beauty-8-figure-body-care-brand-curie-rebrand/" target="_blank" rel="noopener">As Mass-Market Beauty Levels Up, 8-Figure Body Care Brand Curie Gets A Rebrand To Match</a></p>
+        <p class="read-why">Curie spent nine months and six figures making their brand voice match a business that had outgrown it. You've got the same job on the homepage About section this week — worth seeing how a founder who's done it thinks about "outsides matching insides."</p>
+      </div>
+      <div class="read-item">
+        <span class="read-tag">Emirates Woman</span>
+        <p class="read-title"><a href="https://emirateswoman.com/10-clean-beauty-skincare-brands-to-support-2026/" target="_blank" rel="noopener">10 Clean Beauty Skincare Brands To Support</a></p>
+        <p class="read-why">Rahua's on the list — useful to see how a UAE lifestyle outlet frames it right as you're clearing the brand out. ILIA and Kosas are also here as the clean-beauty comp set worth knowing.</p>
+      </div>
+      <div class="read-item">
+        <span class="read-tag">First Round Review</span>
+        <p class="read-title"><a href="https://review.firstround.com/the-6-decision-making-frameworks-that-help-startup-leaders-tackle-tough-calls/" target="_blank" rel="noopener">The 6 Decision-Making Frameworks That Help Startup Leaders Tackle Tough Calls</a></p>
+        <p class="read-why">You're building the MissP constitution and curation framework right now — this is raw material for making those decision rules explicit instead of living in your head.</p>
+      </div>
+      <div class="read-item">
+        <span class="read-tag">MOJEH</span>
+        <p class="read-title"><a href="https://www.mojeh.com/article/united-arab-emirates-homegrown-brands/" target="_blank" rel="noopener">Made In The UAE: Homegrown Brands To Shop In The Emirates</a></p>
+        <p class="read-why">Shiffa and SAAF Skin are positioned almost exactly where you want MissPalettable's curation to sit — worth 5 minutes as a competitive-positioning gut check.</p>
+      </div>
+      <div class="read-item">
+        <span class="read-tag">What's On Dubai</span>
+        <p class="read-title"><a href="https://whatson.ae/2026/07/12-things-to-do-in-dubai-this-weekend-july-24-to-26/" target="_blank" rel="noopener">12 Things To Do In Dubai This Weekend: July 24 to 26</a></p>
+        <p class="read-why">This is your shortlist for the open Saturday, not homework. The Huda Beauty x SALT collab at Dubai Mall doubles as a two-minute competitive glance if you end up there with the kids.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">If you have time</p>
+    <div class="card">
+      <div class="time-body">
+        <p>You've got a genuinely open Saturday and kids who are still on summer break. Don't spend it all on the four Instagram baseline items and the Substack draft. Take them to the Huda Beauty x SALT pop-up or the Jungle Book show at Citywalk — pick something from today's read that's actually for them, not for MissP.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>Generated 7:00 AM Dubai time · misspalettable.com</footer>
+</div>
+
+<script>
+(function() {
+  var root = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+  var stored = localStorage.getItem('brief-theme');
+  var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var theme = stored || (systemDark ? 'dark' : 'light');
+  applyTheme(theme);
+
+  btn.addEventListener('click', function() {
+    var current = root.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    localStorage.setItem('brief-theme', next);
+  });
+
+  function applyTheme(t) {
+    root.setAttribute('data-theme', t);
+    btn.textContent = t === 'dark' ? 'Light' : 'Dark';
+  }
+})();
+</script>
+</body>
+</html>
