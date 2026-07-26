@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Brief — Sunday, July 26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root { --accent: #225EDC; --radius: 18px; }
+html[data-theme="dark"] {
+  --bg: #000405;
+  --text-95: rgba(255,255,255,0.95);
+  --text-60: rgba(255,255,255,0.60);
+  --text-38: rgba(255,255,255,0.38);
+  --card-bg: rgba(255,255,255,0.04);
+  --card-border: rgba(255,255,255,0.08);
+  --pill-bg: rgba(34,94,220,0.16);
+}
+html[data-theme="light"] {
+  --bg: #FBFBF9;
+  --text-95: rgba(10,10,8,0.95);
+  --text-60: rgba(10,10,8,0.60);
+  --text-38: rgba(10,10,8,0.38);
+  --card-bg: rgba(10,10,8,0.03);
+  --card-border: rgba(10,10,8,0.08);
+  --pill-bg: rgba(34,94,220,0.10);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-95);
+  font-family: 'Inter', -apple-system, sans-serif;
+  line-height: 1.55;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.wrap { max-width: 640px; margin: 0 auto; padding: 48px 24px 80px; }
+.top-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 36px; }
+.date-label { font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-60); }
+.toggle-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-60);
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.toggle-btn:hover { color: var(--text-95); }
+h1.masthead { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 4px; }
+.sub-masthead { color: var(--text-60); font-size: 15px; margin: 0 0 40px; }
+section { margin-bottom: 40px; }
+.label { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--text-38); margin: 0 0 14px; }
+.card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 24px; }
+.quote-text { font-size: 20px; line-height: 1.5; font-weight: 500; margin: 0 0 12px; }
+.quote-attr { color: var(--text-60); font-size: 14px; }
+.win-item { display: flex; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--card-border); }
+.win-item:last-child { border-bottom: none; }
+.win-num { font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 500; color: var(--accent); flex-shrink: 0; width: 24px; }
+.win-body p { margin: 0 0 8px; font-size: 16px; }
+.tie-pill { display: inline-block; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); background: var(--pill-bg); padding: 4px 10px; border-radius: 999px; }
+.cut-note { margin-top: 16px; font-size: 13px; color: var(--text-38); font-style: italic; }
+.decision-item { margin-bottom: 20px; }
+.decision-item:last-child { margin-bottom: 0; }
+.decision-title { font-size: 16px; font-weight: 600; margin: 0 0 6px; }
+.decision-context { font-size: 15px; color: var(--text-60); margin: 0 0 10px; }
+.rec-pill { display: inline-flex; align-items: flex-start; gap: 6px; font-size: 13px; background: var(--pill-bg); color: var(--text-95); padding: 8px 14px; border-radius: 999px; }
+.rec-pill b { color: var(--accent); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; flex-shrink: 0; }
+.plain-note { font-size: 15px; color: var(--text-60); }
+.prep-title { font-size: 16px; font-weight: 600; margin: 0 0 4px; }
+.read-item { padding: 16px 0; border-bottom: 1px solid var(--card-border); }
+.read-item:last-child { border-bottom: none; }
+.read-tag { display: inline-block; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-38); margin-bottom: 6px; }
+.read-title a { color: var(--text-95); text-decoration: none; font-weight: 600; font-size: 16px; }
+.read-title a:hover { color: var(--accent); }
+.read-why { color: var(--text-60); font-size: 14px; margin: 6px 0 0; }
+.time-body p { font-size: 16px; margin: 0; }
+footer { margin-top: 56px; font-size: 12px; color: var(--text-38); font-family: 'DM Mono', monospace; letter-spacing: 0.03em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top-row">
+    <div>
+      <div class="date-label">Sunday, July 26, 2026</div>
+    </div>
+    <button class="toggle-btn" id="themeToggle">Light</button>
+  </div>
+
+  <h1 class="masthead">Morning Brief</h1>
+  <p class="sub-masthead">MissPalettable · Dubai</p>
+
+  <section>
+    <p class="label">Line for the day</p>
+    <div class="card">
+      <p class="quote-text">"You do not rise to the level of your goals. You fall to the level of your systems."</p>
+      <p class="quote-attr">— James Clear, <em>Atomic Habits</em> (2018)</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Win conditions for today</p>
+    <div class="card">
+      <div class="win-item">
+        <div class="win-num">1</div>
+        <div class="win-body">
+          <p>Book the kids' classes. Yesterday's brief told you to stop shortlisting and actually book — today's the last fully open day before Monday's routine (and the Sheetal call) eats the calendar. No more excuses on the table.</p>
+          <span class="tie-pill">Home / kids organized</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">2</div>
+        <div class="win-body">
+          <p>Put real time into the Q4 rebuild — the MissP constitution or the curation framework, whichever has momentum. Today's the only genuinely quiet stretch this week to build the systems rather than react to the inbox.</p>
+          <span class="tie-pill">Q4 strategic plan</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">3</div>
+        <div class="win-body">
+          <p>Start the July review, even in rough form. It's not due in Notion until August 1, but you close July out this week — get the honest "what actually moved the needle" reflection down while it's fresh, so August planning isn't done from memory.</p>
+          <span class="tie-pill">July review + August plan</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Urgent decisions</p>
+    <div class="card">
+      <div class="decision-item">
+        <p class="decision-title">CLE Cosmetics Q3 PO — still sitting unanswered</p>
+        <p class="decision-context">Stock@clecosmetics.com emailed Hima (you're cc'd) two days ago with the Q3 PO form — CCC Cream price drop, Melting Lip Powder back in stock. No reply from Hima yet. Same decision as yesterday, nothing's changed.</p>
+        <div class="rec-pill"><b>Lean</b> Order the shades with proven sell-through only. 41% of your catalog is already in Conscious Clearance — don't add more slow movers because the price is good.</div>
+      </div>
+      <div class="decision-item">
+        <p class="decision-title">Glow Loyalty — pricing lock-in before August 31</p>
+        <p class="decision-context">Still unread, still no real deadline pressure. Your current plan and rate don't change either way — the lock-in only matters if the loyalty programme build is actually happening this quarter.</p>
+        <div class="rec-pill"><b>Lean</b> "Build loyalty/rewards programme" is on your list for mid-August. If that's genuinely on, lock in now. If not, this can wait till closer to the 31st.</div>
+      </div>
+      <div class="decision-item">
+        <p class="decision-title">Kids' classes — booking, not just shortlisting</p>
+        <p class="decision-context">Flagged Saturday, still open. No email trail either way, so treat it as unbooked until you've actually done it.</p>
+        <div class="rec-pill"><b>Lean</b> Today, before the week turns over. This is a "do it," not a "decide it" — see win condition #1.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">What to be prepped for</p>
+    <div class="card">
+      <p class="plain-note">No meetings today. Checked every calendar — Work, Personal, Family, the shared one with Sameer, Side Hustle — all clear for Sunday, July 26. The only thing on the books in the next few days is a call with Sheetal, Monday July 27, 2–3pm Dubai time. Nothing to prep for yet.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Five things to read</p>
+    <div class="card">
+      <div class="read-item">
+        <span class="read-tag">BeautyMatter</span>
+        <p class="read-title"><a href="https://beautymatter.com/articles/no-reset-yet-for-gulf-airports-even-as-turmoil-subsides" target="_blank" rel="noopener">No Reset Yet for Gulf Airports Even as Turmoil Subsides</a></p>
+        <p class="read-why">GCC beauty sales down 30–35% year-over-year through May, "swoosh-shaped" recovery expected. This is the macro backdrop to the survival-mode year you just lived through — useful context while you're building resilience into the business for Q4.</p>
+      </div>
+      <div class="read-item">
+        <span class="read-tag">Harvard Business Review</span>
+        <p class="read-title"><a href="https://hbr.org/reading-lists/building-your-resilience" target="_blank" rel="noopener">Building Your Resilience</a></p>
+        <p class="read-why">HBR's core reading list on resilience, led by the classic "How Resilience Works." You've called yourself the ship's captain navigating the storm this year — this is the framework version of that instinct.</p>
+      </div>
+      <div class="read-item">
+        <span class="read-tag">MOJEH</span>
+        <p class="read-title"><a href="https://www.mojeh.com/article/summer-fragrances-new-perfume-launches/" target="_blank" rel="noopener">8 New Fragrances To Spritz This Season</a></p>
+        <p class="read-why">Huda Beauty's first-ever fragrance and an Omani attar from Amouage both feature — worth seeing how they're positioned right as you're building the editorial launch story for Amara Fragrances.</p>
+      </div>
+      <div class="read-item">
+        <span class="read-tag">Emirates Woman</span>
+        <p class="read-title"><a href="https://emirateswoman.com/22-new-beauty-launches-worth-clearing-shelf-space-for-this-summer/" target="_blank" rel="noopener">22 New Beauty Launches Worth Clearing Shelf Space For This Summer</a></p>
+        <p class="read-why">A 22-SKU "clear out the old for the new" story, styled as a curated moment rather than a fire sale. Exactly the reframe you're after for Conscious Clearance.</p>
+      </div>
+      <div class="read-item">
+        <span class="read-tag">What's On Dubai</span>
+        <p class="read-title"><a href="https://whatson.ae/2026/07/10-things-to-do-in-dubai-this-weekend-july-24-to-26/" target="_blank" rel="noopener">10 Things To Do In Dubai This Weekend: July 24 to 26</a></p>
+        <p class="read-why">This is your actual Sunday, not homework — the Irish Village's 7th birthday (Dhs27 drinks, live music) is on today specifically, if you want an excuse to leave the house.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">If you have time</p>
+    <div class="card time-body">
+      <p>Your calendar is completely empty today. No meetings, nothing dated in Notion, kids still on break. Once the classes are booked, resist the urge to fill the rest with Q4 planning — this is the last unstructured day before Monday's routine closes back in. Protect a few hours of it for absolutely nothing.</p>
+    </div>
+  </section>
+
+  <footer>Generated 7:00 AM Dubai time · misspalettable.com</footer>
+</div>
+
+<script>
+(function() {
+  var root = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+  var stored = localStorage.getItem('brief-theme');
+  var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var theme = stored || (systemDark ? 'dark' : 'light');
+  applyTheme(theme);
+  btn.addEventListener('click', function() {
+    var current = root.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    localStorage.setItem('brief-theme', next);
+  });
+  function applyTheme(t) {
+    root.setAttribute('data-theme', t);
+    btn.textContent = t === 'dark' ? 'Light' : 'Dark';
+  }
+})();
+</script>
+</body>
+</html>
