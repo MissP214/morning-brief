@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Brief — Monday, July 27</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --accent: #225EDC; --radius: 18px; }
+  html[data-theme="dark"] {
+    --bg: #000405;
+    --text-95: rgba(255,255,255,0.95);
+    --text-60: rgba(255,255,255,0.60);
+    --text-38: rgba(255,255,255,0.38);
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.08);
+    --pill-bg: rgba(34,94,220,0.16);
+  }
+  html[data-theme="light"] {
+    --bg: #FBFBF9;
+    --text-95: rgba(10,10,8,0.95);
+    --text-60: rgba(10,10,8,0.60);
+    --text-38: rgba(10,10,8,0.38);
+    --card-bg: rgba(10,10,8,0.03);
+    --card-border: rgba(10,10,8,0.08);
+    --pill-bg: rgba(34,94,220,0.10);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-95);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.55;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 48px 24px 80px; }
+  .top-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 36px; }
+  .date-label { font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-60); }
+  .toggle-btn {
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-60);
+    padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  }
+  .toggle-btn:hover { color: var(--text-95); }
+  h1.masthead { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 4px; }
+  .sub-masthead { color: var(--text-60); font-size: 15px; margin: 0 0 40px; }
+  section { margin-bottom: 40px; }
+  .label { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--text-38); margin: 0 0 14px; }
+  .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 24px; }
+  .quote-text { font-size: 20px; line-height: 1.5; font-weight: 500; margin: 0 0 12px; }
+  .quote-attr { color: var(--text-60); font-size: 14px; }
+  .win-item { display: flex; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--card-border); }
+  .win-item:last-child { border-bottom: none; }
+  .win-num { font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 500; color: var(--accent); flex-shrink: 0; width: 24px; }
+  .win-body p { margin: 0 0 8px; font-size: 16px; }
+  .tie-pill { display: inline-block; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); background: var(--pill-bg); padding: 4px 10px; border-radius: 999px; }
+  .cut-note { margin-top: 16px; font-size: 13px; color: var(--text-38); font-style: italic; }
+  .decision-item { margin-bottom: 20px; }
+  .decision-item:last-child { margin-bottom: 0; }
+  .decision-title { font-size: 16px; font-weight: 600; margin: 0 0 6px; }
+  .decision-context { font-size: 15px; color: var(--text-60); margin: 0 0 10px; }
+  .rec-pill { display: inline-flex; align-items: flex-start; gap: 6px; font-size: 13px; background: var(--pill-bg); color: var(--text-95); padding: 8px 14px; border-radius: 999px; }
+  .rec-pill b { color: var(--accent); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; flex-shrink: 0; }
+  .plain-note { font-size: 15px; color: var(--text-60); }
+  .prep-title { font-size: 16px; font-weight: 600; margin: 0 0 4px; }
+  .read-item { padding: 16px 0; border-bottom: 1px solid var(--card-border); }
+  .read-item:last-child { border-bottom: none; }
+  .read-tag { display: inline-block; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-38); margin-bottom: 6px; }
+  .read-title a { color: var(--text-95); text-decoration: none; font-weight: 600; font-size: 16px; }
+  .read-title a:hover { color: var(--accent); }
+  .read-why { color: var(--text-60); font-size: 14px; margin: 6px 0 0; }
+  .time-body p { font-size: 16px; margin: 0; }
+  footer { margin-top: 56px; font-size: 12px; color: var(--text-38); font-family: 'DM Mono', monospace; letter-spacing: 0.03em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top-row">
+    <div>
+      <div class="date-label">Monday, July 27, 2026</div>
+    </div>
+    <button class="toggle-btn" id="themeToggle">Light</button>
+  </div>
+
+  <h1 class="masthead">Morning Brief</h1>
+  <p class="sub-masthead">MissPalettable · Dubai</p>
+
+  <section>
+    <p class="label">Line for the day</p>
+    <div class="card">
+      <p class="quote-text">"Almost everything will work again if you unplug it for a few minutes, including you."</p>
+      <p class="quote-attr">— Anne Lamott, <em>Traveling Mercies</em> (1999)</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Win conditions for today</p>
+    <div class="card">
+      <div class="win-item">
+        <div class="win-num">1</div>
+        <div class="win-body">
+          <p>Book the kids' classes. Not shortlist, not "look into it" — book. This is the fourth day it's been flagged with nothing to show for it, and the noon-to-2pm gap in your calendar is the only real window left before the week closes back in.</p>
+          <span class="tie-pill">Home / kids organized</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">2</div>
+        <div class="win-body">
+          <p>Get through both content calendar blocks — MissP themes at 10:30, PIGMNT themes after lunch. August's calendar is due for final review Wednesday, and today and tomorrow are the only two days actually scheduled to build it.</p>
+          <span class="tie-pill">July review + August plan</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">3</div>
+        <div class="win-body">
+          <p>Post the Pigmnt carousel. It's flagged High in Notion for today — a small, concrete win you can bank before the calendar gets complicated, and PIGMNT's whole value proposition is showing up consistently.</p>
+          <span class="tie-pill">Q4 · editorial authority</span>
+        </div>
+      </div>
+      <p class="cut-note">Cut: the Q4 constitution / curation framework work from Sunday doesn't have a home today — the calendar's booked start to finish with content and the Sheetal call. It'll have to wait for a quieter day this week.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Urgent decisions</p>
+    <div class="card">
+      <div class="decision-item">
+        <p class="decision-title">Sheetal call vs. the PIGMNT content block — you're double-booked at 2pm</p>
+        <p class="decision-context">Both start at 2pm today: the recurring call with Sheetal and the PIGMNT themes work block. Nobody's fixed this for you.</p>
+        <span class="rec-pill"><b>Lean</b> Keep the Sheetal call — it's recurring and marked High priority, feels like the wrong one to bump. Shift PIGMNT themes to 3–5pm and use the noon gap to get a head start, so the shorter session still lands.</span>
+      </div>
+      <div class="decision-item">
+        <p class="decision-title">Kids' classes — still not booked</p>
+        <p class="decision-context">Flagged Friday, still open Saturday, still open Sunday. No email trail either way, so treat it as unbooked until you've actually done it.</p>
+        <span class="rec-pill"><b>Lean</b> Today, in the noon-to-2pm gap. This stopped being a "decide it" days ago — it's purely a "do it" now.</span>
+      </div>
+      <div class="decision-item">
+        <p class="decision-title">CLE Cosmetics Q3 PO — still sitting unanswered</p>
+        <p class="decision-context">stock@clecosmetics.com emailed Hima (you're cc'd) three days ago with the Q3 PO — CCC Cream price drop, Melting Lip Powder back in stock. Still no reply from Hima.</p>
+        <span class="rec-pill"><b>Lean</b> This one's really Hima's to close, not yours — worth a nudge if it's still open tomorrow. If shades get ordered, proven sell-through only; 41% of the catalog is already in Conscious Clearance.</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">What to be prepped for</p>
+    <div class="card">
+      <p class="prep-title">Call with Sheetal — 2–3pm (if it stays at 2pm)</p>
+      <p class="plain-note">A recurring personal catch-up, Home zone in your task list — no agenda on file, nothing pending from last time. The only real prep is the decision above: is this the one you keep, or the one you bump for PIGMNT?</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Five things to read</p>
+    <div class="card">
+      <div class="read-item">
+        <span class="read-tag">Klaviyo</span>
+        <p class="read-title"><a href="https://www.klaviyo.com/blog/email-sms-marketing-priorities-2026" target="_blank" rel="noopener">What Nearly 100 Account Audits Revealed About 2026 Email &amp; SMS Priorities</a></p>
+        <p class="read-why">Half the fixes Klaviyo's own strategists flag most — welcome flows split by purchase status, missing price-drop and low-stock automations — are exactly what your own Klaviyo audit should be checking for. Cheat sheet before you run it.</p>
+      </div>
+      <div class="read-item">
+        <span class="read-tag">MOJEH</span>
+        <p class="read-title"><a href="https://www.mojeh.com/article/united-arab-emirates-homegrown-brands/" target="_blank" rel="noopener">Made In The UAE: Homegrown Brands To Shop In The Emirates</a></p>
+        <p class="read-why">A curation piece built entirely on origin story and craft, zero discount language anywhere. It's the tone you're reaching for with the Conscious Clearance reframe.</p>
+      </div>
+      <div class="read-item">
+        <span class="read-tag">Emirates Woman</span>
+        <p class="read-title"><a href="https://emirateswoman.com/10-clean-beauty-skincare-brands-to-support-2026/" target="_blank" rel="noopener">10 Clean Beauty Skincare Brands To Support</a></p>
+        <p class="read-why">Rahua's on this list, styled as a hero rather than a brand you're quietly clearing. Worth seeing how someone else frames it before you write its exit.</p>
+      </div>
+      <div class="read-item">
+        <span class="read-tag">BeautyMatter</span>
+        <p class="read-title"><a href="https://beautymatter.com/articles/chinas-top-execs-share-what-beautys-next-chapter-looks-like" target="_blank" rel="noopener">China's Top Execs Share What Beauty's Next Chapter Looks Like</a></p>
+        <p class="read-why">One line will stick with you: "brand meaning is not there from day one, it's built through the journey." That's your constitution and curation framework argument in a sentence — Q4 fuel.</p>
+      </div>
+      <div class="read-item">
+        <span class="read-tag">Wisdom Partners</span>
+        <p class="read-title"><a href="https://blog.wisdompartners.llc/p/the-hardest-founder-decisions-are" target="_blank" rel="noopener">The Hardest Founder Decisions Are Rarely Just Business Decisions</a></p>
+        <p class="read-why">Published this week. On deciding fast versus deciding well when the stakes are personal, not just financial — a fair description of the year you've had as "the ship's captain."</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">If you have time</p>
+    <div class="card time-body">
+      <p>Once the kids' classes are booked, resist filling the rest of that noon gap with email. You've just landed back into a fully-scheduled Dubai Monday after Singapore and Italy — give yourself the last twenty minutes of that window to do nothing work-related before Sheetal or PIGMNT eats it.</p>
+    </div>
+  </section>
+
+  <footer>Generated 10:59 AM Dubai time · misspalettable.com</footer>
+</div>
+
+<script>
+(function() {
+  var root = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+  var stored = localStorage.getItem('brief-theme');
+  var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var theme = stored || (systemDark ? 'dark' : 'light');
+  applyTheme(theme);
+
+  btn.addEventListener('click', function() {
+    var current = root.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    localStorage.setItem('brief-theme', next);
+  });
+
+  function applyTheme(t) {
+    root.setAttribute('data-theme', t);
+    btn.textContent = t === 'dark' ? 'Light' : 'Dark';
+  }
+})();
+</script>
+</body>
+</html>
