@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Brief — Tuesday, July 28</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --accent: #225EDC; --radius: 18px; }
+  html[data-theme="dark"] {
+    --bg: #000405;
+    --text-95: rgba(255,255,255,0.95);
+    --text-60: rgba(255,255,255,0.60);
+    --text-38: rgba(255,255,255,0.38);
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.08);
+    --pill-bg: rgba(34,94,220,0.16);
+  }
+  html[data-theme="light"] {
+    --bg: #FBFBF9;
+    --text-95: rgba(10,10,8,0.95);
+    --text-60: rgba(10,10,8,0.60);
+    --text-38: rgba(10,10,8,0.38);
+    --card-bg: rgba(10,10,8,0.03);
+    --card-border: rgba(10,10,8,0.08);
+    --pill-bg: rgba(34,94,220,0.10);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-95);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.55;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 48px 24px 80px; }
+  .top-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 36px; }
+  .date-label { font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-60); }
+  .toggle-btn {
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase;
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-60);
+    padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  }
+  .toggle-btn:hover { color: var(--text-95); }
+  h1.masthead { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 4px; }
+  .sub-masthead { color: var(--text-60); font-size: 15px; margin: 0 0 40px; }
+  section { margin-bottom: 40px; }
+  .label { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--text-38); margin: 0 0 14px; }
+  .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 24px; }
+  .quote-text { font-size: 20px; line-height: 1.5; font-weight: 500; margin: 0 0 12px; }
+  .quote-attr { color: var(--text-60); font-size: 14px; }
+  .win-item { display: flex; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--card-border); }
+  .win-item:last-child { border-bottom: none; }
+  .win-num { font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 500; color: var(--accent); flex-shrink: 0; width: 24px; }
+  .win-body p { margin: 0 0 8px; font-size: 16px; }
+  .tie-pill { display: inline-block; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); background: var(--pill-bg); padding: 4px 10px; border-radius: 999px; }
+  .cut-note { margin-top: 16px; font-size: 13px; color: var(--text-38); font-style: italic; }
+  .decision-item { margin-bottom: 20px; }
+  .decision-item:last-child { margin-bottom: 0; }
+  .decision-title { font-size: 16px; font-weight: 600; margin: 0 0 6px; }
+  .decision-context { font-size: 15px; color: var(--text-60); margin: 0 0 10px; }
+  .rec-pill { display: inline-flex; align-items: flex-start; gap: 6px; font-size: 13px; background: var(--pill-bg); color: var(--text-95); padding: 8px 14px; border-radius: 999px; }
+  .rec-pill b { color: var(--accent); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; flex-shrink: 0; }
+  .plain-note { font-size: 15px; color: var(--text-60); }
+  .prep-title { font-size: 16px; font-weight: 600; margin: 0 0 4px; }
+  .read-item { padding: 16px 0; border-bottom: 1px solid var(--card-border); }
+  .read-item:last-child { border-bottom: none; }
+  .read-tag { display: inline-block; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-38); margin-bottom: 6px; }
+  .read-title a { color: var(--text-95); text-decoration: none; font-weight: 600; font-size: 16px; }
+  .read-title a:hover { color: var(--accent); }
+  .read-why { color: var(--text-60); font-size: 14px; margin: 6px 0 0; }
+  .time-body p { font-size: 16px; margin: 0; }
+  footer { margin-top: 56px; font-size: 12px; color: var(--text-38); font-family: 'DM Mono', monospace; letter-spacing: 0.03em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top-row">
+    <div>
+      <div class="date-label">Tuesday, July 28, 2026</div>
+    </div>
+    <button class="toggle-btn" id="themeToggle">Light</button>
+  </div>
+
+  <h1 class="masthead">Morning Brief</h1>
+  <p class="sub-masthead">MissPalettable · Dubai</p>
+
+  <section>
+    <p class="label">Line for the day</p>
+    <div class="card">
+      <p class="quote-text">"Not everything that is faced can be changed, but nothing can be changed until it is faced."</p>
+      <p class="quote-attr">— James Baldwin, <em>As Much Truth As One Can Bear</em> (1962)</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Win conditions for today</p>
+    <div class="card">
+      <div class="win-item">
+        <div class="win-num">1</div>
+        <div class="win-body">
+          <p>Actually finish the August content calendar in the 2–5pm block. Tomorrow's calendar event is labeled "final review & send (DUE)" — today isn't another working session, it's the last one before it has to be done.</p>
+          <span class="tie-pill">July review + August plan</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">2</div>
+        <div class="win-body">
+          <p>Clean the data and calculate true margins in this morning's 10:30 block. It's the High-priority Notion task dated today, and it's also literally what "redesign revenue" needs before any Q4 decision is trustworthy.</p>
+          <span class="tie-pill">Q4 strategic plan</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">3</div>
+        <div class="win-body">
+          <p>Pay Gianna's school fees. High priority, Home zone, dated today — a five-minute admin task that's the difference between "home organized" and it quietly rolling to tomorrow.</p>
+          <span class="tie-pill">Home + kids organized</span>
+        </div>
+      </div>
+      <p class="cut-note">Cut for today: trust badges on product pages, the Conscious Clearance audit, expanding the gift-by-persona collections, and the MissP brands deck — all dated today in Notion, all real, none of them beat the three above.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Urgent decisions</p>
+    <div class="card">
+      <div class="decision-item">
+        <p class="decision-title">CLE Cosmetics Q3 PO — four days unanswered now</p>
+        <p class="decision-context">stock@clecosmetics.com emailed Hima (you're cc'd) on July 24 with the Q3 PO — CCC Cream price drop, Melting Lip Powder and Hydro Blot Powder back in stock. Still zero reply in the thread from anyone.</p>
+        <span class="rec-pill"><b>Lean</b> This is Hima's to close, but four days of silence means it's not going to close itself — worth a direct nudge to Hima today, not another "if it's still open tomorrow." If shades get reordered, proven sell-through only; 41% of the catalog is already sitting in Conscious Clearance.</span>
+      </div>
+      <p class="plain-note">That's the only one genuinely waiting on you. The rest of the last 24 hours in the inbox is newsletters, event marketing kits and spam — nothing else needs a yes/no from you today.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">What to be prepped for</p>
+    <div class="card">
+      <p class="plain-note">No meetings today — genuinely. Just two solo work blocks: the data/margins investigation at 10:30 and the August content calendar at 2pm. Nobody to prep for except future-you, who needs the content calendar actually finished by tonight, not just further along.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Five things to read</p>
+    <div class="card">
+      <div class="read-item">
+        <span class="read-tag">Business of Fashion</span>
+        <p class="read-title"><a href="https://www.businessoffashion.com/articles/beauty/estee-lauder-companies-wont-sell-too-faced-smashbox-and-dr-jart/" target="_blank" rel="noopener">Estée Lauder Companies Won't Sell Too Faced, Smashbox and Dr. Jart</a></p>
+        <p class="read-why">A hold-vs-exit decision at 1,000x your scale, made for the same reason: the price on offer didn't match the brand's real value. Direct parallel to the Approved/Limited/Hold/Exit table you're building for FANCL, Rahua and Ere Perez.</p>
+      </div>
+      <div class="read-item">
+        <span class="read-tag">Beauty Independent</span>
+        <p class="read-title"><a href="https://www.beautyindependent.com/6-beauty-marketing-predictions-2026/" target="_blank" rel="noopener">6 Beauty Marketing Predictions For 2026: Anti-Ambition, Emotion-First Branding, Ownable Rituals And More</a></p>
+        <p class="read-why">"Enoughness" over hustle, authority over influence, brands as part of an ecosystem not an island — read this before you sit down to the August calendar, it'll sharpen the founder-voice rewrite too.</p>
+      </div>
+      <div class="read-item">
+        <span class="read-tag">Niche Magazine</span>
+        <p class="read-title"><a href="https://nichemagazine.me/clean-beauty-arabia-2026-sephora-middle-east/" target="_blank" rel="noopener">Clean Beauty Arabia 2026: Sephora Middle East Launches Region's First Clean Beauty Category</a></p>
+        <p class="read-why">Sephora ME building an entire clean-beauty retail category is the competitive landscape MissP's curation framework needs to answer to — worth knowing exactly what you're up against before Q4.</p>
+      </div>
+      <div class="read-item">
+        <span class="read-tag">TimeOut Dubai</span>
+        <p class="read-title"><a href="https://www.timeoutdubai.com/things-to-do/this-week-dubai-july-27-august-2" target="_blank" rel="noopener">10 Fantastic Things To Do In Dubai This Week (27 July–2 August)</a></p>
+        <p class="read-why">Kids are still on summer break — a two-minute scan for anything worth adding to the week before you're back in a fully scheduled routine.</p>
+      </div>
+      <div class="read-item">
+        <span class="read-tag">The Generalist PM</span>
+        <p class="read-title"><a href="https://thegeneralistpm.substack.com/p/june-12-2026" target="_blank" rel="noopener">Systems Thinking and Strategic Thinking Are Integrated and Interdependent</a></p>
+        <p class="read-why">"Strategic thinking without systems thinking becomes simplistic; systems thinking without strategic thinking becomes analysis without direction." That's the exact tension in redesigning the whole MissP ecosystem at once — good fuel for the constitution work.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">If you have time</p>
+    <div class="card time-body">
+      <p>You've got a genuine two-hour gap between the two work blocks today, 12–2pm — the first properly open midday in a while with nothing double-booked into it. Eat lunch away from the laptop before you sit back down for the content calendar. It's not a task, it's just yours.</p>
+    </div>
+  </section>
+
+  <footer>Generated 7:00 AM Dubai time · misspalettable.com</footer>
+</div>
+
+<script>
+(function() {
+  var root = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+  var stored = localStorage.getItem('brief-theme');
+  var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var theme = stored || (systemDark ? 'dark' : 'light');
+  applyTheme(theme);
+
+  btn.addEventListener('click', function() {
+    var current = root.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    localStorage.setItem('brief-theme', next);
+  });
+
+  function applyTheme(t) {
+    root.setAttribute('data-theme', t);
+    btn.textContent = t === 'dark' ? 'Light' : 'Dark';
+  }
+})();
+</script>
+</body>
+</html>
