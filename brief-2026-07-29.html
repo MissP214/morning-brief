@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Brief — Wednesday, July 29</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --accent:#225EDC;
+    --radius:18px;
+  }
+  html[data-theme="dark"]{
+    --bg:#000405;
+    --text-95: rgba(255,255,255,0.95);
+    --text-60: rgba(255,255,255,0.60);
+    --text-38: rgba(255,255,255,0.38);
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.08);
+    --pill-bg: rgba(34,94,220,0.16);
+  }
+  html[data-theme="light"]{
+    --bg:#FBFBF9;
+    --text-95: rgba(10,10,10,0.95);
+    --text-60: rgba(10,10,10,0.60);
+    --text-38: rgba(10,10,10,0.38);
+    --card-bg: rgba(10,10,10,0.03);
+    --card-border: rgba(10,10,10,0.08);
+    --pill-bg: rgba(34,94,220,0.10);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text-95);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    transition:background .2s ease, color .2s ease;
+  }
+  .wrap{
+    max-width:720px;
+    margin:0 auto;
+    padding:48px 24px 100px;
+  }
+  header.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:40px;
+  }
+  .date-line{
+    font-family:'DM Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--text-60);
+  }
+  .toggle-btn{
+    font-family:'DM Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    background:var(--card-bg);
+    border:1px solid var(--card-border);
+    color:var(--text-60);
+    padding:8px 16px;
+    border-radius:999px;
+    cursor:pointer;
+  }
+  .toggle-btn:hover{ color:var(--text-95); }
+  .masthead{
+    margin-bottom:56px;
+  }
+  .masthead h1{
+    font-size:34px;
+    font-weight:700;
+    margin:0 0 6px;
+    letter-spacing:-0.01em;
+  }
+  .masthead p{
+    margin:0;
+    color:var(--text-60);
+    font-size:15px;
+  }
+  section.block{
+    margin-bottom:48px;
+  }
+  .label{
+    font-family:'DM Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--text-38);
+    margin-bottom:18px;
+  }
+  .card{
+    background:var(--card-bg);
+    border:1px solid var(--card-border);
+    border-radius:var(--radius);
+    padding:24px;
+  }
+  /* Line for the day */
+  .quote-card blockquote{
+    margin:0 0 14px;
+    font-size:21px;
+    line-height:1.45;
+    font-weight:500;
+    color:var(--text-95);
+  }
+  .quote-attr{
+    font-size:14px;
+    color:var(--text-60);
+  }
+  .quote-attr em{ font-style:italic; }
+
+  /* Win conditions */
+  .win-item{
+    display:flex;
+    gap:18px;
+    padding:20px 0;
+    border-bottom:1px solid var(--card-border);
+  }
+  .win-item:last-child{ border-bottom:none; }
+  .win-num{
+    font-family:'DM Mono',monospace;
+    font-size:20px;
+    font-weight:500;
+    color:var(--accent);
+    flex-shrink:0;
+    width:24px;
+  }
+  .win-body p{
+    margin:0 0 10px;
+    font-size:15.5px;
+    line-height:1.55;
+    color:var(--text-95);
+  }
+  .tie-pill{
+    display:inline-block;
+    font-family:'DM Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--accent);
+    background:var(--pill-bg);
+    padding:5px 12px;
+    border-radius:999px;
+  }
+  .cut-note{
+    margin-top:18px;
+    font-size:13px;
+    line-height:1.6;
+    color:var(--text-38);
+  }
+
+  /* Urgent decisions */
+  .decision{
+    padding:22px 0;
+    border-bottom:1px solid var(--card-border);
+  }
+  .decision:last-child{ border-bottom:none; }
+  .decision-title{
+    font-size:16px;
+    font-weight:600;
+    margin:0 0 8px;
+    color:var(--text-95);
+  }
+  .decision-context{
+    font-size:14.5px;
+    line-height:1.6;
+    color:var(--text-60);
+    margin:0 0 12px;
+  }
+  .rec-row{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .rec-pill{
+    flex-shrink:0;
+    font-family:'DM Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:#fff;
+    background:var(--accent);
+    padding:5px 12px;
+    border-radius:999px;
+    margin-top:2px;
+  }
+  .rec-text{
+    font-size:14.5px;
+    line-height:1.6;
+    color:var(--text-95);
+    margin:0;
+  }
+  .no-decisions{
+    font-size:15px;
+    line-height:1.6;
+    color:var(--text-60);
+  }
+
+  /* Prepped for */
+  .prep-empty{
+    font-size:15.5px;
+    line-height:1.65;
+    color:var(--text-95);
+  }
+  .prep-empty .sub{
+    display:block;
+    margin-top:8px;
+    font-size:14px;
+    color:var(--text-60);
+  }
+
+  /* Five things to read */
+  .read-item{
+    padding:20px 0;
+    border-bottom:1px solid var(--card-border);
+  }
+  .read-item:last-child{ border-bottom:none; }
+  .read-tag{
+    font-family:'DM Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--text-38);
+    margin-bottom:8px;
+  }
+  .read-item a.read-title{
+    font-size:16px;
+    font-weight:600;
+    color:var(--text-95);
+    text-decoration:none;
+    display:inline-block;
+    margin-bottom:8px;
+    line-height:1.4;
+  }
+  .read-item a.read-title:hover{ color:var(--accent); }
+  .read-why{
+    font-size:14.5px;
+    line-height:1.6;
+    color:var(--text-60);
+    margin:0;
+  }
+
+  /* If you have time */
+  .free-text{
+    font-size:15.5px;
+    line-height:1.7;
+    color:var(--text-95);
+  }
+
+  footer.foot{
+    margin-top:64px;
+    text-align:center;
+    font-family:'DM Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--text-38);
+  }
+
+  @media (max-width:480px){
+    .wrap{ padding:32px 18px 80px; }
+    .masthead h1{ font-size:28px; }
+    .quote-card blockquote{ font-size:18px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <span class="date-line">Wednesday, July 29, 2026</span>
+    <button class="toggle-btn" id="themeToggle">Light</button>
+  </header>
+
+  <div class="masthead">
+    <h1>Morning Brief</h1>
+    <p>MissPalettable · Dubai</p>
+  </div>
+
+  <section class="block">
+    <div class="label">Line for the day</div>
+    <div class="card quote-card">
+      <blockquote>&ldquo;Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.&rdquo;</blockquote>
+      <div class="quote-attr">— Antoine de Saint-Exupéry, <em>Wind, Sand and Stars</em> (1939)</div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="label">Win conditions for today</div>
+    <div class="card">
+      <div class="win-item">
+        <div class="win-num">1</div>
+        <div class="win-body">
+          <p>Finish the content calendar review at 10:30 and actually send it. The calendar itself labels this block &ldquo;final review &amp; send (DUE)&rdquo; — not a nice-to-have, the deadline you set nine days ago.</p>
+          <span class="tie-pill">July review + August plan</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">2</div>
+        <div class="win-body">
+          <p>Draft the Substack post in the 2–5pm block. This is the editorial-authority asset the quarter goal keeps pointing at — durable trust doesn't get built in a week you skip it.</p>
+          <span class="tie-pill">Quarter goal · editorial authority</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">3</div>
+        <div class="win-body">
+          <p>Send Hima a direct nudge on the CLE Cosmetics PO. Five days of silence on a live purchase order is long enough — this is a two-minute message, not a task block.</p>
+          <span class="tie-pill">Q4 plan · inventory discipline</span>
+        </div>
+      </div>
+    </div>
+    <div class="cut-note">Cut for today: analysing customers/repeat/product performance (High, dated today), the BEMT sunscreen content note, the homepage About rewrite, and expanding the gift-by-persona collections — all real, all in Notion, none of them beat the three above once two work blocks are already full.</div>
+  </section>
+
+  <section class="block">
+    <div class="label">Urgent decisions</div>
+    <div class="card">
+      <div class="decision">
+        <p class="decision-title">CLE Cosmetics Q3 PO — five days unanswered</p>
+        <p class="decision-context">stock@clecosmetics.com emailed Hima (you're cc'd) on July 24 with the Q3 PO form — CCC Cream price drop, Melting Lip Powder and Hydro Blot Loose Powder both back in stock. Still zero reply in the thread from anyone on your side.</p>
+        <div class="rec-row">
+          <span class="rec-pill">Nudge</span>
+          <p class="rec-text">This is Hima's to close, but five days means it needs a push from you today. Whatever gets reordered should clear the new replenishment rules first — proven sell-through only, not restocking for completeness.</p>
+        </div>
+      </div>
+      <div class="decision">
+        <p class="decision-title">Oserth (vegan haircare, Sweden) — fourth follow-up in a month</p>
+        <p class="decision-context">Charlie at Beauty Bulb has now emailed June 24, July 1, July 8, July 22 and again yesterday, asking if you want samples. It's sat unanswered the whole time.</p>
+        <div class="rec-row">
+          <span class="rec-pill">Decline (for now)</span>
+          <p class="rec-text">This is exactly the profile the purchasing freeze is meant to catch — new, unproven, requires evaluation bandwidth you don't have this week. Rahua and Ere Perez are exiting, not asking to be replaced yet. A one-line "not right now, will revisit post-Q4" is kinder than the silence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="label">What to be prepped for</div>
+    <div class="card">
+      <p class="prep-empty">No meetings today — genuinely. Just two solo work blocks: the content calendar send at 10:30, and the Substack draft at 2pm.
+        <span class="sub">Nobody to prep for except future-you, who needs the calendar actually sent by noon, not further along.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="label">Five things to read</div>
+    <div class="card">
+      <div class="read-item">
+        <div class="read-tag">BeautyMatter</div>
+        <a class="read-title" href="https://beautymatter.com/articles/ulta-beauty-good-day" target="_blank" rel="noopener">Why Ulta Beauty Is Betting a Skincare Launch Belongs in the Wellness Aisle</a>
+        <p class="read-why">Ulta shelving a skincare launch under wellness instead of skincare is exactly the category-blur thinking behind Dr. Roze's onboarding and the curation framework you're rebuilding — worth 5 minutes before Q4 gets more concrete.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">Beauty Independent</div>
+        <a class="read-title" href="https://www.beautyindependent.com/most-beauty-brands-expand-baudie-cut-everything-else-to-focus-on-deodorant-enhancer/" target="_blank" rel="noopener">Most Beauty Brands Expand. Baudie Cut Everything Else To Focus On Deodorant Enhancer.</a>
+        <p class="read-why">A brand that sunset its entire skincare range to go all-in on one hero product — the exact "buy less, buy better" instinct behind today's Conscious Clearance audit, proven out at another company's expense instead of yours.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">Alex Ghiculescu's Newsletter</div>
+        <a class="read-title" href="https://ghiculescu.substack.com/p/the-3-horizons-for-strategic-planning" target="_blank" rel="noopener">The 3 Horizons for Strategic Planning</a>
+        <p class="read-why">This is, almost word for word, the H1/H2/H3 language already in your quarter goal — laid out as an actual workshop format you could run for the MissP constitution instead of just holding in your head.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">What's On Dubai</div>
+        <a class="read-title" href="https://whatson.ae/2026/07/10-things-to-do-in-dubai-this-august/" target="_blank" rel="noopener">10 Things To Do In Dubai This August</a>
+        <p class="read-why">Published yesterday — a quieter city, a real list. Two minutes to scan before the kids' summer holiday winds down and the calendar fills back up.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">Campaign Middle East</div>
+        <a class="read-title" href="https://campaignme.com/how-mena-shoppers-are-reshaping-luxury-fashion-and-beauty-trends-in-2026/" target="_blank" rel="noopener">How MENA Shoppers Are Reshaping Luxury, Fashion and Beauty Trends in 2026</a>
+        <p class="read-why">Business of Fashion x Snapchat data on who's actually buying beauty in the GCC — youth, community-driven discovery, AR try-on over ads. Good grounding to have in the room before the Q4 plan gets written.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="label">If you have time</div>
+    <div class="card">
+      <p class="free-text">Same two-hour window as yesterday, 12–2pm — except this time it opens right after you've actually shipped the content calendar, so it's a reward, not a squeeze-in. Gym isn't until 5. No reason to rush back to the laptop.</p>
+    </div>
+  </section>
+
+  <footer class="foot">Generated 7:00 AM Dubai time · misspalettable.com</footer>
+
+</div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+
+  function applyTheme(theme){
+    root.setAttribute('data-theme', theme);
+    btn.textContent = theme === 'dark' ? 'Light' : 'Dark';
+  }
+
+  var saved = null;
+  try { saved = localStorage.getItem('brief-theme'); } catch(e) {}
+
+  var systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var initial = saved ? saved : (systemPrefersDark ? 'dark' : 'light');
+  applyTheme(initial);
+
+  btn.addEventListener('click', function(){
+    var current = root.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    try { localStorage.setItem('brief-theme', next); } catch(e) {}
+  });
+})();
+</script>
+
+</body>
+</html>
