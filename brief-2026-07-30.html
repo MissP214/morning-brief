@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Brief — Thursday, July 30</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #225EDC;
+    --radius: 18px;
+  }
+  html[data-theme="dark"] {
+    --bg: #000405;
+    --text-95: rgba(255,255,255,0.95);
+    --text-60: rgba(255,255,255,0.60);
+    --text-38: rgba(255,255,255,0.38);
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.08);
+    --pill-bg: rgba(34,94,220,0.16);
+  }
+  html[data-theme="light"] {
+    --bg: #FBFBF9;
+    --text-95: rgba(10,10,10,0.95);
+    --text-60: rgba(10,10,10,0.60);
+    --text-38: rgba(10,10,10,0.38);
+    --card-bg: rgba(10,10,10,0.03);
+    --card-border: rgba(10,10,10,0.08);
+    --pill-bg: rgba(34,94,220,0.10);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-95);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+  }
+  .date-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-60);
+    margin-bottom: 6px;
+  }
+  h1 {
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .toggle {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text-60);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .toggle:hover { color: var(--text-95); }
+  section { margin-bottom: 36px; }
+  .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-38);
+    margin-bottom: 14px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+  .quote-text {
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: 500;
+    margin: 0 0 12px;
+  }
+  .quote-attr {
+    font-size: 14px;
+    color: var(--text-60);
+  }
+  .win-item {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .win-item:last-child { border-bottom: none; }
+  .win-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--accent);
+    flex-shrink: 0;
+    width: 24px;
+  }
+  .win-body { flex: 1; }
+  .win-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  .win-detail { font-size: 14px; color: var(--text-60); line-height: 1.5; margin-bottom: 8px; }
+  .pill {
+    display: inline-block;
+    background: var(--pill-bg);
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 4px 12px;
+    border-radius: 999px;
+  }
+  .cut-note {
+    font-size: 13px;
+    color: var(--text-38);
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--card-border);
+  }
+  .decision {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .decision:last-child { border-bottom: none; }
+  .decision-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  .decision-context { font-size: 14px; color: var(--text-60); line-height: 1.5; margin-bottom: 10px; }
+  .rec-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--pill-bg);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 999px;
+  }
+  .rec-pill::before {
+    content: "→";
+    font-family: 'DM Mono', monospace;
+  }
+  .prep-empty {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-95);
+  }
+  .prep-empty .sub {
+    display: block;
+    margin-top: 6px;
+    font-size: 14px;
+    color: var(--text-60);
+  }
+  .read-item {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .read-item:last-child { border-bottom: none; }
+  .read-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: var(--pill-bg);
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .read-item a {
+    color: var(--text-95);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .read-item a:hover { text-decoration: underline; }
+  .read-why {
+    font-size: 14px;
+    color: var(--text-60);
+    line-height: 1.5;
+  }
+  .free-time-text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-95);
+  }
+  footer {
+    margin-top: 48px;
+    font-size: 12px;
+    color: var(--text-38);
+    font-family: 'DM Mono', monospace;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="date-label">Thursday, July 30, 2026</div>
+      <h1>Morning Brief</h1>
+    </div>
+    <button class="toggle" id="themeToggle">Theme</button>
+  </header>
+
+  <section>
+    <div class="label">Line for the day</div>
+    <div class="card">
+      <p class="quote-text">"First say to yourself what you would be; and then do what you have to do."</p>
+      <p class="quote-attr">— Epictetus, <em>Enchiridion</em> (c. 125 AD)</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Win conditions for today</div>
+    <div class="card">
+      <div class="win-item">
+        <div class="win-num">1</div>
+        <div class="win-body">
+          <div class="win-title">Finish the inventory, sell-through &amp; supplier-risk analysis</div>
+          <div class="win-detail">10:30am–12pm is already blocked for it. Sell-through, stock age, supplier concentration, an action assigned to every SKU — this is the actual groundwork for tomorrow's purchasing freeze decision, not busywork.</div>
+          <span class="pill">Q4 strategic plan</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">2</div>
+        <div class="win-body">
+          <div class="win-title">Publish today's Substack, draft the LinkedIn post</div>
+          <div class="win-detail">2–5pm block. Editorial authority compounds one post at a time — this is that.</div>
+          <span class="pill">August content plan</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">3</div>
+        <div class="win-body">
+          <div class="win-title">Email the Notes Dubai organizers about exhibitor access</div>
+          <div class="win-detail">A first-of-its-kind niche fragrance trade event is landing in Dubai Jan 2027 — long runway, first-mover advantage if you reach out now instead of in eight months when everyone else does. Five minutes, real upside.</div>
+          <span class="pill">Q4 strategic plan</span>
+        </div>
+      </div>
+      <div class="cut-note">Cut from today's top 3: reviewing the 50-brand scouting list, and building the 3 product bundles. Both real — but they're outputs of #1, not separate wins.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Urgent decisions</div>
+    <div class="card">
+      <div class="decision">
+        <div class="decision-title">Jill Lewis / Margot interview — pick a time</div>
+        <div class="decision-context">Jill confirmed yesterday that Margot (the PDRN source for your Beauty Unbound piece) is free to talk "over the next couple of weeks." The ball's in your court on timing.</div>
+        <span class="rec-pill">Propose Tue or Wed next week, once the inventory freeze and monthly review are behind you</span>
+      </div>
+      <div class="decision">
+        <div class="decision-title">Premier Beauty Brands wholesale offer — Drunk Elephant, Joico, Sol de Janeiro</div>
+        <div class="decision-context">Distributor says the order cut-off is approaching and wants an answer. None of these are in your current portfolio.</div>
+        <span class="rec-pill">Pass — this is exactly the supplier-pressure, unproven-demand purchase tomorrow's freeze policy exists to block</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">What to be prepped for</div>
+    <div class="card">
+      <p class="prep-empty">No meetings today — every calendar (Work, Personal, Side Hustle) is genuinely clear of anyone else.
+        <span class="sub">Just you, the inventory spreadsheet, and a Substack draft. Take the quiet while it's here.</span>
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Five things to read</div>
+    <div class="card">
+      <div class="read-item">
+        <div class="read-top"><span class="tag">MOJEH</span></div>
+        <a href="https://www.mojeh.com/article/art-collection-in-the-middle-east/" target="_blank" rel="noopener">Who Is The Modern Art Collector? Regional Curators Weigh In</a>
+        <p class="read-why">Regional curators describing "slowness, reflection, concept-driven engagement" as the job — it's almost a direct language match for the curation framework you're trying to formalize.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-top"><span class="tag">Emirates Woman</span></div>
+        <a href="https://emirateswoman.com/22-new-beauty-launches-worth-clearing-shelf-space-for-this-summer/" target="_blank" rel="noopener">22 new beauty launches worth clearing shelf space for this summer</a>
+        <p class="read-why">Useful benchmark for what "The Edit" is competing against on shelf appeal, right while you're mid inventory-audit.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-top"><span class="tag">Sifted</span></div>
+        <a href="https://sifted.eu/articles/pay-your-team-like-sales/" target="_blank" rel="noopener">It's time to start paying all your staff like your sales team</a>
+        <p class="read-why">A founder's case for tying everyone's bonus to the same revenue number — worth chewing on as you think about incentives inside a leaner Horizon 1 team.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-top"><span class="tag">Hypebae</span></div>
+        <a href="https://hypebae.com/2026/1/first-aid-beauty-2026-olympics-team-usa-skincare-jamie-anderson-sydney-jo-peterson-dry-skin-rescue-kit-where-to-buy" target="_blank" rel="noopener">First Aid Beauty Is the Official Skincare of Team USA</a>
+        <p class="read-why">Clean, tight case study in ambassador-led brand storytelling — a quick reference point before Dr. Roze launch messaging takes shape.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-top"><span class="tag">What's On Dubai</span></div>
+        <a href="https://whatson.ae/2026/07/10-things-to-do-in-dubai-this-august/" target="_blank" rel="noopener">10 things to do in Dubai this August</a>
+        <p class="read-why">Quieter city, still a real calendar — a couple of these are worth penciling in if you and the kids want an August outing.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">If you have time</div>
+    <div class="card">
+      <p class="free-time-text">You've got a genuinely open stretch today, roughly noon to 2pm, between the inventory block and the Substack block. That's rare this year. Don't reach for another task to fill it — eat lunch away from the laptop.</p>
+    </div>
+  </section>
+
+  <footer>Generated automatically, 7am Dubai time. Calendar checked across Work, Personal, Family and Side Hustle. If something here looks off, it's worth a second look — not everything survives translation from inbox to brief.</footer>
+</div>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var toggleBtn = document.getElementById('themeToggle');
+    var stored = null;
+    try { stored = localStorage.getItem('brief-theme'); } catch (e) {}
+    var systemPref = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    var theme = stored || systemPref;
+    root.setAttribute('data-theme', theme);
+
+    function updateLabel() {
+      toggleBtn.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
+    }
+    updateLabel();
+
+    toggleBtn.addEventListener('click', function() {
+      theme = theme === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', theme);
+      updateLabel();
+      try { localStorage.setItem('brief-theme', theme); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
