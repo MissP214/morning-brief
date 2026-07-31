@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Brief — Friday, July 31</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --accent: #225EDC; --radius: 18px; }
+  html[data-theme="dark"] {
+    --bg: #000405;
+    --text-95: rgba(255,255,255,0.95);
+    --text-60: rgba(255,255,255,0.60);
+    --text-38: rgba(255,255,255,0.38);
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.08);
+    --pill-bg: rgba(34,94,220,0.16);
+  }
+  html[data-theme="light"] {
+    --bg: #FBFBF9;
+    --text-95: rgba(10,10,10,0.95);
+    --text-60: rgba(10,10,10,0.60);
+    --text-38: rgba(10,10,10,0.38);
+    --card-bg: rgba(10,10,10,0.03);
+    --card-border: rgba(10,10,10,0.08);
+    --pill-bg: rgba(34,94,220,0.10);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-95);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 48px 24px 96px; }
+  header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; }
+  .date-label { font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-60); margin-bottom: 6px; }
+  h1 { font-size: 26px; font-weight: 600; margin: 0; letter-spacing: -0.01em; }
+  .toggle { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-60); border-radius: 999px; padding: 8px 16px; font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; flex-shrink: 0; }
+  .toggle:hover { color: var(--text-95); }
+  section { margin-bottom: 36px; }
+  .label { font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-38); margin-bottom: 14px; }
+  .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 24px; }
+  .quote-text { font-size: 20px; line-height: 1.5; font-weight: 500; margin: 0 0 12px; }
+  .quote-attr { font-size: 14px; color: var(--text-60); }
+  .win-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--card-border); }
+  .win-item:last-child { border-bottom: none; }
+  .win-num { font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 500; color: var(--accent); flex-shrink: 0; width: 24px; }
+  .win-body { flex: 1; }
+  .win-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  .win-detail { font-size: 14px; color: var(--text-60); line-height: 1.5; margin-bottom: 8px; }
+  .pill { display: inline-block; background: var(--pill-bg); color: var(--accent); font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; padding: 4px 12px; border-radius: 999px; }
+  .cut-note { font-size: 13px; color: var(--text-38); margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--card-border); }
+  .decision { padding: 18px 0; border-bottom: 1px solid var(--card-border); }
+  .decision:last-child { border-bottom: none; }
+  .decision-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  .decision-context { font-size: 14px; color: var(--text-60); line-height: 1.5; margin-bottom: 10px; }
+  .rec-pill { display: inline-flex; align-items: center; gap: 6px; background: var(--pill-bg); color: var(--accent); font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: 999px; }
+  .rec-pill::before { content: "→"; font-family: 'DM Mono', monospace; }
+  .prep-empty { font-size: 15px; line-height: 1.6; color: var(--text-95); }
+  .prep-empty .sub { display: block; margin-top: 6px; font-size: 14px; color: var(--text-60); }
+  .read-item { padding: 16px 0; border-bottom: 1px solid var(--card-border); }
+  .read-item:last-child { border-bottom: none; }
+  .read-top { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
+  .tag { font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); background: var(--pill-bg); padding: 3px 10px; border-radius: 999px; }
+  .read-item a { color: var(--text-95); font-size: 15px; font-weight: 600; text-decoration: none; }
+  .read-item a:hover { text-decoration: underline; }
+  .read-why { font-size: 14px; color: var(--text-60); line-height: 1.5; }
+  .free-time-text { font-size: 15px; line-height: 1.6; color: var(--text-95); }
+  footer { margin-top: 48px; font-size: 12px; color: var(--text-38); font-family: 'DM Mono', monospace; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="date-label">Friday, July 31, 2026</div>
+      <h1>Morning Brief</h1>
+    </div>
+    <button class="toggle" id="themeToggle">Theme</button>
+  </header>
+
+  <section>
+    <div class="label">Line for the day</div>
+    <div class="card">
+      <p class="quote-text">"You wanna fly, you got to give up the shit that weighs you down."</p>
+      <div class="quote-attr">— Toni Morrison, <em>Song of Solomon</em> (1977)</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Win conditions for today</div>
+    <div class="card">
+      <div class="win-item">
+        <div class="win-num">1</div>
+        <div class="win-body">
+          <div class="win-title">Turn yesterday's inventory analysis into the actual freeze policy</div>
+          <div class="win-detail">Sell-through, stock age and supplier concentration are already done. Today's job is the harder part: sorting every SKU into Approved / Limited / Hold / Exit and writing the one-page baseline. It's also the cleanest way to answer Premier Beauty Brands without re-litigating it in your head all week.</div>
+          <span class="pill">Q4 strategic plan</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">2</div>
+        <div class="win-body">
+          <div class="win-title">Close July, open August</div>
+          <div class="win-detail">2–5pm is already blocked for the monthly review. Publish the LinkedIn post if it's not live yet — don't let it slide into next week.</div>
+          <span class="pill">July review + August plan</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">3</div>
+        <div class="win-body">
+          <div class="win-title">Rewrite the Rahua, Ere Perez and FANCL descriptions in Founder Voice</div>
+          <div class="win-detail">Three of the ten products on today's list are exactly the stock you're trying to move before those brands exit the portfolio. Lead with the sensory line, not the ingredient list — that's the whole brief.</div>
+          <span class="pill">Q4 strategic plan</span>
+        </div>
+      </div>
+      <div class="cut-note">Cut from today's top 3: emailing the Notes Dubai organizers about exhibitor access (real, but the show's 18 months out — one more day doesn't cost you the opportunity), and the monthly Shopify/Klaviyo/Instagram audits (nothing due today).</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Urgent decisions</div>
+    <div class="card">
+      <div class="decision">
+        <div class="decision-title">Premier Beauty Brands — Drunk Elephant, Joico, Sol de Janeiro</div>
+        <div class="decision-context">Distributor emailed again about the order cut-off approaching. None of these are in your current portfolio.</div>
+        <span class="rec-pill">Pass — this is the exact "supplier pressure, no proven demand" scenario today's freeze policy exists to block</span>
+      </div>
+      <div class="decision">
+        <div class="decision-title">Jill Lewis — video or audio for the Margot / PDRN interview?</div>
+        <div class="decision-context">She asked directly yesterday evening and it's still sitting unanswered — a two-line reply closes this out.</div>
+        <span class="rec-pill">Audio — Beauty Unbound is a newsletter, you can always pull a clip later, and it keeps you out of a production project this week</span>
+      </div>
+      <div class="decision">
+        <div class="decision-title">Aramco warm intros — share your KSA dates</div>
+        <div class="decision-context">Worth flagging: the subscription agreement notification in your inbox shows as signed by all parties. The follow-up ask is for your KSA travel dates so they can set up intros.</div>
+        <span class="rec-pill">If a KSA trip isn't actually booked yet, say that plainly — "no firm dates, will confirm once travel is locked" keeps the door open without over-promising</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">What to be prepped for</div>
+    <div class="card">
+      <p class="prep-empty">No meetings with anyone else today — every block on the calendar (Work, Personal) is solo: the Edit collection review, the freeze work, the monthly review, the product rewrites.
+      <span class="sub">Today's "prep" is inbox replies (Jill, Premier Beauty, Aramco), not a conversation. Handle those first thing so they're not sitting open while you're deep in the freeze analysis.</span></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Five things to read</div>
+    <div class="card">
+      <div class="read-item">
+        <div class="read-top"><span class="tag">MOJEH</span></div>
+        <a href="https://www.mojeh.com/article/why-pdrn-is-the-skincare-ingredient-to-know/" target="_blank" rel="noopener">Why PDRN Is The Skincare Ingredient To Know Now</a>
+        <p class="read-why">Read this before the Jill/Margot call — it's the exact angle Beauty Unbound is running, and you'll walk into the interview already fluent.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-top"><span class="tag">Beauty Independent</span></div>
+        <a href="https://www.beautyindependent.com/close-mora-cosmetics-co-founders-small-brand-big-retailer/" target="_blank" rel="noopener">As Mora Cosmetics Closes, Its Co-Founders Discuss The Perils Of A Small Brand At A Big Retailer</a>
+        <p class="read-why">A founder on exactly your problem today — MOQs that don't match real demand, and holding on to a supplier relationship past the point it made sense. Useful company while you're building the Hold/Exit lists.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-top"><span class="tag">Emirates Woman</span></div>
+        <a href="https://emirateswoman.com/hot-new-buys-8-beauty-products-for-a-perfect-beauty-shelf/" target="_blank" rel="noopener">Hot New Buys: 8 beauty products for a perfect beauty shelf</a>
+        <p class="read-why">A quick benchmark for what a "curated shelf" looks like to your GCC customer right now — worth two minutes right before the Edit collection review at 10am.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-top"><span class="tag">Beauty Independent</span></div>
+        <a href="https://www.beautyindependent.com/6-beauty-marketing-predictions-2026/" target="_blank" rel="noopener">6 Beauty Marketing Predictions For 2026: Anti-Ambition, Emotion-First Branding, Ownable Rituals And More</a>
+        <p class="read-why">"Authority over influence" and "the opposite of optimization" are practically a brief for the Founder Voice work you're already doing — feed this straight into August content planning.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-top"><span class="tag">Lenny's Newsletter</span></div>
+        <a href="https://www.lennysnewsletter.com/p/mission-vision-strategy-goals-roadmap" target="_blank" rel="noopener">Mission → Vision → Strategy → Goals → Roadmap → Task</a>
+        <p class="read-why">The free section alone maps almost exactly onto what the MissP constitution needs to do — a clean scaffold to borrow from when Q4 planning gets its real block of time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">If you have time</div>
+    <div class="card">
+      <p class="free-time-text">Three genuinely load-bearing tasks today — freeze policy, July/August close, product rewrites — is plenty. If the morning wraps early and you get real air before 2pm, don't reach for the Notes Dubai email or the audits to fill it. Open the Emirates Woman shelf edit for five minutes purely because it's pretty, not because it's work.</p>
+    </div>
+  </section>
+
+  <footer>
+    Generated automatically, 7am Dubai time. Calendar checked across Work, Personal, Family and Side Hustle. If something here looks off, it's worth a second look — not everything survives translation from inbox to brief.
+  </footer>
+</div>
+
+<script>
+(function() {
+  var root = document.documentElement;
+  var toggleBtn = document.getElementById('themeToggle');
+  var stored = null;
+  try { stored = localStorage.getItem('brief-theme'); } catch (e) {}
+  var systemPref = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var theme = stored || systemPref;
+  root.setAttribute('data-theme', theme);
+  function updateLabel() {
+    toggleBtn.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
+  }
+  updateLabel();
+  toggleBtn.addEventListener('click', function() {
+    theme = theme === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', theme);
+    updateLabel();
+    try { localStorage.setItem('brief-theme', theme); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>
