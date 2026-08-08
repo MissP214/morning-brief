@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Morning Brief — Saturday, August 8, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#000405;
+    --card:rgba(255,255,255,0.045);
+    --card-border:rgba(255,255,255,0.09);
+    --t1:rgba(255,255,255,0.95);
+    --t2:rgba(255,255,255,0.60);
+    --t3:rgba(255,255,255,0.38);
+    --accent:#225EDC;
+    --accent-soft:rgba(34,94,220,0.16);
+    --rule:rgba(255,255,255,0.08);
+  }
+  html[data-theme="light"]{
+    --bg:#FBFBF9;
+    --card:rgba(10,12,14,0.035);
+    --card-border:rgba(10,12,14,0.09);
+    --t1:rgba(10,12,14,0.95);
+    --t2:rgba(10,12,14,0.60);
+    --t3:rgba(10,12,14,0.38);
+    --accent:#225EDC;
+    --accent-soft:rgba(34,94,220,0.10);
+    --rule:rgba(10,12,14,0.08);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--t1);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    transition:background .25s ease,color .25s ease;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:48px 24px 96px;}
+  .topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:48px;}
+  .datestack .day{font-size:13px;font-family:'DM Mono',ui-monospace,monospace;text-transform:uppercase;letter-spacing:.11em;color:var(--t3);margin-bottom:8px;}
+  .datestack h1{margin:0;font-size:30px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;}
+  .datestack .sub{margin-top:8px;font-size:14px;color:var(--t2);}
+  .toggle{
+    flex:none;border:1px solid var(--card-border);background:var(--card);color:var(--t2);
+    font-family:'DM Mono',ui-monospace,monospace;font-size:11px;text-transform:uppercase;letter-spacing:.09em;
+    padding:9px 16px;border-radius:999px;cursor:pointer;transition:all .2s ease;
+  }
+  .toggle:hover{color:var(--t1);border-color:var(--t3);}
+  section{margin-bottom:44px;}
+  .label{
+    font-family:'DM Mono',ui-monospace,monospace;font-size:11px;text-transform:uppercase;
+    letter-spacing:.15em;color:var(--t3);margin-bottom:16px;
+  }
+  .card{
+    background:var(--card);border:1px solid var(--card-border);border-radius:18px;
+    padding:24px 26px;
+  }
+  .card + .card{margin-top:12px;}
+  .quote{font-size:22px;line-height:1.4;font-weight:500;letter-spacing:-0.015em;margin:0 0 14px;}
+  .attrib{font-size:14px;color:var(--t2);margin:0;}
+  .attrib em{font-style:italic;}
+  .row{display:flex;gap:20px;align-items:flex-start;}
+  .num{
+    font-family:'DM Mono',ui-monospace,monospace;font-size:26px;line-height:1;color:var(--accent);
+    flex:none;width:26px;padding-top:2px;
+  }
+  .row h3{margin:0 0 8px;font-size:17px;font-weight:600;letter-spacing:-0.01em;line-height:1.35;}
+  .row p{margin:0;font-size:15px;color:var(--t2);}
+  .pill{
+    display:inline-block;margin-top:12px;padding:5px 13px;border-radius:999px;
+    background:var(--accent-soft);color:var(--accent);
+    font-family:'DM Mono',ui-monospace,monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;
+  }
+  .rec{
+    display:inline-block;margin-top:13px;padding:6px 14px;border-radius:999px;
+    background:var(--accent-soft);color:var(--accent);font-size:14px;font-weight:500;
+  }
+  .cut{margin-top:16px;font-size:13.5px;color:var(--t3);line-height:1.5;}
+  .dec h3{margin:0 0 8px;font-size:16.5px;font-weight:600;letter-spacing:-0.01em;line-height:1.4;}
+  .dec p{margin:0;font-size:15px;color:var(--t2);}
+  .read{display:flex;gap:20px;align-items:flex-start;}
+  .read .num{font-size:20px;width:22px;padding-top:4px;}
+  .tag{
+    font-family:'DM Mono',ui-monospace,monospace;font-size:10.5px;text-transform:uppercase;
+    letter-spacing:.11em;color:var(--t3);margin-bottom:7px;
+  }
+  .read a{color:var(--t1);text-decoration:none;border-bottom:1px solid var(--t3);font-size:16.5px;font-weight:600;letter-spacing:-0.01em;line-height:1.35;}
+  .read a:hover{border-bottom-color:var(--accent);color:var(--accent);}
+  .read p{margin:9px 0 0;font-size:14.5px;color:var(--t2);}
+  .plain p{margin:0;font-size:15.5px;color:var(--t2);}
+  .plain strong{color:var(--t1);font-weight:600;}
+  footer{
+    margin-top:64px;padding-top:24px;border-top:1px solid var(--rule);
+    font-size:12.5px;line-height:1.65;color:var(--t3);
+  }
+  @media (max-width:560px){
+    .wrap{padding:32px 18px 72px;}
+    .datestack h1{font-size:25px;}
+    .quote{font-size:19px;}
+    .row,.read{gap:14px;}
+    .card{padding:20px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="datestack">
+      <div class="day">Saturday</div>
+      <h1>August 8, 2026</h1>
+      <div class="sub">Dubai, 7:00am — one walk on the calendar and nothing else. Use it.</div>
+    </div>
+    <button class="toggle" id="themeToggle" type="button">Theme</button>
+  </div>
+
+  <section>
+    <div class="label">Line for the day</div>
+    <div class="card">
+      <p class="quote">"Plans are only good intentions unless they immediately degenerate into hard work."</p>
+      <p class="attrib">— Peter F. Drucker, <em>Management: Tasks, Responsibilities, Practices</em> (1973)</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Win conditions for today</div>
+
+    <div class="card">
+      <div class="row">
+        <div class="num">1</div>
+        <div>
+          <h3>Close out July on paper. Actually finish it.</h3>
+          <p>August is eight days old and still unplanned. Today is the only day this week with zero meetings and no errands stapled to it — that combination isn't coming back before Monday. Numbers, what worked, what didn't, then a one-page August. Not a beautiful document, a finished one.</p>
+          <div class="pill">July review + August plan</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <div class="num">2</div>
+        <div>
+          <h3>End the Qiyorro credit note — collect it or kill it</h3>
+          <p>Twelve days, two asks, zero replies, and Qiyorro said retail and distribution close at end of July. This isn't a follow-up problem anymore, it's a decision. Either you escalate past Ayesha with a hard date, or you provision it as bad debt and stop paying it rent in your head. Both are fine. Leaving it open is not.</p>
+          <div class="pill">Q4 resilience</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <div class="num">3</div>
+        <div>
+          <h3>Give the kids a Saturday that isn't an errand</h3>
+          <p>Wednesday was a dentist and a uniform run. That counts as logistics, not as time with them. They're still on summer holiday and you've been back in Dubai barely a month. One thing today that they'd actually choose.</p>
+          <div class="pill">Home + kids organized</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cut">Cut: the monthly Shopify / Klaviyo / Instagram audits (they're inputs to the August plan, but the review has to come first, and doing all three today means finishing none), and any actual writing on the MissP constitution or curation framework — that needs a quieter head than a Saturday with two kids in the house will give you.</div>
+  </section>
+
+  <section>
+    <div class="label">Urgent decisions</div>
+
+    <div class="card dec">
+      <h3>Cle Cosmetics wants a yes on shipping — $121.92</h3>
+      <p>Alyssa came back at 4:11 this morning with the estimate you asked for. The PO is already in, Hima and Prija are cc'd, and the only thing standing between you and the stock is one word.</p>
+      <div class="rec">→ Reply "proceed" today. It's $122 on an order you've already committed to — this isn't a decision, it's a delay.</div>
+    </div>
+
+    <div class="card dec">
+      <h3>Qiyorro — escalate hard or write it off</h3>
+      <p>Hima's original ask went out 27 July, your follow-up 3 August, both to Ayesha with accounts@ and Alfardan cc'd. Nothing back either time. The company has now passed its own stated closure date, which means the window for using that credit balance on Ere Perez stock is closing or already shut.</p>
+      <div class="rec">→ One final email to accounts@qiyorro.com and nalghoul@alfardan.com.qa with a hard date (Wednesday), and provision it as bad debt regardless of the reply. Recovering it becomes upside instead of an open loop.</div>
+    </div>
+
+    <div class="card dec">
+      <h3>Shoptalk Luxe — the paid ticket has been sitting for two days</h3>
+      <p>Registration formally declined on Wednesday at 9:31am; twenty-six minutes later Jay sent you the paid-ticket link anyway. So it's not a rejection, it's a price. No reply has gone out since.</p>
+      <div class="rec">→ Skip it. It's Shoptalk Luxe 2027 and you're mid-rebuild — a paid ticket now is spend with no Q4 return. One line to Jay declining for this cycle keeps the door open for next.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">What to be prepped for</div>
+    <div class="card plain">
+      <p><strong>Nothing. No meetings today, on any calendar.</strong> The only entry across Work, Personal, Family, Sameer &amp; Mukta and Side Hustle is a walk at 5:30pm. Next thing that needs you in a chair is Monday, 2pm, the recurring call with Sheetal. Enjoy the silence — you've earned a day where nobody needs an answer from you in real time.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Five things to read</div>
+
+    <div class="card">
+      <div class="read">
+        <div class="num">1</div>
+        <div>
+          <div class="tag">Beauty Independent</div>
+          <a href="https://www.beautyindependent.com/big-business-developments-driving-beauty-manufacturing-2026/" target="_blank" rel="noopener">The Big Business Developments Driving Beauty Manufacturing In 2026</a>
+          <p>Fourteen contract manufacturers on where the leverage sits now — high MOQs as default are dying, near-shoring is winning, and brands are being told to demand real cost transparency. You have six live manufacturer threads running in parallel right now. This is the sheet music.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="read">
+        <div class="num">2</div>
+        <div>
+          <div class="tag">Lenny's Newsletter</div>
+          <a href="https://www.lennysnewsletter.com/p/strategy-blocks-an-operators-guide" target="_blank" rel="noopener">Strategy Blocks: An operator's guide to product strategy</a>
+          <p>A step-by-step method for splitting strategy into a 2-year "solve the current problems" track and a 3/5/10-year aspirational one — running in parallel, building a bridge from both sides. Almost exactly your Horizon 1 / 2 / 3 structure, with the process filled in. Free through both frameworks; only the closing myths section is gated.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="read">
+        <div class="num">3</div>
+        <div>
+          <div class="tag">Emirates Woman</div>
+          <a href="https://emirateswoman.com/emirati-womens-day-2026-expands-into-a-month-long-celebration-for-the-first-time/" target="_blank" rel="noopener">Emirati Women's Day 2026 expands into a month-long celebration for the first time</a>
+          <p>It's no longer one day. From 28 August it runs a full month, theme "We Emerge Stronger and Better." That's a four-week national moment landing right where your August plan ends and September begins — and it's a better fit for MissP and PIGMNT than most things you'd invent from scratch.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="read">
+        <div class="num">4</div>
+        <div>
+          <div class="tag">Beauty Independent</div>
+          <a href="https://www.beautyindependent.com/6-beauty-marketing-predictions-2026/" target="_blank" rel="noopener">6 Beauty Marketing Predictions For 2026</a>
+          <p>Two of the six are directly your argument: own a ritual rather than an aesthetic, and authority beats influence as credentialed voices eclipse aesthetics-only creators. That's the PIGMNT thesis with someone else's data behind it — useful when you're writing the curation framework and need language that isn't only yours.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="read">
+        <div class="num">5</div>
+        <div>
+          <div class="tag">What's On</div>
+          <a href="https://whatson.ae/2026/08/things-to-do-in-dubai-this-weekend-august-7-to-9/" target="_blank" rel="noopener">8 fun things to do in Dubai this weekend: August 7 to 9</a>
+          <p>For win condition #3. The Dhs10 Summer Surprises deal runs across 170+ restaurants until 30 August, and Cé La Vi does free dining for under-12s on Sundays. Cheap ways to make today feel like something other than a Saturday at home.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">If you have time</div>
+    <div class="card plain">
+      <p>You have the whole day until 5:30pm, which is unusual enough to be worth spending badly on purpose. Tocha at Banyan Tree does a Japanese-teahouse afternoon tea, daily 2 to 5pm, Dhs180. Quiet room, slow ritual, nobody asking you for a decision. After five months of being the captain in the storm, sitting still for ninety minutes counts as maintenance, not indulgence.</p>
+    </div>
+  </section>
+
+  <footer>
+    Generated automatically, 7am Dubai time. Calendar checked across Work, Personal, Family, Sameer &amp; Mukta, Todoist and Side Hustle — today is genuinely empty apart from the 5:30pm walk. Two things worth flagging: no brief was published for Friday 7 August, so the scheduled run appears to have skipped a day and rollovers were reconstructed from Wednesday's brief plus a live inbox check. And Notion (My Tasks + meeting notes) is still unreachable — fourth morning running — so there's no real task list behind any of this. Worth reconnecting it in Notion MCP settings when you have five minutes.
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+  var stored = null;
+  try { stored = localStorage.getItem('mb-theme'); } catch (e) { stored = null; }
+  var initial = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+  root.setAttribute('data-theme', initial);
+  function labelFor(t){ return t === 'light' ? 'Dark' : 'Light'; }
+  btn.textContent = labelFor(initial);
+  btn.addEventListener('click', function(){
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    btn.textContent = labelFor(next);
+    try { localStorage.setItem('mb-theme', next); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>
