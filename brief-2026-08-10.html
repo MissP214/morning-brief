@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Morning Brief — Monday, August 10, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000405;
+    --card: rgba(255,255,255,0.035);
+    --border: rgba(255,255,255,0.09);
+    --t1: rgba(255,255,255,0.95);
+    --t2: rgba(255,255,255,0.60);
+    --t3: rgba(255,255,255,0.38);
+    --accent: #4C82F7;
+    --accent-soft: rgba(76,130,247,0.14);
+  }
+  html[data-theme="light"] {
+    --bg: #FBFBF9;
+    --card: rgba(10,12,14,0.028);
+    --border: rgba(10,12,14,0.10);
+    --t1: rgba(10,12,14,0.95);
+    --t2: rgba(10,12,14,0.60);
+    --t3: rgba(10,12,14,0.38);
+    --accent: #225EDC;
+    --accent-soft: rgba(34,94,220,0.10);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--t1);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 44px 24px 96px; }
+
+  .topbar { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 40px; }
+  .datestack .day { font-size: 13px; font-family: "DM Mono", monospace; text-transform: uppercase; letter-spacing: 0.09em; color: var(--t3); }
+  .datestack h1 { margin: 6px 0 0; font-size: 30px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+  .datestack .sub { margin-top: 10px; font-size: 15px; color: var(--t2); max-width: 46ch; }
+
+  .toggle {
+    flex: none; cursor: pointer;
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--t2); border-radius: 999px;
+    padding: 8px 16px; font-family: "DM Mono", monospace;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .toggle:hover { color: var(--t1); }
+
+  .label {
+    font-family: "DM Mono", monospace; font-size: 11px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.14em; color: var(--t3);
+    margin: 52px 0 16px;
+  }
+  section:first-of-type .label { margin-top: 0; }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 18px; padding: 24px 26px; margin-bottom: 14px;
+  }
+  .card:last-child { margin-bottom: 0; }
+
+  .quote { font-size: 21px; line-height: 1.5; font-weight: 500; letter-spacing: -0.012em; }
+  .attrib { margin-top: 14px; font-size: 14px; color: var(--t2); }
+  .attrib em { font-style: italic; }
+
+  .item { display: flex; gap: 18px; align-items: flex-start; }
+  .num {
+    flex: none; font-family: "DM Mono", monospace; font-size: 15px;
+    font-weight: 500; color: var(--accent); line-height: 1.5; min-width: 16px;
+  }
+  .body h3 { margin: 0 0 8px; font-size: 17px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.4; }
+  .body p { margin: 0; font-size: 15px; color: var(--t2); }
+  .body p + p { margin-top: 10px; }
+
+  .pill {
+    display: inline-block; margin-top: 14px;
+    font-family: "DM Mono", monospace; font-size: 10.5px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--accent); background: var(--accent-soft);
+    border-radius: 999px; padding: 5px 13px;
+  }
+  .rec {
+    margin-top: 14px; font-size: 15px; color: var(--t1);
+    background: var(--accent-soft); border-radius: 14px;
+    padding: 12px 16px; border-left: 2px solid var(--accent);
+  }
+  .rec strong { color: var(--accent); font-weight: 600; }
+
+  .note { font-size: 14px; color: var(--t3); margin-top: 16px; padding: 0 4px; }
+
+  a.read { color: var(--t1); text-decoration: none; border-bottom: 1px solid var(--border); }
+  a.read:hover { border-bottom-color: var(--accent); }
+  .tag {
+    font-family: "DM Mono", monospace; font-size: 10.5px;
+    text-transform: uppercase; letter-spacing: 0.1em; color: var(--t3);
+    display: block; margin-bottom: 6px;
+  }
+
+  footer {
+    margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border);
+    font-size: 13px; color: var(--t3); line-height: 1.65;
+  }
+  @media (max-width: 560px) {
+    .wrap { padding: 32px 18px 72px; }
+    .datestack h1 { font-size: 25px; }
+    .card { padding: 20px 20px; }
+    .item { gap: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="datestack">
+      <div class="day">Monday</div>
+      <h1>August 10, 2026</h1>
+      <div class="sub">First real Monday back on a Dubai schedule. One actual meeting, three self-made blocks, and a small pile of things that have been waiting on you since last week.</div>
+    </div>
+    <button class="toggle" id="themeToggle" type="button">Theme</button>
+  </div>
+
+  <section>
+    <div class="label">Line for the day</div>
+    <div class="card">
+      <div class="quote">&ldquo;The beginning is the most important part of the work.&rdquo;</div>
+      <div class="attrib">&mdash; Plato, <em>The Republic</em> (c. 375 BC)</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Win conditions for today</div>
+
+    <div class="card">
+      <div class="item">
+        <div class="num">1</div>
+        <div class="body">
+          <h3>Finish July on paper and write the one-page August plan</h3>
+          <p>This was Saturday's number one and there's no sign it landed. August is a third gone. The content calendar, the three monthly audits, Dr. Roze's September onboarding &mdash; all of them are downstream of a decision you haven't written down yet. You have a clear 9:30 to 1:00 this morning. That is the whole job.</p>
+          <div class="pill">July review + August plan</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="item">
+        <div class="num">2</div>
+        <div class="body">
+          <h3>Rewrite the About Us page &mdash; in one hour, not two</h3>
+          <p>You blocked 1:00 to 3:00 for it. The Sheetal call sits at 2:00. So it's one hour unless you move something, and you should decide which before lunch rather than at 1:55.</p>
+          <p>Worth remembering what this page actually is: the most public draft of the curation framework you're trying to formalise this quarter. Not a bio. The argument for why MissP chooses what it chooses.</p>
+          <div class="pill">Q4 strategic plan</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="item">
+        <div class="num">3</div>
+        <div class="body">
+          <h3>Send three one-line replies: Cle, Qiyorro, Shoptalk</h3>
+          <p>Under ten minutes combined. They have already cost you considerably more than ten minutes of attention, which is the entire argument for doing them before 10am.</p>
+          <div class="pill">Q4 resilience</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note"><strong>Cut:</strong> the monthly Shopify / Klaviyo / Instagram audits &mdash; third brief running, because they keep losing to the plan they're supposed to feed. If that ordering is wrong, do the Klaviyo one only; BFCM prep genuinely starts now. Also cut as a priority: the 9am Notion Dubai exhibition email. It's already blocked, it'll take nine minutes, it doesn't need to be a top three.</div>
+  </section>
+
+  <section>
+    <div class="label">Urgent decisions</div>
+
+    <div class="card">
+      <div class="body">
+        <h3>2:00pm is double-booked</h3>
+        <p>The Sheetal call (recurring, Personal calendar) sits inside your 1:00&ndash;3:00 About Us block. Nothing has been moved.</p>
+        <div class="rec"><strong>Recommendation:</strong> keep Sheetal &mdash; it's someone else's time and it recurs. Take About Us from 1:00 to 2:00, then finish it in the empty 3:00&ndash;5:00 stretch. Move it now so 1pm-you isn't making this call under pressure.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="body">
+        <h3>Cle Cosmetics &mdash; $121.92, day three</h3>
+        <p>Alyssa sent the shipping estimate you asked for on Saturday morning. PO is already in, Hima and Prija are cc'd, nothing has gone back. This was flagged Saturday too.</p>
+        <div class="rec"><strong>Recommendation:</strong> reply &ldquo;proceed&rdquo; before 10am. It's $122 on an order you've already committed to. This stopped being a decision two days ago and became a delay.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="body">
+        <h3>Qiyorro credit note &mdash; day fourteen, and their closure date has passed</h3>
+        <p>Hima asked on 27 July, you followed up 3 August, silence both times. Qiyorro said retail and distribution close at the end of July, which means the window to convert that credit balance into Ere Perez stock is either closing or already shut.</p>
+        <div class="rec"><strong>Recommendation:</strong> one final email to accounts@qiyorro.com and nalghoul@alfardan.com.qa with a hard date, and provision it as bad debt today regardless of the reply. That turns an open loop into a closed one, and anything recovered becomes upside instead of relief.</div>
+      </div>
+    </div>
+
+    <div class="note"><strong>Also still open, unchanged since Wednesday:</strong> Shoptalk Luxe. Registration was declined on 6 August and Jay sent the paid-ticket link twenty-six minutes later. No reply has gone out. Recommendation stands &mdash; decline for this cycle in one line, keep the door open for the next.</div>
+  </section>
+
+  <section>
+    <div class="label">What to be prepped for</div>
+
+    <div class="card">
+      <div class="body">
+        <h3>Call with Sheetal &mdash; 2:00pm to 3:00pm</h3>
+        <p>Recurring on your Personal calendar since February 2025. It's the only thing today that involves another human being in real time.</p>
+        <p>Honestly: I can't tell you what was last decided. There's nothing mentioning Sheetal anywhere in the last sixty days of email, and Notion is still disconnected, so there are no meeting notes to pull from either. If that context matters, five minutes of your own notes before 2:00 will beat anything I can reconstruct.</p>
+        <div class="rec"><strong>The one thing to walk in knowing:</strong> it overlaps your About Us block. Resolve that before 1:00 so you're not half-writing and half-listening.</div>
+      </div>
+    </div>
+
+    <div class="note">Everything else on today is a block you made for yourself, not a meeting: 9:00 Notion Dubai exhibition email, 1:00 About Us page, 5:00 strength training. Tomorrow is the Beauty Unbound interview first draft, 9:30 to 12:00 &mdash; the Margot PDRN piece. Wednesday, note that the dentist at 10:00 collides with your 9:30&ndash;12:00 Cowork block.</div>
+  </section>
+
+  <section>
+    <div class="label">Five things to read</div>
+
+    <div class="card">
+      <div class="item">
+        <div class="num">1</div>
+        <div class="body">
+          <span class="tag">Beauty Independent</span>
+          <h3><a class="read" href="https://www.beautyindependent.com/how-beauty-brands-scale-after-dtc-boom-new-channel-architecture/" target="_blank" rel="noopener">How Beauty Brands Scale After The DTC Boom: The New Channel Architecture</a></h3>
+          <p>Oshiya Savur maps channel mix by revenue stage and is blunt about the thing you're circling: there is no right number of channels, only deliberate ones. Read it as the counterweight to your own &ldquo;trust &rarr; audience &rarr; recommendations &rarr; multiple revenue streams&rdquo; sequence, because it argues the same case from the operator side, with margin numbers attached.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="item">
+        <div class="num">2</div>
+        <div class="body">
+          <span class="tag">Shopify</span>
+          <h3><a class="read" href="https://www.shopify.com/blog/how-to-write-an-about-us-page" target="_blank" rel="noopener">16 Great About Us Page Examples That Drive Results</a></h3>
+          <p>Unglamorous and exactly what you need at 1pm. Sixteen real pages plus a structural template, so you're editing against a shape instead of staring at a blank one. Skim the examples, steal a structure, write your own words.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="item">
+        <div class="num">3</div>
+        <div class="body">
+          <span class="tag">Emirates Woman</span>
+          <h3><a class="read" href="https://emirateswoman.com/10-clean-beauty-skincare-brands-to-support-2026/" target="_blank" rel="noopener">10 clean beauty skincare brands to support</a></h3>
+          <p>Read this one for the awkward detail: Rahua is on the list. A regional title is still recommending a brand you're clearing out and removing from the portfolio. That gap between editorial consensus and what actually sells in the GCC is the whole reason your curation framework needs to exist &mdash; and it's a live PIGMNT angle if you want one.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="item">
+        <div class="num">4</div>
+        <div class="body">
+          <span class="tag">Beauty Independent</span>
+          <h3><a class="read" href="https://www.beautyindependent.com/top-skincare-trends-2026-those-losing-sizzle/" target="_blank" rel="noopener">Top Skincare Trends For 2026 &mdash; And Those Losing Their Sizzle</a></h3>
+          <p>Useful in two directions at once: what to lean into for Dr. Roze's September launch, and what's cooling, which is the harder half of a curation call. Long piece &mdash; skim the &ldquo;losing sizzle&rdquo; section first, it's the one that changes decisions.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="item">
+        <div class="num">5</div>
+        <div class="body">
+          <span class="tag">What's On</span>
+          <h3><a class="read" href="https://whatson.ae/2026/08/brilliant-new-things-to-do-uae-this-month/" target="_blank" rel="noopener">17 brilliant new things to do in the UAE this August</a></h3>
+          <p>Kids are still on summer holiday and you're still re-learning Dubai. Explorers at City Centre Mirdif is the obvious one for them (indoor, workshops, a net world). The Grand at Nad Al Sheba Gardens opens on the 19th &mdash; worth putting in the calendar now while the month still has space in it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">If you have time</div>
+    <div class="card">
+      <div class="body">
+        <p>You have two genuinely clear hours between the Sheetal call and training. Do not put a fourth work block in them.</p>
+        <p>Central Park at Wasl Gate is a lovely idea in November and a medical event in August at 3pm, so: stay in, and read forty pages of something with no business application whatsoever. Novel, memoir, anything that isn't beauty. You have been running on inputs since March and running the whole thing since the war &mdash; fiction is maintenance, not indulgence.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Generated automatically, 7am Dubai time. Calendar checked across all ten of your calendars &mdash; Work, Personal, Family, Sameer &amp; Mukta, Todoist, Side Hustle and the rest. Two flags: no brief was published for Sunday 9 August, so the scheduled run skipped a day again (that's Aug 2, Aug 7 and now Aug 9 &mdash; the schedule config is overdue a proper look), and rollovers here were rebuilt from Saturday's brief plus a fresh inbox check. Notion is also still unreachable, which makes six mornings running &mdash; there's no real task list or meeting-note context behind any of this until you reconnect it in your connector settings.
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+  var stored = null;
+  try { stored = localStorage.getItem('mb-theme'); } catch (e) { stored = null; }
+  var systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var theme = stored || (systemDark ? 'dark' : 'light');
+  root.setAttribute('data-theme', theme);
+  btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('mb-theme', next); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>
