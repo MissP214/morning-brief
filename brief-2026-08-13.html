@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Brief — Thursday, August 13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FBFBF9;
+    --text-95: rgba(10,10,10,0.95);
+    --text-60: rgba(10,10,10,0.60);
+    --text-38: rgba(10,10,10,0.38);
+    --card: rgba(10,10,10,0.035);
+    --card-border: rgba(10,10,10,0.08);
+    --accent: #225EDC;
+  }
+  html[data-theme="dark"] {
+    --bg: #000405;
+    --text-95: rgba(255,255,255,0.95);
+    --text-60: rgba(255,255,255,0.60);
+    --text-38: rgba(255,255,255,0.38);
+    --card: rgba(255,255,255,0.045);
+    --card-border: rgba(255,255,255,0.09);
+    --accent: #225EDC;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-95);
+    font-family: 'Inter', -apple-system, sans-serif;
+    transition: background 0.25s ease, color 0.25s ease;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 48px 24px 100px;
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+  }
+  .date-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-60);
+  }
+  .headline {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 6px 0 0;
+    letter-spacing: -0.01em;
+  }
+  .toggle {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-60);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  section {
+    margin-bottom: 36px;
+  }
+  .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-38);
+    margin-bottom: 14px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 22px 24px;
+  }
+  /* Quote */
+  .quote-text {
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: 500;
+    margin: 0 0 12px;
+    letter-spacing: -0.01em;
+  }
+  .quote-attr {
+    font-size: 14px;
+    color: var(--text-60);
+  }
+  /* Win conditions */
+  .win-list { display: flex; flex-direction: column; gap: 12px; }
+  .win-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 18px 22px;
+  }
+  .win-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--accent);
+    min-width: 20px;
+  }
+  .win-body p { margin: 0; font-size: 15.5px; line-height: 1.5; }
+  .tie-pill {
+    display: inline-block;
+    margin-top: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(34,94,220,0.12);
+    border-radius: 999px;
+    padding: 4px 10px;
+  }
+  .cut-note {
+    margin: 12px 2px 0;
+    font-size: 13.5px;
+    color: var(--text-38);
+    line-height: 1.5;
+  }
+  /* Decisions */
+  .decision-list { display: flex; flex-direction: column; gap: 14px; }
+  .decision-item {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 20px 22px;
+  }
+  .decision-title { font-size: 15.5px; font-weight: 600; margin: 0 0 6px; }
+  .decision-context { font-size: 14.5px; color: var(--text-60); margin: 0 0 12px; line-height: 1.5; }
+  .rec-pill {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(34,94,220,0.12);
+    border-radius: 999px;
+    padding: 4px 10px;
+    margin-bottom: 8px;
+  }
+  .decision-rec { font-size: 14.5px; line-height: 1.5; margin: 0; }
+  /* Prepped */
+  .prep-empty { font-size: 15.5px; line-height: 1.6; margin: 0 0 10px; }
+  .prep-flag { font-size: 13.5px; color: var(--text-38); line-height: 1.5; margin: 0; }
+  /* Reads */
+  .read-list { display: flex; flex-direction: column; gap: 12px; }
+  .read-item {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 18px 22px;
+  }
+  .read-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-38);
+    margin-bottom: 6px;
+  }
+  .read-title { margin: 0 0 6px; font-size: 15.5px; font-weight: 600; }
+  .read-title a { color: var(--text-95); text-decoration: none; border-bottom: 1px solid var(--card-border); }
+  .read-title a:hover { border-bottom-color: var(--accent); }
+  .read-why { margin: 0; font-size: 14px; color: var(--text-60); line-height: 1.5; }
+  /* If you have time */
+  .time-text { font-size: 15.5px; line-height: 1.6; margin: 0; }
+  footer {
+    margin-top: 56px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-38);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div>
+      <div class="date-label">Thursday · August 13, 2026</div>
+      <h1 class="headline">Morning Brief</h1>
+    </div>
+    <button class="toggle" id="themeToggle">☾ / ☀</button>
+  </div>
+
+  <section>
+    <div class="label">Line for the day</div>
+    <div class="card">
+      <p class="quote-text">"Your silence will not protect you."</p>
+      <div class="quote-attr">— Audre Lorde, <em>Sister Outsider</em> (1984)</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Win conditions for today</div>
+    <div class="win-list">
+      <div class="win-item">
+        <div class="win-num">1</div>
+        <div class="win-body">
+          <p>Move the Q4 strategic plan forward — still the dominant weekly goal, and a blank calendar is exactly the cover you need for constitution or curation-framework work.</p>
+          <span class="tie-pill">Q4 strategic plan</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">2</div>
+        <div class="win-body">
+          <p>One concrete step on home and the kids' summer schedule — still the one weekly goal that isn't calendar-anchored.</p>
+          <span class="tie-pill">Home / kids organized</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">3</div>
+        <div class="win-body">
+          <p>Since nothing's booked today, actually block time for one of the monthly audits (Shopify, Klaviyo or Instagram) before the day quietly fills itself in without your input.</p>
+          <span class="tie-pill">Active thread: monthly audits</span>
+        </div>
+      </div>
+    </div>
+    <p class="cut-note">Cut from today's top 3: clearing the last of the FANCL/Rahua/Ere Perez stock — still real, just not today's headline.</p>
+  </section>
+
+  <section>
+    <div class="label">Urgent decisions</div>
+    <div class="decision-list">
+      <div class="decision-item">
+        <p class="decision-title">Qiyorro / Ere Perez credit note — give it an actual deadline this time</p>
+        <p class="decision-context">Rollover, now 17 days since the original Jul 27 ask. You sent a third follow-up yesterday (Aug 12), but it was open-ended again — "let us know how we can settle" — same soft framing as the first two, which is presumably why it's been ignored three times.</p>
+        <span class="rec-pill">Recommend</span>
+        <p class="decision-rec">This time put an actual date on it: 5 business days, then treat it as written off and loop in Alfardan Group's finance contact (nalghoul@) directly if the silence continues. Open-ended asks haven't worked yet — stop repeating the thing that isn't working.</p>
+      </div>
+      <div class="decision-item">
+        <p class="decision-title">VDVIA / Lemonderma — send the delivery address</p>
+        <p class="decision-context">Rollover from yesterday. Marco Lee offered Aug 11 to ship the Lemonshot Exo Booster Serum and Cream within days once he has your address, recipient name and contact number. Still unanswered — a two-minute reply that's now sat for two days.</p>
+        <span class="rec-pill">Recommend</span>
+        <p class="decision-rec">Send it. Low-cost, low-commitment step in your own curation process — no reason to let it keep sitting.</p>
+      </div>
+      <div class="decision-item">
+        <p class="decision-title">Al Jalila Foundation — the meeting date is still only in an .ics file</p>
+        <p class="decision-context">You replied Aug 12 acknowledging Carla's Teams invite, but the actual date and time only live in the calendar attachment — nothing's landed on Google Calendar, and this morning's check confirms it's still not there.</p>
+        <span class="rec-pill">Recommend</span>
+        <p class="decision-rec">Open the .ics or ask Carla directly, in writing, for the date — then add it to your calendar yourself. This is the same blind spot that nearly buried the Margot meeting in July; don't let it repeat a third time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">What to be prepped for</div>
+    <div class="card">
+      <p class="prep-empty">No meetings today. Checked Work, Personal, Family, Side Hustle and Todoist calendars — all empty through Sunday except Kintu aunty's birthday on Friday. A genuinely open day.</p>
+      <p class="prep-flag">One flag: your mukta@misspalettable.com calendar only granted free/busy access this morning, not full event details — so if anything's actually booked there today, this brief can't see the title. Worth a direct glance at the calendar app if that matters to you.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Five things to read</div>
+    <div class="read-list">
+      <div class="read-item">
+        <div class="read-tag">Emirates Woman</div>
+        <p class="read-title"><a href="https://emirateswoman.com/the-beauty-shelf-rawan-m-hussain-shares-the-must-have-beauty-staples/" target="_blank" rel="noopener">The Beauty Shelf: Rawan M. Hussain Takes Us Through Her Must-Have Beauty Staples</a></p>
+        <p class="read-why">A Saudi founder's edit of her own shelf — worth a skim for how she talks about product, not just what's on it, while you're shaping the MissP curation voice.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">Beauty Independent</div>
+        <p class="read-title"><a href="https://www.beautyindependent.com/pov-beauty-sephora-debut-tiktok-beauty-boom/" target="_blank" rel="noopener">POV Beauty's Sephora Debut Will Stress-Test TikTok's Beauty Boom</a></p>
+        <p class="read-why">A creator-led brand's jump from DTC to national retail — relevant to the curation-to-revenue thinking in the Q4 plan, even if the full piece sits behind their paywall.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">MOJEH</div>
+        <p class="read-title"><a href="https://www.mojeh.com/article/the-best-beauty-launches-of-july-2026/" target="_blank" rel="noopener">The Best Beauty Buys Of July 2026</a></p>
+        <p class="read-why">MOJEH's monthly beauty-picks format, done well — a template worth stealing for MissP or PIGMNT's own August roundup.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">What's On Dubai</div>
+        <p class="read-title"><a href="https://whatson.ae/2026/08/emirati-womens-day-2026/" target="_blank" rel="noopener">Celebrating The Women Of The Nation This Emirati Women's Day</a></p>
+        <p class="read-why">Homegrown Emirati founders across food, wellness and culture — a good reference point for "built here, for here" as you write the MissP constitution.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">The Generalist PM</div>
+        <p class="read-title"><a href="https://thegeneralistpm.substack.com/p/august-7-2026" target="_blank" rel="noopener">August 7, 2026</a></p>
+        <p class="read-why">Three questions for pushing back when someone — including an AI — hands you a deadline instead of letting you set one. Useful, for a founder rebuilding her own systems this quarter.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">If you have time</div>
+    <div class="card">
+      <p class="time-text">With the whole day open, Dubai Summer Surprises' Performing Arts Festival is still running at Mall of the Emirates through the end of the month — circus acts and family shows, no planning required. A good one for the kids if today's the day.</p>
+    </div>
+  </section>
+
+  <footer>Generated for Mukta Tewani · MissPalettable</footer>
+
+</div>
+
+<script>
+(function() {
+  var root = document.documentElement;
+  var toggle = document.getElementById('themeToggle');
+  var stored = localStorage.getItem('brief-theme');
+  var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var theme = stored || (prefersDark ? 'dark' : 'light');
+  root.setAttribute('data-theme', theme);
+
+  toggle.addEventListener('click', function() {
+    theme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', theme);
+    localStorage.setItem('brief-theme', theme);
+  });
+})();
+</script>
+</body>
+</html>
