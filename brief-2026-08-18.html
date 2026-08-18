@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Brief — Tuesday, August 18</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FBFBF9;
+    --text-95: rgba(10,10,10,0.95);
+    --text-60: rgba(10,10,10,0.60);
+    --text-38: rgba(10,10,10,0.38);
+    --card: rgba(10,10,10,0.035);
+    --card-border: rgba(10,10,10,0.08);
+    --accent: #225EDC;
+  }
+  html[data-theme="dark"] {
+    --bg: #000405;
+    --text-95: rgba(255,255,255,0.95);
+    --text-60: rgba(255,255,255,0.60);
+    --text-38: rgba(255,255,255,0.38);
+    --card: rgba(255,255,255,0.045);
+    --card-border: rgba(255,255,255,0.09);
+    --accent: #225EDC;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-95);
+    font-family: 'Inter', -apple-system, sans-serif;
+    transition: background 0.25s ease, color 0.25s ease;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 48px 24px 100px;
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+  }
+  .date-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-60);
+  }
+  .headline {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 6px 0 0;
+    letter-spacing: -0.01em;
+  }
+  .toggle {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-60);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  section {
+    margin-bottom: 36px;
+  }
+  .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-38);
+    margin-bottom: 14px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 22px 24px;
+  }
+  /* Quote */
+  .quote-text {
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: 500;
+    margin: 0 0 12px;
+    letter-spacing: -0.01em;
+  }
+  .quote-attr {
+    font-size: 14px;
+    color: var(--text-60);
+  }
+  /* Win conditions */
+  .win-list { display: flex; flex-direction: column; gap: 12px; }
+  .win-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 18px 22px;
+  }
+  .win-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--accent);
+    min-width: 20px;
+  }
+  .win-body p { margin: 0; font-size: 15.5px; line-height: 1.5; }
+  .tie-pill {
+    display: inline-block;
+    margin-top: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(34,94,220,0.12);
+    border-radius: 999px;
+    padding: 4px 10px;
+  }
+  .cut-note {
+    margin: 12px 2px 0;
+    font-size: 13.5px;
+    color: var(--text-38);
+    line-height: 1.5;
+  }
+  /* Decisions */
+  .decision-list { display: flex; flex-direction: column; gap: 14px; }
+  .decision-item {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 20px 22px;
+  }
+  .decision-title { font-size: 15.5px; font-weight: 600; margin: 0 0 6px; }
+  .decision-context { font-size: 14.5px; color: var(--text-60); margin: 0 0 12px; line-height: 1.5; }
+  .rec-pill {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(34,94,220,0.12);
+    border-radius: 999px;
+    padding: 4px 10px;
+    margin-bottom: 8px;
+  }
+  .decision-rec { font-size: 14.5px; line-height: 1.5; margin: 0; }
+  /* Prepped */
+  .prep-list { display: flex; flex-direction: column; gap: 14px; }
+  .prep-item {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 20px 22px;
+  }
+  .prep-title { font-size: 15.5px; font-weight: 600; margin: 0 0 6px; }
+  .prep-body { font-size: 14.5px; color: var(--text-60); margin: 0; line-height: 1.5; }
+  .prep-flag { font-size: 13.5px; color: var(--text-38); line-height: 1.5; margin: 12px 2px 0; }
+  /* Reads */
+  .read-list { display: flex; flex-direction: column; gap: 12px; }
+  .read-item {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 18px 22px;
+  }
+  .read-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-38);
+    margin-bottom: 6px;
+  }
+  .read-title { margin: 0 0 6px; font-size: 15.5px; font-weight: 600; }
+  .read-title a { color: var(--text-95); text-decoration: none; border-bottom: 1px solid var(--card-border); }
+  .read-title a:hover { border-bottom-color: var(--accent); }
+  .read-why { margin: 0; font-size: 14px; color: var(--text-60); line-height: 1.5; }
+  /* If you have time */
+  .time-text { font-size: 15.5px; line-height: 1.6; margin: 0; }
+  footer {
+    margin-top: 56px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-38);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div>
+      <div class="date-label">Tuesday · August 18, 2026</div>
+      <h1 class="headline">Morning Brief</h1>
+    </div>
+    <button class="toggle" id="themeToggle">☾ / ☀</button>
+  </div>
+
+  <section>
+    <div class="label">Line for the day</div>
+    <div class="card">
+      <p class="quote-text">"It is good to have an end to journey toward; but it is the journey that matters, in the end."</p>
+      <div class="quote-attr">— Ursula K. Le Guin, <em>The Left Hand of Darkness</em> (1969)</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Win conditions for today</div>
+    <div class="win-list">
+      <div class="win-item">
+        <div class="win-num">1</div>
+        <div class="win-body">
+          <p>Clear the HSBC credit card task — High priority, due today. Ten minutes now beats it quietly nagging at you all week.</p>
+          <span class="tie-pill">Home organized</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">2</div>
+        <div class="win-body">
+          <p>Draft the brand story page on MissP's curation philosophy — it's on today's list, and it's literally the "build the curation framework" piece of the Q4 plan, not just adjacent to it.</p>
+          <span class="tie-pill">Q4 strategic plan</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">3</div>
+        <div class="win-body">
+          <p>Push the 3 product bundles from in-progress to done — AOV lever that's already half-built, and one of only five things on today's task list.</p>
+          <span class="tie-pill">Revenue redesign</span>
+        </div>
+      </div>
+    </div>
+    <p class="cut-note">Cut from today's top 3: editing the interview draft and building the loyalty programme (both real, both on today's list, but lower priority than the above) — and the Shopify/Klaviyo/Instagram audits, still overdue but not on today's list.</p>
+  </section>
+
+  <section>
+    <div class="label">Urgent decisions</div>
+    <div class="decision-list">
+      <div class="decision-item">
+        <p class="decision-title">Qiyorro / Ere Perez credit note — the open-ended ask still hasn't worked, again</p>
+        <p class="decision-context">22 days since the original Jul 27 request, 6 days of silence since the Aug 12 follow-up — which was, once more, open-ended ("let us know how we can settle") instead of naming a deadline. That's the fourth time this pattern hasn't gotten a reply.</p>
+        <span class="rec-pill">Recommend</span>
+        <p class="decision-rec">Stop repeating the ask. Send one message today with an actual date — settle within 5 business days or you loop in Alfardan Group's finance contact (nalghoul@) directly and write it off.</p>
+      </div>
+      <div class="decision-item">
+        <p class="decision-title">VDVIA / Lemonderma — the delivery address, still</p>
+        <p class="decision-context">Marco Lee offered to ship Lemonderma samples the moment he has your address, recipient name and number — that was 7 days ago. It's the only thing standing between you and actually evaluating the brand.</p>
+        <span class="rec-pill">Recommend</span>
+        <p class="decision-rec">Two-minute reply. Send it today.</p>
+      </div>
+      <div class="decision-item">
+        <p class="decision-title">Al Jalila Foundation — probably solved, worth a 10-second confirm</p>
+        <p class="decision-context">Two unlabeled busy blocks have been sitting on your locked-down misspalettable.com calendar: today 6–7pm and tomorrow (Wed) 11–11:30am. Today's block lines up exactly with a BigMarker webinar you registered for ("Grow your list before BFCM," confirmed by email) — which by elimination makes tomorrow's 11am block the most likely home for Carla's Al Jalila Teams meeting.</p>
+        <span class="rec-pill">Recommend</span>
+        <p class="decision-rec">Treat tomorrow 11am as the meeting and prep accordingly, but open the calendar app once to actually confirm the title — this brief still can't see it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">What to be prepped for</div>
+    <div class="prep-list">
+      <div class="prep-item">
+        <p class="prep-title">1–2pm — "Team meeting car" (Work calendar)</p>
+        <p class="prep-body">Being straight with you: this title looks like a typo or placeholder, and there's no supporting email thread to reconstruct what it's actually about. Worth a quick glance at the calendar entry itself before it starts.</p>
+      </div>
+      <div class="prep-item">
+        <p class="prep-title">6–7pm — BigMarker webinar: "Grow your list before BFCM"</p>
+        <p class="prep-body">A strategy session on list-building ahead of Black Friday/Cyber Monday — you registered for it. Walk in knowing this is squarely about email growth tactics, which lines up with the Klaviyo audit thread if anything useful comes up.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Five things to read</div>
+    <div class="read-list">
+      <div class="read-item">
+        <div class="read-tag">Beauty Independent</div>
+        <p class="read-title"><a href="https://www.beautyindependent.com/clean-beauty-retailer-fig-flower-reopens-two-years-after-closing/" target="_blank" rel="noopener">Clean Beauty Retailer Fig & Flower Reopens Two Years After Closing</a></p>
+        <p class="read-why">Reopened with half the footprint and far tighter curation — nixing brands that demand full-range stocking, leaning into small niche names. Basically a live case study for the curation framework you're drafting today.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">MOJEH</div>
+        <p class="read-title"><a href="https://www.mojeh.com/article/the-cleansers-to-buy-for-every-skin-type/" target="_blank" rel="noopener">The Best Cleansers To Buy For Every Skin Type</a></p>
+        <p class="read-why">Fresh from Aug 14. Clean, skin-type-sorted shelf-talk format — easy template to borrow for August content planning.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">Emirates Woman</div>
+        <p class="read-title"><a href="https://emirateswoman.com/5-aesthetic-hair-ateliers-in-dubai-for-the-ultimate-glow-up-2026/" target="_blank" rel="noopener">5 aesthetic hair ateliers in Dubai for the ultimate glow-up</a></p>
+        <p class="read-why">A scan of how Dubai beauty spaces are differentiating right now — through specialisation and design, not discounting. Useful reference point while you're writing about MissP's own point of view.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">What's On Dubai</div>
+        <p class="read-title"><a href="https://whatson.ae/2026/08/6-things-to-do-in-dubai-this-week-august-17-to-20/" target="_blank" rel="noopener">6 things to do in Dubai this week: August 17 to 20</a></p>
+        <p class="read-why">This week specifically, not a general August roundup — quick scan for personal plans or content name-checks.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">Lenny's Newsletter</div>
+        <p class="read-title"><a href="https://www.lennysnewsletter.com/p/how-to-make-people-care-about-your" target="_blank" rel="noopener">How to make people care about your startup</a></p>
+        <p class="read-why">Three founder archetypes — Problem, Insight, Vision — and how each should shape your comms voice. Directly useful while you're building the MissP constitution and your own founder-led editorial voice.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">If you have time</div>
+    <div class="card">
+      <p class="time-text">With just a midday meeting of unclear purpose and an evening webinar bookending the day, there's real space in between. Talise Spa's Deep Body Reset (the icoone treatment mentioned in today's What's On pick) is built for exactly this — easing the tension of long workdays and tough weeks, no summer-heat excuses needed.</p>
+    </div>
+  </section>
+
+  <footer>Generated for Mukta Tewani · MissPalettable</footer>
+
+</div>
+
+<script>
+(function() {
+  var root = document.documentElement;
+  var toggle = document.getElementById('themeToggle');
+  var stored = localStorage.getItem('brief-theme');
+  var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var theme = stored || (prefersDark ? 'dark' : 'light');
+  root.setAttribute('data-theme', theme);
+
+  toggle.addEventListener('click', function() {
+    theme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', theme);
+    localStorage.setItem('brief-theme', theme);
+  });
+})();
+</script>
+</body>
+</html>
