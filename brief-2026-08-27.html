@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Brief — Thursday, August 27</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FBFBF9;
+  --text-95: rgba(10,10,10,0.95);
+  --text-60: rgba(10,10,10,0.60);
+  --text-38: rgba(10,10,10,0.38);
+  --card: rgba(10,10,10,0.035);
+  --card-border: rgba(10,10,10,0.08);
+  --accent: #225EDC;
+}
+html[data-theme="dark"] {
+  --bg: #000405;
+  --text-95: rgba(255,255,255,0.95);
+  --text-60: rgba(255,255,255,0.60);
+  --text-38: rgba(255,255,255,0.38);
+  --card: rgba(255,255,255,0.045);
+  --card-border: rgba(255,255,255,0.09);
+  --accent: #225EDC;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-95);
+  font-family: 'Inter', -apple-system, sans-serif;
+  transition: background 0.25s ease, color 0.25s ease;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 680px; margin: 0 auto; padding: 48px 24px 100px; }
+.top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; }
+.date-label { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-60); }
+.headline { font-size: 28px; font-weight: 700; margin: 6px 0 0; letter-spacing: -0.01em; }
+.toggle {
+  background: var(--card); border: 1px solid var(--card-border); border-radius: 999px;
+  padding: 8px 16px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.05em;
+  text-transform: uppercase; color: var(--text-60); cursor: pointer; white-space: nowrap;
+}
+section { margin-bottom: 36px; }
+.label { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-38); margin-bottom: 14px; }
+.card { background: var(--card); border: 1px solid var(--card-border); border-radius: 18px; padding: 22px 24px; }
+.quote-text { font-size: 20px; line-height: 1.5; font-weight: 500; margin: 0 0 12px; letter-spacing: -0.01em; }
+.quote-attr { font-size: 14px; color: var(--text-60); }
+.win-list { display: flex; flex-direction: column; gap: 12px; }
+.win-item { display: flex; gap: 16px; align-items: flex-start; background: var(--card); border: 1px solid var(--card-border); border-radius: 18px; padding: 18px 22px; }
+.win-num { font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 500; color: var(--accent); min-width: 20px; }
+.win-body p { margin: 0; font-size: 15.5px; line-height: 1.5; }
+.tie-pill { display: inline-block; margin-top: 8px; font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); background: rgba(34,94,220,0.12); border-radius: 999px; padding: 4px 10px; }
+.cut-note { margin: 12px 2px 0; font-size: 13.5px; color: var(--text-38); line-height: 1.5; }
+.decision-list { display: flex; flex-direction: column; gap: 14px; }
+.decision-item { background: var(--card); border: 1px solid var(--card-border); border-radius: 18px; padding: 20px 22px; }
+.decision-title { font-size: 15.5px; font-weight: 600; margin: 0 0 6px; }
+.decision-context { font-size: 14.5px; color: var(--text-60); margin: 0 0 12px; line-height: 1.5; }
+.rec-pill { display: inline-block; font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); background: rgba(34,94,220,0.12); border-radius: 999px; padding: 4px 10px; margin-bottom: 8px; }
+.decision-rec { font-size: 14.5px; line-height: 1.5; margin: 0; }
+.prep-list { display: flex; flex-direction: column; gap: 14px; }
+.prep-item { background: var(--card); border: 1px solid var(--card-border); border-radius: 18px; padding: 20px 22px; }
+.prep-title { font-size: 15.5px; font-weight: 600; margin: 0 0 6px; }
+.prep-body { font-size: 14.5px; color: var(--text-60); margin: 0; line-height: 1.5; }
+.prep-flag { font-size: 13.5px; color: var(--text-38); line-height: 1.5; margin: 12px 2px 0; }
+.read-list { display: flex; flex-direction: column; gap: 12px; }
+.read-item { background: var(--card); border: 1px solid var(--card-border); border-radius: 18px; padding: 18px 22px; }
+.read-tag { font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-38); margin-bottom: 6px; }
+.read-title { margin: 0 0 6px; font-size: 15.5px; font-weight: 600; }
+.read-title a { color: var(--text-95); text-decoration: none; border-bottom: 1px solid var(--card-border); }
+.read-title a:hover { border-bottom-color: var(--accent); }
+.read-why { margin: 0; font-size: 14px; color: var(--text-60); line-height: 1.5; }
+.time-text { font-size: 15.5px; line-height: 1.6; margin: 0; }
+footer { margin-top: 56px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-38); text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <div class="date-label">Thursday &middot; August 27, 2026</div>
+      <h1 class="headline">Morning Brief</h1>
+    </div>
+    <button class="toggle" id="themeToggle">&#9789; / &#9728;</button>
+  </div>
+
+  <section>
+    <div class="label">Line for the day</div>
+    <div class="card">
+      <p class="quote-text">"The heart of justice is truth telling, seeing ourselves and the world the way it is rather than the way we want it to be."</p>
+      <p class="quote-attr">&mdash; bell hooks, <em>All About Love: New Visions</em> (2000)</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Win conditions for today</div>
+    <div class="win-list">
+      <div class="win-item">
+        <div class="win-num">1</div>
+        <div class="win-body">
+          <p>Protect the block and identify 2 customer problems for the Sept/Oct edits. Notion's flagged it "non-negotiable this week" for two weeks running with no block ever landing &mdash; it's due today, and today's the day it has to actually happen.</p>
+          <span class="tie-pill">Durable assets</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">2</div>
+        <div class="win-body">
+          <p>Actually close the Shopify audit and finish the interview edit. Both were Monday's top win conditions. Both are still sitting untouched in Notion, three days later. Today's win isn't adding something new &mdash; it's finishing what stalled.</p>
+          <span class="tie-pill">Q4 strategic plan</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">3</div>
+        <div class="win-body">
+          <p>Follow up with the website team on the Al Jalila donation card and the Checkout for Good brief. Both were due yesterday and are still "in progress" &mdash; Carla's waiting on the other end of this one.</p>
+          <span class="tie-pill">Durable assets</span>
+        </div>
+      </div>
+    </div>
+    <p class="cut-note">Cut from today's top 3: expanding the gift-by-persona collections (also due today, but Low priority and already in progress &mdash; it can slide), plus the weekly revenue check-in and confirming all 14 brands are delisted, both due tomorrow rather than today.</p>
+  </section>
+
+  <section>
+    <div class="label">Urgent decisions</div>
+    <div class="decision-list">
+      <div class="decision-item">
+        <p class="decision-title">Qiyorro / Ere Perez credit note &mdash; 31 days, three emails, zero replies</p>
+        <p class="decision-context">Original ask was July 27; follow-ups went Aug 3 and Aug 12. The "final notice with a hard deadline" recommended in Monday's brief was never actually sent &mdash; the thread's been silent since Aug 12. Qiyorro's distributor has already closed.</p>
+        <span class="rec-pill">Recommend</span>
+        <p class="decision-rec">Send the final-notice email today, cc'd to Alfardan's finance contact, five business days, then write off the balance if it lapses. This is the fourth brief in a row recommending this &mdash; if it doesn't go out today, it may be worth just writing it off now instead of carrying it further.</p>
+      </div>
+      <div class="decision-item">
+        <p class="decision-title">VDVIA / Lemonderma &mdash; the address, still unsent, 16 days now</p>
+        <p class="decision-context">Marco's been ready to ship since Aug 11. It's the same two-minute email sitting in the same spot from the last several briefs.</p>
+        <span class="rec-pill">Recommend</span>
+        <p class="decision-rec">Send it today. It's the only thing standing between you and being able to actually evaluate whether Lemonderma is worth pursuing.</p>
+      </div>
+      <div class="decision-item">
+        <p class="decision-title">Beauty Bulb Live London, Oct 7 &mdash; unanswered 9 days</p>
+        <p class="decision-context">Becky's retailer registration email came in Aug 18. October sits in the middle of Q4 execution, and a London trip isn't the highest-leverage use of that window.</p>
+        <span class="rec-pill">Recommend</span>
+        <p class="decision-rec">Decline today so it stops being an open loop. Worth revisiting for 2027 once the Q4 plan actually exists.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">What to be prepped for</div>
+    <div class="prep-list">
+      <div class="prep-item">
+        <p class="prep-title">No work meetings today</p>
+        <p class="prep-body">Work, Personal and Todoist calendars are all clear. mukta@misspalettable.com is still stuck on freeBusyReader access (unchanged since Aug 13), so this brief still can't see titles there &mdash; but nothing else on any calendar points to a work meeting today. The only thing on any calendar is Kiyaan and Gianna's tennis trials, 12:30&ndash;1pm, on the Sameer &amp; Mukta calendar &mdash; logistics, not a meeting, nothing to prep.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Five things to read</div>
+    <div class="read-list">
+      <div class="read-item">
+        <div class="read-tag">Beauty Independent</div>
+        <p class="read-title"><a href="https://www.beautyindependent.com/founders-of-struggling-brands-are-airing-their-searches-for-buyers-on-social-media/" target="_blank" rel="noopener">Founders Of Struggling Brands Are Airing Their Searches For Buyers On Social Media</a></p>
+        <p class="read-why">Founders going public with a struggling brand's search for a buyer, and why experts warn it can cost you leverage. Worth reading purely as a study in what candor about difficulty does and doesn't buy you.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">MOJEH</div>
+        <p class="read-title"><a href="https://www.mojeh.com/article/5-rosemary-oil-formulas-to-try/" target="_blank" rel="noopener">The Best Rosemary Oil Formulas For Hair Growth</a></p>
+        <p class="read-why">Published yesterday. A clean, well-shot roundup format &mdash; useful as a reference point while you're planning August/September editorial content.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">Emirates Woman</div>
+        <p class="read-title"><a href="https://emirateswoman.com/emirati-womens-day-2026-expands-into-a-month-long-celebration-for-the-first-time/" target="_blank" rel="noopener">Emirati Women's Day 2026 Expands Into A Month-Long Celebration For The First Time</a></p>
+        <p class="read-why">Starts tomorrow, Aug 28 &mdash; a full month of programming this year instead of one day. Directly relevant to the audience MissP is built for; worth knowing about before it's suddenly everywhere on GCC social feeds.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">What's On Dubai</div>
+        <p class="read-title"><a href="https://whatson.ae/2026/08/7-things-to-do-in-dubai-this-week-august-24-to-27/" target="_blank" rel="noopener">7 Things To Do In Dubai This Week: August 24 to 27</a></p>
+        <p class="read-why">A midweek-reset roundup, including a Rosie Osborne facial residency every Thursday at Mandarin Oriental &mdash; see "if you have time" below.</p>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">Sifted</div>
+        <p class="read-title"><a href="https://sifted.eu/articles/sweaty-insane-cracked-decoding-the-language-of-founder-praise" target="_blank" rel="noopener">Sweaty, Insane, Cracked: Decoding The Language Of Founder Praise</a></p>
+        <p class="read-why">A three-minute, genuinely funny field guide to how founders talk about each other now. Two minutes of relief before the Qiyorro email.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">If you have time</div>
+    <div class="card">
+      <p class="time-text">Rosie Osborne's facial residency at The Spa, Mandarin Oriental Downtown Dubai runs every Thursday until December &mdash; today's one of those Thursdays, and your calendar is wide open apart from a 30-minute tennis pickup at lunch. Five 75-minute treatments to choose from, from Dhs1,700. Not a beauty audit, not a curation call for once &mdash; just an hour where someone else does the analysis.</p>
+    </div>
+  </section>
+
+  <footer>Generated for Mukta Tewani &middot; MissPalettable</footer>
+</div>
+<script>
+(function() {
+  var root = document.documentElement;
+  var toggle = document.getElementById('themeToggle');
+  var stored = localStorage.getItem('brief-theme');
+  var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var theme = stored || (prefersDark ? 'dark' : 'light');
+  root.setAttribute('data-theme', theme);
+  toggle.addEventListener('click', function() {
+    theme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', theme);
+    localStorage.setItem('brief-theme', theme);
+  });
+})();
+</script>
+</body>
+</html>
