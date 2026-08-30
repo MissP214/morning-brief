@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Brief — Sunday, August 30</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FBFBF9;
+    --text-95: rgba(10,12,14,0.95);
+    --text-60: rgba(10,12,14,0.60);
+    --text-38: rgba(10,12,14,0.38);
+    --card: rgba(10,12,14,0.03);
+    --card-border: rgba(10,12,14,0.08);
+    --accent: #225EDC;
+    --accent-bg: rgba(34,94,220,0.10);
+  }
+  [data-theme="dark"] {
+    --bg: #000405;
+    --text-95: rgba(255,255,255,0.95);
+    --text-60: rgba(255,255,255,0.60);
+    --text-38: rgba(255,255,255,0.38);
+    --card: rgba(255,255,255,0.045);
+    --card-border: rgba(255,255,255,0.09);
+    --accent: #225EDC;
+    --accent-bg: rgba(34,94,220,0.16);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--text-95);
+    font-family: 'Inter', -apple-system, sans-serif;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+  .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  .date-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-60);
+  }
+  .toggle-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-60);
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    padding: 7px 14px;
+    cursor: pointer;
+  }
+  .toggle-btn:hover { color: var(--text-95); }
+  h1.masthead {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+  .masthead-sub {
+    font-size: 15px;
+    color: var(--text-60);
+    margin: 0 0 40px;
+  }
+  section { margin-bottom: 40px; }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  .quote-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 26px 24px;
+  }
+  .quote-text {
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 500;
+    margin: 0 0 12px;
+  }
+  .quote-attr {
+    font-size: 13.5px;
+    color: var(--text-60);
+    margin: 0;
+  }
+  .win-list { display: flex; flex-direction: column; gap: 12px; }
+  .win-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 18px 20px;
+  }
+  .win-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--accent);
+    flex-shrink: 0;
+    line-height: 1.3;
+  }
+  .win-body { flex: 1; }
+  .win-title {
+    font-size: 15.5px;
+    font-weight: 600;
+    margin: 0 0 5px;
+    line-height: 1.4;
+  }
+  .win-tie {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-bg);
+    border-radius: 999px;
+    padding: 3px 9px;
+  }
+  .win-note {
+    font-size: 13.5px;
+    color: var(--text-60);
+    margin: 8px 0 0;
+    line-height: 1.5;
+  }
+  .cut-note {
+    font-size: 13px;
+    color: var(--text-38);
+    margin: 12px 2px 0;
+    font-style: italic;
+  }
+  .decision-list, .prep-list { display: flex; flex-direction: column; gap: 14px; }
+  .decision-item, .prep-item {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 20px 22px;
+  }
+  .decision-title, .prep-title {
+    font-size: 15.5px;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .decision-context, .prep-detail {
+    font-size: 14.5px;
+    color: var(--text-60);
+    margin: 0 0 12px;
+    line-height: 1.55;
+  }
+  .rec-pill {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-bg);
+    border-radius: 999px;
+    padding: 4px 10px;
+    margin-bottom: 8px;
+  }
+  .decision-rec { font-size: 14.5px; line-height: 1.55; margin: 0; }
+  .prep-know {
+    font-size: 14.5px;
+    line-height: 1.55;
+    margin: 10px 0 0;
+    padding-top: 10px;
+    border-top: 1px solid var(--card-border);
+  }
+  .prep-know b { color: var(--accent); font-weight: 600; }
+  .empty-note {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 20px 22px;
+    font-size: 14.5px;
+    color: var(--text-60);
+    line-height: 1.6;
+  }
+  .read-list { display: flex; flex-direction: column; gap: 12px; }
+  .read-item {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 18px 20px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .read-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-38);
+    margin-bottom: 6px;
+  }
+  .read-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 6px;
+    line-height: 1.4;
+  }
+  .read-why {
+    font-size: 13.5px;
+    color: var(--text-60);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .time-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 22px 24px;
+  }
+  .time-card p { font-size: 15px; line-height: 1.6; margin: 0; color: var(--text-95); }
+  .time-card p.sub { font-size: 13.5px; color: var(--text-60); margin-top: 8px; }
+  footer {
+    margin-top: 56px;
+    font-size: 12px;
+    color: var(--text-38);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top-bar">
+    <span class="date-label">Sunday · August 30, 2026</span>
+    <button class="toggle-btn" id="themeToggle">Light</button>
+  </div>
+
+  <h1 class="masthead">Morning, Mukta.</h1>
+  <p class="masthead-sub">Second empty calendar in a row, and yesterday's top three are still sitting exactly where they were. No new crisis today — just the old to-do list, waiting.</p>
+
+  <section>
+    <p class="section-label">Line for the day</p>
+    <div class="quote-card">
+      <p class="quote-text">"Never forget: this very moment, we can change our lives. There never was a moment, and never will be, when we are without the power to alter our destiny."</p>
+      <p class="quote-attr">— Steven Pressfield, <em>The War of Art</em> (2002)</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-label">Win conditions for today</p>
+    <div class="win-list">
+      <div class="win-item">
+        <span class="win-num">01</span>
+        <div class="win-body">
+          <p class="win-title">Close the two ops tasks that are now two days overdue: the weekly revenue check-in and confirming all 14 phased-out brands are actually delisted.</p>
+          <span class="win-tie">Q4 rebuild — ops discipline</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <span class="win-num">02</span>
+        <div class="win-body">
+          <p class="win-title">Push the brand story page over the line — it's been "in progress" for five days now, longer than any other open task.</p>
+          <span class="win-tie">Q4 — curation &amp; editorial authority</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <span class="win-num">03</span>
+        <div class="win-body">
+          <p class="win-title">Actually send the Qiyorro write-off note and the VDVIA shipping address — same two emails as yesterday, still unsent.</p>
+          <span class="win-tie">Clears the decks for Q4</span>
+        </div>
+      </div>
+    </div>
+    <p class="cut-note">Also on the list but not today's top 3: gift-by-persona collections (in progress, day 4 — probably an October campaign, not this week's job), the Skin Quiz build and Substack MarineDNA images (both due Aug 31), and the August Monthly Review (due Sept 1). None of it beats clearing what's already overdue.</p>
+  </section>
+
+  <section>
+    <p class="section-label">Urgent decisions</p>
+    <div class="decision-list">
+      <div class="decision-item">
+        <p class="decision-title">Qiyorro / Ere Perez credit note — 34 days, silent 18 days. Time to write it off.</p>
+        <p class="decision-context">Original ask was Jul 27, follow-ups went Aug 3 and Aug 12, then nothing. Yesterday's brief said if the final notice didn't go out, it's more honest to write it off than send a seventh reminder. It didn't go out.</p>
+        <span class="rec-pill">Recommend</span>
+        <p class="decision-rec">Send one closing note today — "writing this off as of [date] unless we hear back" — cc Hima, then stop tracking it here either way. No more chasing.</p>
+      </div>
+      <div class="decision-item">
+        <p class="decision-title">VDVIA / Lemonderma — the shipping address, 19 days unsent</p>
+        <p class="decision-context">Marco's been ready to ship samples since Aug 11. This is the same two-minute email that's been sitting untouched across several briefs now — nothing hard about it, just untouched.</p>
+        <span class="rec-pill">Recommend</span>
+        <p class="decision-rec">Reply with just the address. One line. It's the only thing between you and actually evaluating Lemonderma.</p>
+      </div>
+      <div class="decision-item">
+        <p class="decision-title">Beauty Bulb — Charlie's owed two answers, not one</p>
+        <p class="decision-context">Becky's Beauty Bulb Live London registration (Aug 18, recommended as a decline four times now) and Charlie's Oserth check-in (Aug 27, still no word on the samples) are both sitting in the same inbox, from the same company.</p>
+        <span class="rec-pill">Recommend</span>
+        <p class="decision-rec">One reply covers both: decline London — October collides with Q4 execution — and give Charlie a real answer on Oserth, pass or a real date for when you'll finish review.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-label">What to be prepped for</p>
+    <div class="empty-note">
+      No meetings today — every calendar you have is clear, two days running now. Monday flips hard: Monthly review (all day), Call with Sheetal at 2pm, and the high-priority AED 5,000 revenue check-in all land the same day. Today's the runway before that, not a rest day by accident.
+    </div>
+  </section>
+
+  <section>
+    <p class="section-label">Five things to read</p>
+    <div class="read-list">
+      <a class="read-item" href="https://www.beautyindependent.com/founders-of-struggling-brands-are-airing-their-searches-for-buyers-on-social-media/" target="_blank" rel="noopener">
+        <div class="read-tag">Beauty Independent</div>
+        <p class="read-title">Founders Of Struggling Brands Are Airing Their Searches For Buyers On Social Media</p>
+        <p class="read-why">Thread Beauty, Valerie, Faace — founders going public with "I need a buyer." Worth reading against your own season, if only to notice what you're not doing.</p>
+      </a>
+      <a class="read-item" href="https://www.beautyindependent.com/tariffs-american-beauty-manufacturing-overseas-competitors/" target="_blank" rel="noopener">
+        <div class="read-tag">Beauty Independent</div>
+        <p class="read-title">Tariffs Haven't Stopped American Beauty Manufacturing From Losing Share To Overseas Competitors</p>
+        <p class="read-why">Eleven contract manufacturers on why Korean and Chinese beauty manufacturing keeps gaining share — real backdrop for where the VDVIA/Lemonderma decision actually sits.</p>
+      </a>
+      <a class="read-item" href="https://thegeneralistpm.substack.com/p/august-14-2026" target="_blank" rel="noopener">
+        <div class="read-tag">The Generalist PM</div>
+        <p class="read-title">August 14, 2026 — on why organizations only ever add, never subtract</p>
+        <p class="read-why">Short and practical: teams add roadmap items forever and almost never cut. Timely, since delisting 14 brands is exactly the subtraction move you're mid-way through.</p>
+      </a>
+      <a class="read-item" href="https://whatson.ae/2026/08/why-august-is-one-of-dubais-best-months/" target="_blank" rel="noopener">
+        <div class="read-tag">What's On Dubai</div>
+        <p class="read-title">Why August Is One Of Dubai's Best Months</p>
+        <p class="read-why">Quieter city, better spa and hotel rates, DSS discounts through today only — a real case for actually using the empty calendar instead of just working through it.</p>
+      </a>
+      <a class="read-item" href="https://emirateswoman.com/celebrate-emirati-womens-day-2026-5-ways-make-this-special-day-memorable-this-year/" target="_blank" rel="noopener">
+        <div class="read-tag">Emirates Woman</div>
+        <p class="read-title">Celebrate Emirati Women's Day 2026: 5 Ways To Make This Special Day Memorable</p>
+        <p class="read-why">Emirati Women's Month runs through September — useful backdrop for MissP's own positioning in a market actively celebrating local women-led business right now.</p>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-label">If you have time</p>
+    <div class="time-card">
+      <p>Today's genuinely the last day of Dubai Summer Surprises — the Dhs10 dish deals across 700+ locations end tonight — and your calendar is empty for the second day running. Tomorrow eats the whole day, so if today produces anything beyond admin, let it be an actual break.</p>
+      <p class="sub">If you want out of the house: Grotopia at Waterfront Souk runs through tomorrow, or just pick a spa — August rates are still down before the season turns.</p>
+    </div>
+  </section>
+
+  <footer>Generated 7:00am Asia/Dubai · misspalettable morning brief</footer>
+
+</div>
+
+<script>
+(function() {
+  var root = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+  var stored = localStorage.getItem('brief-theme');
+  var systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var theme = stored || (systemDark ? 'dark' : 'light');
+
+  function apply(t) {
+    if (t === 'dark') {
+      root.setAttribute('data-theme', 'dark');
+      btn.textContent = 'Dark';
+    } else {
+      root.removeAttribute('data-theme');
+      btn.textContent = 'Light';
+    }
+  }
+
+  apply(theme);
+
+  btn.addEventListener('click', function() {
+    theme = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    localStorage.setItem('brief-theme', theme);
+    apply(theme);
+  });
+})();
+</script>
+
+</body>
+</html>
