@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Brief — Wednesday, September 9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #225EDC;
+  }
+  [data-theme="dark"] {
+    --bg: #000405;
+    --text-95: rgba(255,255,255,0.95);
+    --text-60: rgba(255,255,255,0.60);
+    --text-38: rgba(255,255,255,0.38);
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.08);
+    --pill-bg: rgba(34,94,220,0.16);
+  }
+  [data-theme="light"] {
+    --bg: #FBFBF9;
+    --text-95: rgba(10,10,10,0.95);
+    --text-60: rgba(10,10,10,0.60);
+    --text-38: rgba(10,10,10,0.38);
+    --card-bg: rgba(10,10,10,0.03);
+    --card-border: rgba(10,10,10,0.08);
+    --pill-bg: rgba(34,94,220,0.10);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text-95);
+    font-family: 'Inter', -apple-system, sans-serif;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 48px 24px 100px;
+  }
+  .masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+  }
+  .masthead h1 {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    letter-spacing: -0.02em;
+  }
+  .masthead .date {
+    font-size: 14px;
+    color: var(--text-60);
+  }
+  .toggle-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text-60);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .toggle-btn:hover { color: var(--text-95); }
+  section { margin-bottom: 40px; }
+  .label {
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--text-38);
+    margin-bottom: 14px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 22px 24px;
+    margin-bottom: 14px;
+  }
+  .card:last-child { margin-bottom: 0; }
+
+  /* Line for the day */
+  .quote-card {
+    text-align: left;
+  }
+  .quote-text {
+    font-size: 19px;
+    line-height: 1.5;
+    font-weight: 500;
+    margin: 0 0 12px;
+  }
+  .quote-attr {
+    font-size: 13px;
+    color: var(--text-60);
+  }
+
+  /* Win conditions */
+  .win-row {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .win-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 20px;
+    color: var(--accent);
+    font-weight: 500;
+    min-width: 22px;
+  }
+  .win-body p {
+    margin: 0 0 8px;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .pill {
+    display: inline-block;
+    background: var(--pill-bg);
+    color: var(--accent);
+    border-radius: 999px;
+    padding: 4px 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .cut-note {
+    font-size: 13px;
+    color: var(--text-38);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--card-border);
+  }
+
+  /* Decisions */
+  .decision-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 8px;
+  }
+  .decision-context {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-60);
+    margin: 0 0 14px;
+  }
+  .rec-row {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+  }
+  .rec-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .rec-text {
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* Prep */
+  .prep-who {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+  .prep-time {
+    font-size: 13px;
+    color: var(--text-60);
+    margin: 0 0 14px;
+  }
+  .prep-block { margin-bottom: 12px; }
+  .prep-block .sublabel {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-38);
+    margin-bottom: 4px;
+  }
+  .prep-block p {
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0;
+  }
+  .light-note {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-60);
+  }
+
+  /* Reads */
+  .read-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+  .read-title a {
+    color: var(--text-95);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .read-title a:hover { color: var(--accent); }
+  .read-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 3px;
+  }
+  .read-why {
+    font-size: 13px;
+    color: var(--text-60);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* If you have time */
+  .time-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  footer {
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-38);
+    margin-top: 60px;
+    letter-spacing: 0.03em;
+  }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 32px 18px 80px; }
+    .masthead { flex-direction: column; gap: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="masthead">
+    <div>
+      <h1>Morning Brief</h1>
+      <div class="date">Wednesday, September 9</div>
+    </div>
+    <button class="toggle-btn" id="themeToggle">☾ Dark</button>
+  </div>
+
+  <section>
+    <div class="label">Line for the day</div>
+    <div class="card quote-card">
+      <p class="quote-text">"A leader is best when people barely know that he exists&hellip; When his work is done, his aim fulfilled, they will say: we did it ourselves."</p>
+      <div class="quote-attr">— Lao Tzu, <em>Tao Te Ching</em> (c. 4th century BC)</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Win conditions for today</div>
+    <div class="card">
+      <div class="win-row">
+        <div class="win-num">1</div>
+        <div class="win-body">
+          <p>9:30&ndash;10:30am: brief and hand off the PDP overhaul (Clay Cosmetics, Lily Lolo, Jays Dermat) to your Ops manager, direction set toward the Sept 21 deadline &mdash; a clean handoff, not a working session.</p>
+          <span class="pill">Q4 rebuild &middot; ecosystem</span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="win-row">
+        <div class="win-num">2</div>
+        <div class="win-body">
+          <p>10:30am&ndash;4pm: campaign prep &mdash; confirm assets, queue socials and emailers for Friday's launch. This is the week's dated, non-negotiable commitment.</p>
+          <span class="pill">September campaign &middot; live Fri</span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="win-row">
+        <div class="win-num">3</div>
+        <div class="win-body">
+          <p>8&ndash;9am strength training. Small, but it's the streak that's actually been holding through the rebuild &mdash; don't let a packed handoff-and-launch week be the excuse to drop it.</p>
+          <span class="pill">Sustaining the rebuild</span>
+          <div class="cut-note">Cut from today: the Derma trade show / Nisha dinner reschedule (still no firm day &mdash; not urgent enough to force today), and the Google Ads fix (with the socials team, not on your plate this week).</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Urgent decisions</div>
+    <div class="card">
+      <p class="decision-title">Klaviyo &mdash; 95% of your Email Profiles limit</p>
+      <p class="decision-context">Alert landed Sep 5, four days ago, still unactioned. Cross 100% and you're auto-billed for overages at the next cycle &mdash; no confirmation needed from you.</p>
+      <div class="rec-row">
+        <span class="rec-label">Recommend</span>
+        <p class="rec-text">Five minutes on the billing page today: check where you actually sit and compare the overage rate against the next plan tier before it charges itself.</p>
+      </div>
+    </div>
+    <div class="card">
+      <p class="decision-title">Meher check-in &mdash; lock an actual date</p>
+      <p class="decision-context">Third appearance on your own Weekly OS as a win condition. Monday's task was "send confirmed time-slot options" &mdash; that's still an ask, not a lock, and your own notes flag it to escalate if it slips again.</p>
+      <div class="rec-row">
+        <span class="rec-label">Recommend</span>
+        <p class="rec-text">Skip the options this time. Pick one date and time yourself and send it as a statement, not a menu &mdash; that's the different fix a third appearance calls for.</p>
+      </div>
+    </div>
+    <div class="card">
+      <p class="decision-title">VDVIA / Lemonderma &mdash; Marco is still waiting on your address</p>
+      <p class="decision-context">He offered to ship Lemonderma samples as soon as you send a delivery address, back on Aug 11. Still unsent, 29 days later. This is a two-minute reply, not a decision.</p>
+      <div class="rec-row">
+        <span class="rec-label">Recommend</span>
+        <p class="rec-text">Send the address today and this one moves itself along.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">What to be prepped for</div>
+    <div class="card">
+      <p class="prep-who">PDP overhaul handoff &mdash; with your Ops manager</p>
+      <p class="prep-time">9:30&ndash;10:30am</p>
+      <div class="prep-block">
+        <div class="sublabel">Last decided / left open</div>
+        <p>This has been a Week 1 non-negotiable sitting delegated-but-undirected on your Weekly OS &mdash; the brands (Clay Cosmetics, Lily Lolo, Jays Dermat) are assigned to the Sept 21 deadline, but the actual direction hasn't been set yet.</p>
+      </div>
+      <div class="prep-block">
+        <div class="sublabel">Walk in knowing</div>
+        <p>What "done" looks like for each of the three brands by Sept 21 &mdash; so your Ops manager leaves with a brief to execute, not a list of open questions to bring back to you.</p>
+      </div>
+    </div>
+    <p class="light-note">That's the only work meeting today. Kiyaan's football trial is 7&ndash;8am before any of this starts &mdash; not something to prep for, just don't be surprised the morning starts there.</p>
+  </section>
+
+  <section>
+    <div class="label">Five things to read</div>
+    <div class="card">
+      <div class="read-row">
+        <div class="read-title"><a href="https://www.beautyindependent.com/athleisure-beauty-over-welcome-beauty-high-performance-era/" target="_blank" rel="noopener">Athleisure Beauty Is Over. Welcome To Beauty's High-Performance Era</a></div>
+        <div class="read-tag">Beauty Independent</div>
+      </div>
+      <p class="read-why">Published this morning &mdash; a real trend shift (athlete-founders, performance-engineered formulas) worth clocking for the curation bench as you rebuild MissP's methodology.</p>
+    </div>
+    <div class="card">
+      <div class="read-row">
+        <div class="read-title"><a href="https://emirateswoman.com/12-homegrown-gcc-beauty-platforms-to-order-in-dubai/" target="_blank" rel="noopener">12 Homegrown GCC Beauty Platforms To Order From In Dubai</a></div>
+        <div class="read-tag">Emirates Woman</div>
+      </div>
+      <p class="read-why">A competitor landscape scan of your own category, written by someone else. Worth five minutes to see how MissP's positioning reads against the field.</p>
+    </div>
+    <div class="card">
+      <div class="read-row">
+        <div class="read-title"><a href="https://www.mojeh.com/article/the-mojeh-weekend-scalini-saadiyat-island/" target="_blank" rel="noopener">The MOJEH Weekend: A Fresh Start</a></div>
+        <div class="read-tag">MOJEH</div>
+      </div>
+      <p class="read-why">Quick regional culture scan &mdash; and buried in it, Dubai Fashion Week is officially back, Oct 22&ndash;26, worth knowing about early.</p>
+    </div>
+    <div class="card">
+      <div class="read-row">
+        <div class="read-title"><a href="https://whatson.ae/2026/09/6-things-to-do-in-dubai-this-week-september-7-to-10/" target="_blank" rel="noopener">6 Things To Do In Dubai This Week: September 7 To 10</a></div>
+        <div class="read-tag">What's On Dubai</div>
+      </div>
+      <p class="read-why">Covers today's window &mdash; if the evening walk needs a destination or Wednesday needs a reason to leave the desk.</p>
+    </div>
+    <div class="card">
+      <div class="read-row">
+        <div class="read-title"><a href="https://thegeneralistpm.substack.com/p/september-4-2026" target="_blank" rel="noopener">September 4, 2026</a></div>
+        <div class="read-tag">The Generalist PM</div>
+      </div>
+      <p class="read-why">"If your system is always busy, it's probably unstable" &mdash; a sharp case for slack in a week where you're handing off, launching and holding a training streak all at once.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">If you have time</div>
+    <div class="card time-card">
+      <p>Your own Weekly OS already built in a 4&ndash;5pm buffer today. Don't fill it with campaign admin. Today's Generalist PM read makes the case that idle-looking time is exactly where your best thinking happens &mdash; let the PDP handoff and the launch prep actually breathe before you close the laptop.</p>
+    </div>
+  </section>
+
+  <footer>MissPalettable &middot; Morning Brief &middot; generated 2026-09-09</footer>
+</div>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('themeToggle');
+    var stored = localStorage.getItem('mb-theme');
+    var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme = stored || (systemDark ? 'dark' : 'light');
+
+    function apply(t) {
+      root.setAttribute('data-theme', t);
+      btn.textContent = t === 'dark' ? '☾ Dark' : '☀ Light';
+    }
+    apply(theme);
+
+    btn.addEventListener('click', function() {
+      theme = theme === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('mb-theme', theme);
+      apply(theme);
+    });
+  })();
+</script>
+</body>
+</html>
