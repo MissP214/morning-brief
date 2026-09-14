@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Brief — Monday, September 14</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #225EDC;
+  }
+  [data-theme="dark"] {
+    --bg: #000405;
+    --text-95: rgba(255,255,255,0.95);
+    --text-60: rgba(255,255,255,0.60);
+    --text-38: rgba(255,255,255,0.38);
+    --card-bg: rgba(255,255,255,0.045);
+    --card-border: rgba(255,255,255,0.08);
+    --pill-bg: rgba(34,94,220,0.16);
+  }
+  [data-theme="light"] {
+    --bg: #FBFBF9;
+    --text-95: rgba(10,10,10,0.95);
+    --text-60: rgba(10,10,10,0.60);
+    --text-38: rgba(10,10,10,0.38);
+    --card-bg: rgba(10,10,10,0.03);
+    --card-border: rgba(10,10,10,0.08);
+    --pill-bg: rgba(34,94,220,0.10);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text-95);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+  .masthead {
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 12px;
+    color: var(--text-60);
+  }
+  .date-line {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 6px 0 2px;
+    letter-spacing: -0.01em;
+  }
+  .subline {
+    font-size: 14px;
+    color: var(--text-60);
+    margin-bottom: 36px;
+  }
+  .toggle-btn {
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--text-60);
+    border-radius: 999px;
+    padding: 7px 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .toggle-btn:hover { color: var(--text-95); }
+  section { margin-bottom: 34px; }
+  .label {
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 11.5px;
+    color: var(--text-38);
+    margin-bottom: 12px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 22px 24px;
+  }
+  .quote-text {
+    font-size: 19px;
+    line-height: 1.55;
+    font-weight: 500;
+    margin: 0 0 12px;
+  }
+  .quote-attr {
+    font-size: 14px;
+    color: var(--text-60);
+  }
+  ol.wins {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: win;
+  }
+  ol.wins li {
+    counter-increment: win;
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--card-border);
+  }
+  ol.wins li:last-child { border-bottom: none; }
+  .win-num {
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    color: var(--accent);
+    font-size: 18px;
+    min-width: 20px;
+  }
+  .win-body { flex: 1; }
+  .win-title { font-size: 15.5px; font-weight: 600; margin-bottom: 4px; }
+  .win-tie {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: var(--pill-bg);
+    border-radius: 999px;
+    padding: 3px 10px;
+    margin-top: 6px;
+  }
+  .cut-note {
+    font-size: 13px;
+    color: var(--text-38);
+    margin-top: 14px;
+    font-style: italic;
+  }
+  .decision {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .decision:last-child { border-bottom: none; }
+  .decision-title { font-size: 15.5px; font-weight: 600; margin-bottom: 6px; }
+  .decision-context { font-size: 14px; color: var(--text-60); margin-bottom: 10px; line-height: 1.5; }
+  .rec-pill {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #fff;
+    background: var(--accent);
+    border-radius: 999px;
+    padding: 5px 12px;
+    margin-bottom: 8px;
+  }
+  .copy-line {
+    font-size: 13.5px;
+    color: var(--text-60);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-top: 8px;
+    font-style: italic;
+  }
+  .prep-block {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .prep-block:last-child { border-bottom: none; }
+  .prep-who { font-size: 15.5px; font-weight: 600; margin-bottom: 6px; }
+  .prep-when {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-left: 8px;
+  }
+  .prep-detail { font-size: 14px; color: var(--text-60); line-height: 1.5; margin-bottom: 6px; }
+  .prep-know { font-size: 14px; line-height: 1.5; }
+  .prep-know b { color: var(--accent); font-weight: 600; }
+  .read-item {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .read-item:last-child { border-bottom: none; }
+  .read-top { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
+  .read-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: var(--pill-bg);
+    border-radius: 999px;
+    padding: 3px 10px;
+  }
+  .read-title a {
+    color: var(--text-95);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .read-title a:hover { color: var(--accent); }
+  .read-why { font-size: 13.5px; color: var(--text-60); line-height: 1.5; }
+  .free-text { font-size: 15px; line-height: 1.6; color: var(--text-95); }
+  .free-text .sub { color: var(--text-60); font-size: 13.5px; margin-top: 8px; display: block; }
+  footer {
+    margin-top: 48px;
+    font-size: 12px;
+    color: var(--text-38);
+    font-family: 'DM Mono', monospace;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top-row">
+    <div>
+      <div class="masthead">Morning Brief</div>
+      <div class="date-line">Monday, September 14</div>
+      <div class="subline">Dubai · WFH day, painters at home</div>
+    </div>
+    <button class="toggle-btn" id="themeToggle">Toggle theme</button>
+  </div>
+
+  <section>
+    <div class="label">Line for the day</div>
+    <div class="card">
+      <p class="quote-text">"The chief beauty about time is that you cannot waste it in advance."</p>
+      <p class="quote-attr">— Arnold Bennett, <i>How to Live on 24 Hours a Day</i> (1910)</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Win conditions for today</div>
+    <div class="card">
+      <ol class="wins">
+        <li>
+          <span class="win-num">1</span>
+          <div class="win-body">
+            <div class="win-title">Lock the 4 gifting persona concepts — names + tone</div>
+            <div>Protected 7:30–11am block. Everything downstream — bundle pricing, the Contemporary Connect + Jinus brief package, Thursday's hard deadline — is stalled until this is final. Working names so far: The Self-Care Queen, The Makeup Maven, The Clean Beauty Lover, The Party Girl.</div>
+            <span class="win-tie">Thursday deadline → Oct 1 launch</span>
+          </div>
+        </li>
+        <li>
+          <span class="win-num">2</span>
+          <div class="win-body">
+            <div class="win-title">Delegate the Al Jalila trust badge implementation to the website team</div>
+            <div>Cheap, no dependencies, sitting since the Aug 19 Checkout for Good meeting. Hand it off in the 1–2pm block and it's off your plate.</div>
+            <span class="win-tie">Durable trust asset</span>
+          </div>
+        </li>
+        <li>
+          <span class="win-num">3</span>
+          <div class="win-body">
+            <div class="win-title">Get ahead on Friday's revenue check-in prep</div>
+            <div>September is sitting at ~1,166 AED cumulative against the 5,000 AED target with 2 of 4.3 weeks gone — behind pace. Your 3–4:30pm block is for prep; use it to actually look at why, not just assemble the number.</div>
+            <span class="win-tie">Q4 revenue rebuild</span>
+          </div>
+        </li>
+      </ol>
+      <div class="cut-note">Cut from the top 3: managing the painters, and the Sheetal/Dhwani calls (they're on the schedule regardless, not choices).</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Urgent decisions</div>
+    <div class="card">
+
+      <div class="decision">
+        <div class="decision-title">VDVIA / Lemonderma — send the address, or let it go</div>
+        <div class="decision-context">Marco offered Aug 11 to ship samples the moment you send a delivery address. That's 34 days sitting on a one-line reply. This has been carried as a rollover for over a month now — today it's worth just deciding, not re-flagging.</div>
+        <span class="rec-pill">Recommendation: send it</span>
+        <div class="copy-line">"Hi Marco, apologies for the delay — please ship samples to: [your address]. Looking forward to seeing them."</div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-title">Klaviyo: inactive API key, auto-disables Oct 13</div>
+        <div class="decision-context">Klaviyo flagged an unused API key on Sep 8 — 29 days of runway left before it's automatically disabled. Not urgent today, but it's the kind of thing that's easy to lose track of once Gifting Edit week hits full speed, and Klaviyo email drafting for the campaign starts Friday.</div>
+        <span class="rec-pill">Recommendation: 5 minutes, this week</span>
+        <div class="copy-line">Log into Klaviyo → Settings → API Keys, and either reactivate the flagged key or delete it if it's genuinely unused.</div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-title">Dhwani's Google Doc share request ("LWL Member's Salon")</div>
+        <div class="decision-context">Dhwani Kapur requested access yesterday (Sep 13) to a doc titled "LWL Member's Salon." No other context in your inbox on what this is — worth a quick look before or during your 11am call with her today.</div>
+        <span class="rec-pill">Recommendation: decide on the call</span>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="label">What to be prepped for</div>
+    <div class="card">
+
+      <div class="prep-block">
+        <div class="prep-who">Call with Dhwani <span class="prep-when">11:00–12:00pm</span></div>
+        <div class="prep-detail">This is only on your own Weekly OS plan, not Google Calendar. Last actual contact: her Google Doc share request yesterday for "LWL Member's Salon" — no email thread explaining what the call itself is about.</div>
+        <div class="prep-know"><b>Walk in knowing:</b> you'll likely need to react to the doc live, since there's no brief waiting for you.</div>
+      </div>
+
+      <div class="prep-block">
+        <div class="prep-who">Call with Sheetal — health coach <span class="prep-when">2:00–3:00pm</span></div>
+        <div class="prep-detail">Recurring Monday slot. As with past weeks, there's no email trail for this relationship to prep from.</div>
+        <div class="prep-know"><b>Walk in knowing:</b> nothing new to report — just show up.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Five things to read</div>
+    <div class="card">
+
+      <div class="read-item">
+        <div class="read-top">
+          <span class="read-tag">Beauty Independent</span>
+        </div>
+        <div class="read-title"><a href="https://www.beautyindependent.com/mini-products-beautyspace-launches-retail-concept-little-luxuries/" target="_blank">Mini Products Go Big Time As Beautyspace Launches Retail Concept Little Luxuries</a></div>
+        <div class="read-why">Beautyspace is betting a whole retail concept on curated small-format bundles priced as "buy, try, apply" sets rather than discounts — the exact positioning logic you're locking for the 4 gifting personas today.</div>
+      </div>
+
+      <div class="read-item">
+        <div class="read-top">
+          <span class="read-tag">MOJEH</span>
+        </div>
+        <div class="read-title"><a href="https://www.mojeh.com/article/the-best-beauty-buys-of-august-2026/" target="_blank">The Best Beauty Buys Of August 2026</a></div>
+        <div class="read-why">Quick scan of what's actually trending right now (Saie, Gucci, Gisou) before you lock persona names and tone — a sense-check against the market.</div>
+      </div>
+
+      <div class="read-item">
+        <div class="read-top">
+          <span class="read-tag">Emirates Woman</span>
+        </div>
+        <div class="read-title"><a href="https://emirateswoman.com/olivier-polge-reinvents-chanels-coco-mademoiselle-with-the-launch-of-crush-absolu/" target="_blank">Olivier Polge Reinvents Chanel's Coco Mademoiselle With Crush Absolu</a></div>
+        <div class="read-why">A masterclass in reinventing something beloved without abandoning its DNA — worth reading with your own curation methodology work in mind.</div>
+      </div>
+
+      <div class="read-item">
+        <div class="read-top">
+          <span class="read-tag">What's On Dubai</span>
+        </div>
+        <div class="read-title"><a href="https://whatson.ae/2026/09/brilliant-new-things-to-do-dubai-this-month/" target="_blank">17 Brilliant New Things To Do In Dubai This September</a></div>
+        <div class="read-why">The Ripe Market's weekend takeover at City Walk is stocking homegrown skincare and beauty brands all month — worth a scroll for future curation once Gifting Edit week lifts.</div>
+      </div>
+
+      <div class="read-item">
+        <div class="read-top">
+          <span class="read-tag">The Generalist PM</span>
+        </div>
+        <div class="read-title"><a href="https://thegeneralistpm.substack.com/p/september-11-2026" target="_blank">September 11, 2026 — Load-Bearing People</a></div>
+        <div class="read-why">Names the exact risk you're trying to design out of MissP this quarter: pick your most critical process, name the one person holding it up, ask what happens if they're gone for a month.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="label">If you have time</div>
+    <div class="card">
+      <div class="free-text">
+        Today's genuinely packed — protected work blocks back to back, painters in the house, strength training at 5. Don't try to squeeze in anything else. If there's a gap after dinner, take a short walk instead of opening a laptop again; it's the only unscheduled minute in the whole day.
+        <span class="sub">Not a task. Just a suggestion for the 15 minutes between dinner and gratitude journal.</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>Generated for Mukta · MissPalettable</footer>
+</div>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var toggleBtn = document.getElementById('themeToggle');
+    var stored = localStorage.getItem('brief-theme');
+    var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme = stored || (systemDark ? 'dark' : 'light');
+    root.setAttribute('data-theme', theme);
+
+    toggleBtn.addEventListener('click', function() {
+      var current = root.getAttribute('data-theme');
+      var next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('brief-theme', next);
+    });
+  })();
+</script>
+</body>
+</html>
