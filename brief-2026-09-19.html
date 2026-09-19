@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Brief — Saturday, September 19, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root { --accent: #225EDC; }
+[data-theme="dark"] { --bg: #000405; --text-95: rgba(255,255,255,0.95); --text-60: rgba(255,255,255,0.60); --text-38: rgba(255,255,255,0.38); --card-bg: rgba(255,255,255,0.05); --card-border: rgba(255,255,255,0.10); --pill-bg: rgba(34,94,220,0.18); }
+[data-theme="light"] { --bg: #FBFBF9; --text-95: rgba(10,10,10,0.95); --text-60: rgba(10,10,10,0.60); --text-38: rgba(10,10,10,0.38); --card-bg: rgba(10,10,10,0.03); --card-border: rgba(10,10,10,0.08); --pill-bg: rgba(34,94,220,0.10); }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text-95); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+body { transition: background 0.2s ease, color 0.2s ease; }
+.wrap { max-width: 640px; margin: 0 auto; padding: 48px 24px 80px; }
+.top-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.date-label { font-family: 'DM Mono', monospace; text-transform: uppercase; font-size: 12px; letter-spacing: 0.08em; color: var(--text-60); }
+.toggle-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-60); border-radius: 999px; padding: 6px 14px; font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer; }
+h1.masthead { font-size: 28px; font-weight: 700; margin: 4px 0 4px; color: var(--text-95); letter-spacing: -0.01em; }
+.subhead { color: var(--text-60); font-size: 15px; margin-bottom: 40px; line-height: 1.5; }
+section { margin-bottom: 36px; }
+.label { font-family: 'DM Mono', monospace; text-transform: uppercase; font-size: 12px; letter-spacing: 0.1em; color: var(--text-38); margin-bottom: 14px; }
+.card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 20px 22px; margin-bottom: 12px; }
+.card:last-child { margin-bottom: 0; }
+.quote-text { font-size: 18px; line-height: 1.55; color: var(--text-95); font-style: italic; margin: 0 0 10px; }
+.quote-attr { font-size: 13px; color: var(--text-60); }
+.win-row { display: flex; gap: 14px; align-items: flex-start; }
+.win-num { font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 500; color: var(--accent); min-width: 24px; }
+.win-body { flex: 1; }
+.win-title { font-size: 15.5px; font-weight: 600; color: var(--text-95); margin-bottom: 4px; line-height: 1.4; }
+.win-desc { font-size: 14px; color: var(--text-60); line-height: 1.55; }
+.win-tie { display: inline-block; background: var(--pill-bg); color: var(--accent); font-family: 'DM Mono', monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 10px; border-radius: 999px; margin-top: 6px; }
+.note { font-size: 13px; color: var(--text-60); line-height: 1.5; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--card-border); }
+.decision-title { font-size: 15.5px; font-weight: 600; color: var(--text-95); margin-bottom: 6px; line-height: 1.4; }
+.decision-context { font-size: 14px; color: var(--text-60); line-height: 1.55; margin-bottom: 10px; }
+.rec-pill { display: inline-flex; align-items: baseline; gap: 6px; background: var(--pill-bg); border-radius: 999px; padding: 6px 14px; font-size: 13px; }
+.rec-pill .rec-label { font-family: 'DM Mono', monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); }
+.rec-pill .rec-text { color: var(--text-95); }
+.meeting-title { font-size: 15.5px; font-weight: 600; color: var(--text-95); margin-bottom: 2px; }
+.meeting-time { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); margin-bottom: 10px; }
+.meeting-line { font-size: 14px; color: var(--text-60); line-height: 1.55; margin-bottom: 6px; }
+.meeting-line b { color: var(--text-95); font-weight: 600; }
+.read-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.read-left { flex: 1; }
+.read-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.read-title a { color: var(--text-95); text-decoration: none; }
+.read-title a:hover { color: var(--accent); }
+.read-why { font-size: 13.5px; color: var(--text-60); line-height: 1.5; }
+.read-tag { font-family: 'DM Mono', monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); white-space: nowrap; padding-top: 2px; }
+.free-text { font-size: 15px; line-height: 1.6; color: var(--text-95); }
+footer { margin-top: 48px; text-align: center; font-size: 12px; color: var(--text-38); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top-row">
+    <div class="date-label">Saturday · September 19, 2026</div>
+    <button class="toggle-btn" id="themeToggle">Light mode</button>
+  </div>
+  <h1 class="masthead">Morning, Mukta.</h1>
+  <div class="subhead">After a week that had a hard deadline day and a full-on Friday, today is genuinely light: one dedicated work block, then the day is yours. Enjoy that — it's earned.</div>
+
+  <section>
+    <div class="label">Line for the day</div>
+    <div class="card">
+      <p class="quote-text">"In an age of speed, I began to think, nothing could be more invigorating than going slow. In an age of distraction, nothing can feel more luxurious than paying attention."</p>
+      <div class="quote-attr">— Pico Iyer, <em>The Art of Stillness</em> (2014)</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Win conditions for today</div>
+    <div class="card">
+      <div class="win-row">
+        <div class="win-num">1</div>
+        <div class="win-body">
+          <div class="win-title">Build the Seoul itinerary — the one protected block, 10am–12pm</div>
+          <div class="win-desc">This is the actual point of today per your own weekly plan. Golf drop-off first, then two clear hours for it — don't let it get chipped at by anything else.</div>
+          <div class="win-tie">Seoul itinerary</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="win-row">
+        <div class="win-num">2</div>
+        <div class="win-body">
+          <div class="win-title">Close out the weekly revenue check-in</div>
+          <div class="win-desc">It was on Friday's plan and didn't happen — still sitting as To Do. ~1,166 AED cumulative against the 5,000 AED September target, and you're now down to about 11 days to close the gap. Ten minutes today beats it slipping into next week too.</div>
+          <div class="win-tie">Revenue check-in</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="win-row">
+        <div class="win-num">3</div>
+        <div class="win-body">
+          <div class="win-title">Confirm the Dr Roze + CLE Shopify listings are actually live</div>
+          <div class="win-desc">Your own task notes still flag all three Dr Roze flavors as Draft with zero stock as of Sept 14 — five days stale now, and the briefs went out Thursday regardless. Worth five minutes to know for certain, since the Oct 1 Gifting Edit launch and the Oct 12 Dr Roze moment both sit on top of this being fixed.</div>
+          <div class="win-tie">Gifting Edit launch</div>
+        </div>
+      </div>
+      <div class="note">Nothing cut here — today's list really is this short. That's not a gap in the brief, it's the week finally giving you room.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Urgent decisions</div>
+    <div class="card">
+      <div class="decision-title">Marco is owed a real answer, not more silence</div>
+      <div class="decision-context">His Sept 2 note about PONY/BLACKPINK momentum has sat unanswered for 17 days now. Lemonderma's already live on Amazon.ae with no exclusivity secured on your side — every day of silence is a day that clock runs without you in the room.</div>
+      <div class="rec-pill"><span class="rec-label">Do</span><span class="rec-text">Move to terms, or pass — either is a real answer. Send it this weekend.</span></div>
+    </div>
+    <div class="card">
+      <div class="decision-title">Klaviyo's inactive API key — down to about 3.5 weeks</div>
+      <div class="decision-context">Auto-disable lands Oct 13. Still a genuine five-minute fix, still not urgent today — but it's been sitting since Sept 8 and this is exactly the kind of thing that quietly becomes a Friday-night fire drill.</div>
+      <div class="rec-pill"><span class="rec-label">When</span><span class="rec-text">Knock it out this weekend, since Sunday's a rest day and it's easy.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">What to be prepped for</div>
+    <div class="card">
+      <div class="free-text">No work meetings today, across every calendar — genuinely a heads-down, low-pressure day. What's actually on it: the kids' Golf (Junior Development) drop-off at 8:30am, then your Seoul session, then an open afternoon. Treat the afternoon as actually open.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Five things to read</div>
+    <div class="card">
+      <div class="read-row">
+        <div class="read-left">
+          <div class="read-title"><a href="https://www.beautyindependent.com/a-frame-brands-turns-celebrity-brand-building-machine-private-label/" target="_blank" rel="noopener">A-Frame Brands turns its celebrity brand-building machine toward private label</a></div>
+          <div class="read-why">A-Frame is applying seven years of brand-building infrastructure to private label instead of famous faces. Relevant to how you're thinking about curation and durable assets as the actual product, not any one brand relationship.</div>
+        </div>
+        <div class="read-tag">Beauty Independent</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="read-row">
+        <div class="read-left">
+          <div class="read-title"><a href="https://emirateswoman.com/12-homegrown-gcc-beauty-platforms-to-order-in-dubai/" target="_blank" rel="noopener">12 homegrown beauty platforms in the GCC to order from</a></div>
+          <div class="read-why">A live roundup of exactly your competitive set — conscious/curated skincare platforms across the region. Worth a scan for who's positioning where before your Q4 plan locks in.</div>
+        </div>
+        <div class="read-tag">Emirates Woman</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="read-row">
+        <div class="read-left">
+          <div class="read-title"><a href="https://www.mojeh.com/article/wellness-wednesdays-uma-ghosh/" target="_blank" rel="noopener">Wellness Wednesdays: Uma Ghosh on intuitive skincare and ageing gracefully</a></div>
+          <div class="read-why">"The biggest myth about ageing is that it's something to be fought." A clean articulation of the anti-hype, health-first philosophy that's supposed to be MissPalettable's whole point — good to re-anchor to on a quieter day.</div>
+        </div>
+        <div class="read-tag">MOJEH</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="read-row">
+        <div class="read-left">
+          <div class="read-title"><a href="https://thegeneralistpm.substack.com/p/september-18-2026" target="_blank" rel="noopener">On accountability: "it's only ever taken, never given"</a></div>
+          <div class="read-why">Simon Wakeman's framing, via this week's Generalist PM — a sharp companion piece to today's Marco and Klaviyo items. Silence isn't neutral; someone reporting instead of deciding is a pattern worth noticing in your own business too.</div>
+        </div>
+        <div class="read-tag">The Generalist PM</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="read-row">
+        <div class="read-left">
+          <div class="read-title"><a href="https://whatson.ae/2026/09/things-to-do-in-dubai-this-weekend-sept-18-to-20/" target="_blank" rel="noopener">8 fun things to do in Dubai this weekend</a></div>
+          <div class="read-why">For the actual open afternoon: an evening brunch at Gohan, HushDay's home sale in Al Quoz through Sunday, or afternoon tea at Address Creek Harbour. Pick one instead of scrolling.</div>
+        </div>
+        <div class="read-tag">What's On Dubai</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">If you have time</div>
+    <div class="card">
+      <div class="free-text">Once the Seoul block closes at noon, the afternoon is genuinely yours — first real unscheduled stretch in weeks. Don't fill it with "just checking" Shopify or Klaviyo. Per the Iyer quote above: paying attention to one thing (lunch, a book, the kids) is the actual luxury today, not another open tab.</div>
+    </div>
+  </section>
+
+  <footer>Generated for Mukta · MissPalettable</footer>
+</div>
+
+<script>
+(function() {
+  var root = document.documentElement;
+  var toggle = document.getElementById('themeToggle');
+  var stored = null;
+  try { stored = localStorage.getItem('brief-theme'); } catch (e) {}
+  var systemPref = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  var theme = stored || systemPref;
+  root.setAttribute('data-theme', theme);
+  var body = document.body;
+  body.setAttribute('data-theme', theme);
+  function updateLabel() { toggle.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode'; }
+  updateLabel();
+  toggle.addEventListener('click', function() {
+    theme = theme === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', theme);
+    updateLabel();
+    try { localStorage.setItem('brief-theme', theme); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>
