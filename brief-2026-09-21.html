@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Brief — Monday, September 21</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #225EDC;
+  }
+  [data-theme="dark"] {
+    --bg: #000405;
+    --text-95: rgba(255,255,255,0.95);
+    --text-60: rgba(255,255,255,0.60);
+    --text-38: rgba(255,255,255,0.38);
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.08);
+    --pill-bg: rgba(34,94,220,0.16);
+  }
+  [data-theme="light"] {
+    --bg: #FBFBF9;
+    --text-95: rgba(10,10,10,0.95);
+    --text-60: rgba(10,10,10,0.60);
+    --text-38: rgba(10,10,10,0.38);
+    --card-bg: rgba(10,10,10,0.03);
+    --card-border: rgba(10,10,10,0.08);
+    --pill-bg: rgba(34,94,220,0.10);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text-95);
+    font-family: 'Inter', -apple-system, sans-serif;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+  }
+  .masthead {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-60);
+  }
+  .masthead .date {
+    display: block;
+    font-size: 22px;
+    font-family: 'Inter', sans-serif;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--text-95);
+    font-weight: 600;
+    margin-top: 6px;
+  }
+  .toggle-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-60);
+    cursor: pointer;
+  }
+  .toggle-btn:hover { color: var(--text-95); }
+  section { margin-bottom: 40px; }
+  .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-38);
+    margin-bottom: 14px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 24px;
+  }
+  .quote-text {
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--text-95);
+    margin: 0 0 12px;
+  }
+  .quote-source {
+    font-size: 14px;
+    color: var(--text-60);
+  }
+  .win-item {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .win-item:last-child { border-bottom: none; }
+  .win-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--accent);
+    min-width: 24px;
+  }
+  .win-body { flex: 1; }
+  .win-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  .win-meta { font-size: 13px; color: var(--text-60); line-height: 1.5; }
+  .tie-pill {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    background: var(--pill-bg);
+    border-radius: 999px;
+    padding: 3px 10px;
+    margin-top: 8px;
+  }
+  .cut-note {
+    font-size: 13px;
+    color: var(--text-38);
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--card-border);
+  }
+  .decision-card {
+    margin-bottom: 14px;
+    padding: 20px;
+  }
+  .decision-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .decision-context { font-size: 14px; color: var(--text-60); line-height: 1.5; margin-bottom: 12px; }
+  .rec-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    background: var(--pill-bg);
+    border-radius: 999px;
+    padding: 6px 14px;
+  }
+  .prep-card { padding: 22px 24px; }
+  .prep-who { font-size: 16px; font-weight: 600; margin-bottom: 10px; }
+  .prep-row { font-size: 14px; color: var(--text-60); line-height: 1.6; margin-bottom: 4px; }
+  .prep-row b { color: var(--text-95); font-weight: 600; }
+  .read-item {
+    display: flex;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--card-border);
+    text-decoration: none;
+    color: inherit;
+  }
+  .read-item:last-child { border-bottom: none; }
+  .read-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-38);
+    min-width: 118px;
+    padding-top: 2px;
+  }
+  .read-body { flex: 1; }
+  .read-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; color: var(--text-95); }
+  .read-why { font-size: 13px; color: var(--text-60); line-height: 1.5; }
+  .free-time-text { font-size: 15px; line-height: 1.6; color: var(--text-95); }
+  .free-time-meta { font-size: 13px; color: var(--text-60); margin-top: 10px; }
+  a { color: var(--text-95); }
+  .footer-note {
+    font-size: 12px;
+    color: var(--text-38);
+    text-align: center;
+    margin-top: 56px;
+    font-family: 'DM Mono', monospace;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top-row">
+    <div class="masthead">
+      Morning brief
+      <span class="date">Monday, September 21</span>
+    </div>
+    <button class="toggle-btn" id="themeToggle" onclick="toggleTheme()">Toggle theme</button>
+  </div>
+
+  <section>
+    <div class="label">Line for the day</div>
+    <div class="card">
+      <p class="quote-text">"You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions."</p>
+      <p class="quote-source">— Bhagavad Gita, Chapter 2, Verse 47 (trans. A.C. Bhaktivedanta Swami Prabhupada, <em>Bhagavad-Gita As It Is</em>, 1972)</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Win conditions for today</div>
+    <div class="card">
+      <div class="win-item">
+        <div class="win-num">1</div>
+        <div class="win-body">
+          <div class="win-title">Log the weekly revenue check-in — honestly</div>
+          <div class="win-meta">4th checkpoint, overdue since Friday. Just write down the real number against the 5,000 AED September target. No spin needed, just log it.</div>
+          <span class="tie-pill">Q4 revenue rebuild</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">2</div>
+        <div class="win-body">
+          <div class="win-title">Push Meher through the Contemporary Connect creative review</div>
+          <div class="win-meta">This is the week's actual #1 — unblocking it lets you brief Jinus immediately after, so landing page + PDP work can start before Seoul. Also confirm the CLE lipstick PDP is folded into the hero-brand PDP overhaul (due today, not a separate project).</div>
+          <span class="tie-pill">Oct 1 Gifting Edit launch</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">3</div>
+        <div class="win-body">
+          <div class="win-title">Clear Seamless admin before tomorrow</div>
+          <div class="win-meta">Reply to the pending networking requests on the Seamless platform, finish the Al Jalila Foundation application, and give Niraag a straight answer on regular-sale terms. Tomorrow is a full expo day — none of this should be waiting for you at the door.</div>
+          <span class="tie-pill">Seamless Middle East, Day 1</span>
+        </div>
+      </div>
+      <div class="cut-note">Cut from the top 3: continuing to draft the 8 Klaviyo campaign emails this afternoon. It's real, it's on today's plan, but it's not due until Thursday — the three above are the ones that actually can't slip.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Urgent decisions</div>
+
+    <div class="card decision-card">
+      <div class="decision-title">Seamless networking requests are piling up unanswered</div>
+      <div class="decision-context">Three separate "someone's waiting to hear from you" notices since September 17 — the expo floor opens tomorrow, and two confirmed lounge meetings (SMEC 4pm, DHL 4:20pm) are already locked in around them. Once you're on the floor tomorrow, these won't get easier to clear.</div>
+      <span class="rec-pill">Clear the queue today, before floor time swallows tomorrow</span>
+    </div>
+
+    <div class="card decision-card">
+      <div class="decision-title">VDVIA / Marco — give him an actual yes or no</div>
+      <div class="decision-context">19 days silent since his September 2 update on PONY wearing the Lemonshot line. The samples were good, the curiosity is real, but this has been sitting as a maybe for too long and Lemonshot is already live on Amazon.ae with no exclusivity secured on your side.</div>
+      <span class="rec-pill">Decide this week — today's a genuinely good day for it</span>
+    </div>
+
+    <div class="card decision-card">
+      <div class="decision-title">Niraag (Zest-Me) — consignment is off the table</div>
+      <div class="decision-context">He replied September 17: no consignment, regular sale only. It's already on your own admin list for today. This is a straightforward yes/no on whether regular-sale terms work for how you run curation, not something that needs more back-and-forth.</div>
+      <span class="rec-pill">Reply today either way</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">What to be prepped for</div>
+    <div class="card prep-card">
+      <div class="prep-who">No work meetings today.</div>
+      <div class="prep-row">The only thing on the calendar is the recurring <b>2:00pm call with Sheetal</b>, your health coach — personal, not work, and still has zero email trail after months of checking, so there's nothing here to prep beyond showing up.</div>
+      <div class="prep-row" style="margin-top: 10px;">Genuinely light on meetings — the load today is all in the to-do list, not the calendar.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Five things to read</div>
+    <div class="card">
+      <a class="read-item" href="https://www.beautyindependent.com/makeup-counter-comeback-makeover/" target="_blank">
+        <div class="read-tag">Beauty Independent</div>
+        <div class="read-body">
+          <div class="read-title">The Makeup Counter Has A Chance At A Comeback, But It Needs A Makeover</div>
+          <div class="read-why">Ten founders on what makes physical curation work again — "real curation, someone behind it who knows the products" is almost verbatim your own methodology. Worth 5 minutes.</div>
+        </div>
+      </a>
+      <a class="read-item" href="https://www.mojeh.com/article/wellness-wednesdays-uma-ghosh/" target="_blank">
+        <div class="read-tag">MOJEH</div>
+        <div class="read-body">
+          <div class="read-title">Wellness Wednesdays: Uma Ghosh On Intuitive Skincare And Ageing Gracefully</div>
+          <div class="read-why">"The biggest myth about ageing is that it's something to be fought." Short, and a good mindset reset before a week that's about to get loud.</div>
+        </div>
+      </a>
+      <a class="read-item" href="https://emirateswoman.com/hot-new-buys-the-latest-launches-for-your-beauty-cabinet/" target="_blank">
+        <div class="read-tag">Emirates Woman</div>
+        <div class="read-body">
+          <div class="read-title">Hot New Buys: The Latest Launches We Love</div>
+          <div class="read-why">Fresh product roundup — Rare Beauty, Gisou, Huda Beauty, Guerlain. Quick scan for what's trending on shelf right now in the region.</div>
+        </div>
+      </a>
+      <a class="read-item" href="https://thegeneralistpm.substack.com/p/september-18-2026" target="_blank">
+        <div class="read-tag">The Generalist PM</div>
+        <div class="read-body">
+          <div class="read-title">September 18, 2026 — on interruptions, and on accountability</div>
+          <div class="read-why">"Accountability is only ever taken, you can't give it to someone." Lands well on a day about pushing Meher and closing out three lingering decisions.</div>
+        </div>
+      </a>
+      <a class="read-item" href="https://whatson.ae/2026/09/7-things-to-do-in-dubai-this-week-september-21-to-24/" target="_blank">
+        <div class="read-tag">What's On Dubai</div>
+        <div class="read-body">
+          <div class="read-title">7 Things To Do In Dubai This Week: September 21 to 24</div>
+          <div class="read-why">Negroni Week, a new DIFC business lunch, floating breathwork under the moon Thursday. Good to have on the radar for the sliver of week that isn't Seamless or admin.</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">If you have time</div>
+    <div class="card">
+      <p class="free-time-text">Try CLAP's new HIRU GOZEN business lunch in DIFC — salmon tataki, Angus beef, grilled seabass, a proper sit-down before Klaviyo drafting takes over the afternoon. You've got a real admin block before the 2pm Sheetal call; make part of it a lunch instead of a desk sandwich.</p>
+      <p class="free-time-meta">Monday–Friday, 12–5pm · Dhs140pp · CLAP Dubai, DIFC</p>
+    </div>
+  </section>
+
+  <div class="footer-note">Generated for Mukta · September 21, 2026</div>
+</div>
+
+<script>
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+  }
+  function toggleTheme() {
+    var current = document.documentElement.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    try { localStorage.setItem('brief-theme', next); } catch (e) {}
+  }
+  (function initTheme() {
+    var saved = null;
+    try { saved = localStorage.getItem('brief-theme'); } catch (e) {}
+    if (saved === 'dark' || saved === 'light') {
+      applyTheme(saved);
+    } else {
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(prefersDark ? 'dark' : 'light');
+    }
+  })();
+</script>
+</body>
+</html>
