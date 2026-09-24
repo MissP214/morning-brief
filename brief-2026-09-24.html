@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Brief — Thursday, September 24</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FBFBF9;
+    --text-95: rgba(10,10,10,0.95);
+    --text-60: rgba(10,10,10,0.60);
+    --text-38: rgba(10,10,10,0.38);
+    --accent: #225EDC;
+    --card-bg: rgba(10,10,10,0.035);
+    --card-border: rgba(10,10,10,0.08);
+  }
+  [data-theme="dark"] {
+    --bg: #000405;
+    --text-95: rgba(255,255,255,0.95);
+    --text-60: rgba(255,255,255,0.60);
+    --text-38: rgba(255,255,255,0.38);
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.08);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-95);
+    font-family: 'Inter', -apple-system, sans-serif;
+    padding: 32px 20px 80px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; }
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+  }
+  .date-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-60);
+  }
+  .toggle-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text-95);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+  .subhead {
+    color: var(--text-60);
+    font-size: 15px;
+    margin: 0 0 36px;
+    line-height: 1.5;
+  }
+  .section { margin-bottom: 34px; }
+  .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-38);
+    margin-bottom: 14px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 20px 22px;
+  }
+  .quote-text {
+    font-size: 18px;
+    line-height: 1.55;
+    font-style: italic;
+    margin: 0 0 10px;
+  }
+  .quote-attr {
+    font-size: 13px;
+    color: var(--text-60);
+  }
+  .win-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .win-item:last-child { border-bottom: none; }
+  .win-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 20px;
+    color: var(--accent);
+    font-weight: 500;
+    flex-shrink: 0;
+    width: 22px;
+  }
+  .win-body { flex: 1; }
+  .win-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .win-tie {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(34,94,220,0.1);
+    border-radius: 999px;
+    padding: 3px 10px;
+    margin-top: 6px;
+  }
+  .win-desc { font-size: 13.5px; color: var(--text-60); margin-top: 4px; line-height: 1.5; }
+  .decision-item { padding: 16px 0; border-bottom: 1px solid var(--card-border); }
+  .decision-item:last-child { border-bottom: none; }
+  .decision-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .decision-context { font-size: 13.5px; color: var(--text-60); margin-bottom: 8px; line-height: 1.5; }
+  .rec-pill {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--accent);
+    border-radius: 999px;
+    padding: 4px 12px;
+  }
+  .prep-item { padding: 14px 0; border-bottom: 1px solid var(--card-border); }
+  .prep-item:last-child { border-bottom: none; }
+  .prep-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .prep-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .prep-desc { font-size: 13.5px; color: var(--text-60); line-height: 1.5; }
+  .read-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .read-item:last-child { border-bottom: none; }
+  .read-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-38);
+    margin-bottom: 5px;
+  }
+  .read-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .read-title a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--card-border); }
+  .read-title a:hover { border-bottom-color: var(--accent); }
+  .read-why { font-size: 13.5px; color: var(--text-60); line-height: 1.5; }
+  .if-time-text { font-size: 14.5px; line-height: 1.6; color: var(--text-95); }
+  .flag-note {
+    font-size: 12.5px;
+    color: var(--text-38);
+    line-height: 1.5;
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid var(--card-border);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="date-label">Thursday · September 24, 2026</div>
+    <button class="toggle-btn" onclick="toggleTheme()">Toggle</button>
+  </div>
+
+  <h1>Morning, Mukta.</h1>
+  <p class="subhead">Last day on the ground. Dinner at Carine with the family at 7:30pm, and EK324 leaves for Seoul at 5:20am, so you're realistically out the door around 2:30am. That gives you one working afternoon. Use it to close things, not start them.</p>
+
+  <div class="section">
+    <div class="label">Line for the day</div>
+    <div class="card">
+      <p class="quote-text">"The greatest thing in the world is to know how to belong to oneself."</p>
+      <p class="quote-attr">— Michel de Montaigne, "Of Solitude," in <em>Essays</em> (1580)</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="label">Win conditions for today</div>
+    <div class="card">
+      <div class="win-item">
+        <div class="win-num">1</div>
+        <div class="win-body">
+          <div class="win-title">Lock the Gifting Edit before you fly: emails scheduled, handover sent</div>
+          <div class="win-desc">If the 8 Klaviyo emails got finished yesterday, give them one proofread and schedule them. If they didn't, that's your whole afternoon, done by 4pm. Same goes for the "while I'm in Seoul" note to Meher and Jinus: send it today, even if it's rough. Anything still in your head at the airport becomes a WhatsApp from Seoul.</div>
+          <span class="win-tie">Oct 1 · Gifting Edit launch</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">2</div>
+        <div class="win-body">
+          <div class="win-title">Be Seoul-ready by 6pm</div>
+          <div class="win-desc">Bag packed, passport and boarding pass sorted, out-of-office on, 2am alarm set. A 5:20am flight after a dinner out only works if it's all done before you leave the house tonight.</div>
+          <span class="win-tie">This week · Seoul trip</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">3</div>
+        <div class="win-body">
+          <div class="win-title">Be fully at Carine at 7:30, phone in the bag</div>
+          <div class="win-desc">It's the last evening with the in-laws before you go, and the whole point of this week. Home and in bed by 10:30 so you get at least three hours' sleep.</div>
+          <span class="win-tie">Home · family week</span>
+        </div>
+      </div>
+      <p class="win-desc" style="margin-top:12px;">Cut from the top 3: Seamless day 3 (it closes today and you won't miss anything) and PHASE 42 design feedback. That can wait for the plane (see below).</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="label">Urgent decisions</div>
+    <div class="card">
+      <div class="decision-item">
+        <div class="decision-title">PHASE 42: Upendra sent a mood board last night</div>
+        <div class="decision-context">It came in around 8:45pm after your Sep 20 feedback on the deck. He's clear it's a visual reference, not a logo or packaging option. Good work doesn't need a rushed reaction on your way out, but agencies left in silence either stall or go off on their own.</div>
+        <span class="rec-pill">Recommend: two-line holding reply, full feedback Monday</span>
+      </div>
+      <div class="decision-item">
+        <div class="decision-title">VIP DX Roundtable Dinner (TechnoLabs): it's tonight</div>
+        <div class="decision-context">Third chase (Sep 16, 21, 23), and it's clearly a bulk marketing mailer, not a personal invite. You're at Carine anyway.</div>
+        <span class="rec-pill">Recommend: archive, no reply needed</span>
+      </div>
+      <div class="decision-item">
+        <div class="decision-title">Seamless queue closes today</div>
+        <div class="decision-context">Carried over from yesterday: Salk AI (AI video ads) was the only request that touched live work. The other four (Richpanel, Riviera, Digital Nest, Magneto) can expire when the event does.</div>
+        <span class="rec-pill">Recommend: offer Salk AI a call week of Oct 5, let the rest lapse</span>
+      </div>
+      <p class="decision-context" style="margin-top:12px;margin-bottom:0;">Off the list: VDVIA/Marco is still silent (day 22). Parking it until after Seoul is fine. MSG91 wants to meet after Oct 8, which isn't urgent. Parix sent another cold follow-up, so ignore it.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="label">What to be prepped for</div>
+    <div class="card">
+      <div class="prep-item">
+        <div class="prep-title">No work meetings today.</div>
+        <div class="prep-desc">The Work calendar only shows the all-day Seamless block, which ends today. The other entries are personal: <strong>Carine, 7:30–8:30pm</strong>, and <strong>EK324, Fri 5:20am from DXB</strong>, landing around 1:40pm Dubai time. The one thing to know: nothing else is booked, so the afternoon is really yours to close things out.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="label">Five things to read</div>
+    <div class="card">
+      <div class="read-item">
+        <div class="read-tag">Beauty Independent</div>
+        <div class="read-title"><a href="https://www.beautyindependent.com/bite-first-look-three-scalp-care-brands-to-know/" target="_blank" rel="noopener">BITE First Look: Three Scalp Care Brands To Know</a></div>
+        <div class="read-why">Out Sep 22. One of the three, RG Cosmetics, says the Middle East is its biggest market and has an office in Dubai. Scalp care keeps growing in the Gulf. Good background for a curation slot, and something to watch for in Seoul, where head spas are everywhere.</div>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">Hypebae</div>
+        <div class="read-title"><a href="https://hypebae.com/2026/9/laneige-bts-jin-bouncy-firm-cooling-hydrogel-eye-patches-campaign-where-to-buy" target="_blank" rel="noopener">BTS Jin Spotlights Laneige's First-Ever Eye Patches</a></div>
+        <div class="read-why">A two-minute read before Seoul. It's microneedle-style hydrogel patches with PDRN, which is the exact claim category the "unverified claims" report you read yesterday flagged. Expect to see them all over Olive Young this weekend, so decide in advance how sceptical to be.</div>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">Beauty Independent</div>
+        <div class="read-title"><a href="https://www.beautyindependent.com/lenose-hand-soap-luxury-treatment/" target="_blank" rel="noopener">Aesop Taste Without An Aesop Budget? LeNose Gives $10 Hand Soap The Luxury Treatment</a></div>
+        <div class="read-why">Ex-Bubble founders designing packaging "you're proud to display," pricing for margin from day one, and choosing community over influencers. It's a useful template to read alongside the PHASE 42 mood board.</div>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">MOJEH</div>
+        <div class="read-title"><a href="https://www.mojeh.com/article/7-saudi-brands-to-have-on-your-radar/" target="_blank" rel="noopener">7 Saudi Brands To Have On Your Radar</a></div>
+        <div class="read-why">Published yesterday for Saudi National Day. The one for you is Asteri Beauty, a "desert-proof" makeup brand founded by a Saudi architect. It's a homegrown GCC brand worth a look for the curation framework.</div>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">Sifted · Opinion</div>
+        <div class="read-title"><a href="https://sifted.eu/articles/founders-be-more-selfish" target="_blank" rel="noopener">Founders: be more selfish</a></div>
+        <div class="read-why">Older (Feb 2025) but right for today. The argument is that burnt-out founders sink companies, so designing the job around yourself is the responsible move. Good for the plane, as you leave the business in other hands for a few days.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="label">If you have time</div>
+    <div class="card">
+      <p class="if-time-text">Save today's line for the flight. Montaigne's "Of Solitude" is a short essay, free online, and he wrote it about exactly this: stepping back from everything that needs you. Read it in the first hour after take-off, before you open the laptop. Then sleep. You land at 1:40pm Dubai time, and everything else can wait until then.</p>
+    </div>
+  </div>
+
+  <div class="flag-note">
+    Gaps this morning: Notion timed out again (180s), so there's no Weekly OS or My Tasks data. The status of the Klaviyo emails and the handover wasn't checked live. That's why win #1 is written as "if done, schedule; if not, finish." The all-calendar view and the mukta@misspalettable.com calendar also timed out. Today's picture comes from the Work and Side Hustle calendars, which both read cleanly and include the Carine reservation and EK324. In Gmail, opening the full PHASE 42 thread timed out, so the mood-board note is based on the message preview only. The Seamless queue is carried over from yesterday and wasn't re-checked.
+  </div>
+</div>
+
+<script>
+  function getPreferredTheme() {
+    try { const s = localStorage.getItem('mp-theme'); if (s) return s; } catch (e) {}
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  function applyTheme(theme) { document.documentElement.setAttribute('data-theme', theme); }
+  function toggleTheme() {
+    const next = (document.documentElement.getAttribute('data-theme') || 'light') === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    try { localStorage.setItem('mp-theme', next); } catch (e) {}
+  }
+  applyTheme(getPreferredTheme());
+</script>
+</body>
+</html>
