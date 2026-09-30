@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Brief — Wednesday, September 30</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FBFBF9;
+    --text-95: rgba(10,10,10,0.95);
+    --text-60: rgba(10,10,10,0.60);
+    --text-38: rgba(10,10,10,0.38);
+    --accent: #225EDC;
+    --card-bg: rgba(10,10,10,0.035);
+    --card-border: rgba(10,10,10,0.08);
+  }
+  [data-theme="dark"] {
+    --bg: #000405;
+    --text-95: rgba(255,255,255,0.95);
+    --text-60: rgba(255,255,255,0.60);
+    --text-38: rgba(255,255,255,0.38);
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.08);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text-95); font-family: 'Inter', -apple-system, sans-serif; padding: 32px 20px 80px; transition: background 0.2s, color 0.2s; }
+  .wrap { max-width: 640px; margin: 0 auto; }
+  .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
+  .date-label { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-60); }
+  .toggle-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-95); border-radius: 999px; padding: 8px 16px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; }
+  h1 { font-size: 28px; font-weight: 700; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .subhead { color: var(--text-60); font-size: 15px; margin: 0 0 36px; line-height: 1.5; }
+  .section { margin-bottom: 34px; }
+  .label { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-38); margin-bottom: 14px; }
+  .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 20px 22px; }
+  .quote-text { font-size: 18px; line-height: 1.55; font-style: italic; margin: 0 0 10px; }
+  .quote-attr { font-size: 13px; color: var(--text-60); margin: 0; }
+  .win-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--card-border); }
+  .win-item:first-child { padding-top: 0; }
+  .win-item:last-of-type { border-bottom: none; }
+  .win-num { font-family: 'DM Mono', monospace; font-size: 20px; color: var(--accent); font-weight: 500; flex-shrink: 0; width: 22px; }
+  .win-body { flex: 1; }
+  .win-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .win-tie { display: inline-block; font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); background: rgba(34,94,220,0.1); border-radius: 999px; padding: 3px 10px; margin-top: 6px; }
+  .win-desc { font-size: 13.5px; color: var(--text-60); margin-top: 4px; line-height: 1.5; }
+  .decision-item { padding: 16px 0; border-bottom: 1px solid var(--card-border); }
+  .decision-item:first-child { padding-top: 0; }
+  .decision-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .decision-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .decision-context { font-size: 13.5px; color: var(--text-60); margin-bottom: 8px; line-height: 1.5; }
+  .rec-pill { display: inline-block; font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.03em; text-transform: uppercase; color: #fff; background: var(--accent); border-radius: 999px; padding: 4px 12px; }
+  .prep-desc { font-size: 14px; color: var(--text-60); line-height: 1.55; margin: 0; }
+  .read-item { padding: 14px 0; border-bottom: 1px solid var(--card-border); }
+  .read-item:first-child { padding-top: 0; }
+  .read-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .read-tag { font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-38); margin-bottom: 5px; }
+  .read-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .read-title a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--card-border); }
+  .read-title a:hover { border-bottom-color: var(--accent); }
+  .read-why { font-size: 13.5px; color: var(--text-60); line-height: 1.5; }
+  .if-time-text { font-size: 14.5px; line-height: 1.6; color: var(--text-95); margin: 0; }
+  .flag-note { font-size: 12.5px; color: var(--text-38); line-height: 1.5; margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--card-border); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="date-label">Wednesday · September 30, 2026</div>
+    <button class="toggle-btn" id="themeBtn" type="button">Toggle</button>
+  </div>
+
+  <h1>Welcome home, Mukta.</h1>
+  <p class="subhead">Your EK323 landed around 4:25am, so this is a jet-lagged day with no meetings on any calendar. The Gifting Edit goes live tomorrow, and today's job is to make tomorrow boring. Nothing else is allowed to be urgent.</p>
+
+  <div class="section">
+    <div class="label">Line for the day</div>
+    <div class="card">
+      <p class="quote-text">"At dawn, when you have trouble getting out of bed, tell yourself: 'I have to go to work — as a human being.'"</p>
+      <p class="quote-attr">— Marcus Aurelius, <em>Meditations</em>, Book 5 (Gregory Hays translation)</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="label">Win conditions for today</div>
+    <div class="card">
+      <div class="win-item">
+        <div class="win-num">1</div>
+        <div class="win-body">
+          <div class="win-title">Confirm the Gifting Edit is launch-ready, in one pass</div>
+          <div class="win-desc">Three checks: the Klaviyo kickoff email is scheduled, the "Shop by Persona" landing page and the Dr Roze and CLE lipstick PDPs are live, and inventory is confirmed. Notion still shows QA and creative approval as open, but that may just be stale ticking. Look at the real thing, then tick the boxes.</div>
+          <span class="win-tie">Oct 1 · Gifting Edit launch</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">2</div>
+        <div class="win-body">
+          <div class="win-title">Log the final September revenue number against the 5,000 AED target</div>
+          <div class="win-desc">It's a High-priority task due today, and the last recorded pace (about 1,166 AED after two weeks) was well behind. Ten minutes, the real number, and one line on why it missed. The monthly review needs it.</div>
+          <span class="win-tie">Quarter goal · resilient revenue</span>
+        </div>
+      </div>
+      <div class="win-item">
+        <div class="win-num">3</div>
+        <div class="win-body">
+          <div class="win-title">Do the monthly review, and let it seed the Q4 plan</div>
+          <div class="win-desc">It's on your Personal calendar as an all-day item. Give it one focused hour once the first two are done. Capture what September taught you and the three questions the Q4 plan has to answer. Reflection only, no plan-building today.</div>
+          <span class="win-tie">Q4 strategic plan</span>
+        </div>
+      </div>
+      <p class="win-desc" style="margin-top:12px;">Cut from the top 3: chasing Vanscent's parcel tracking, PHASE 42 feedback to Upendra, the Weekly OS reset (pick Sunday Oct 4), the Dubai Derma date, and Premier Beauty Brands' stock offer. All can wait until after launch day.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="label">Urgent decisions</div>
+    <div class="card">
+      <div class="decision-item">
+        <div class="decision-title">Gifting Edit: go or slip for tomorrow?</div>
+        <div class="decision-context">Notion's QA (due Sep 29) and creative-approval tasks still show "To Do". I couldn't verify Klaviyo or Shopify directly this morning, so I don't know whether they're done. If all three checks in win #1 pass, you're live. If the landing page or the kickoff email isn't ready, decide by mid-afternoon rather than at 11pm.</div>
+        <span class="rec-pill">Recommend: go, unless the landing page isn't live by 4pm</span>
+      </div>
+      <div class="decision-item">
+        <div class="decision-title">VDVIA / Lemonderma (Marco) checked in again this morning</div>
+        <div class="decision-context">Samples arrived Aug 20 and you told him you'd test and revert. It's now about 5.5 weeks, and he's sent three nudges, including today's "how's the testing going". He is polite and not pushy, but the silence is becoming its own answer.</div>
+        <span class="rec-pill">Recommend: after launch, send a short yes, no or "Q4 shortlist" reply by Friday</span>
+      </div>
+      <div class="decision-item">
+        <div class="decision-title">PickyPal (AI beauty advisor) wants a demo call</div>
+        <div class="decision-context">Dana met you at Seamless and offers a 30-minute demo plus a free 15-day Shopify app trial. Installing anything on the store the day before a launch is asking for trouble.</div>
+        <span class="rec-pill">Recommend: no reply until Oct 8 or later, then decide against the Q4 AI asset plan</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="label">What to be prepped for</div>
+    <div class="card">
+      <p class="prep-desc">No meetings today. The Work, Personal, Side Hustle and Sameer &amp; Mukta calendars are all empty for the day, apart from your flight landing at about 4:25am and the all-day "Monthly review" reminder. mukta@misspalettable.com is free/busy only, so I can't see titles there, but it shows nothing blocked either. Coming up: the Gifting Edit launch tomorrow (Oct 1), and Ravya's birthday party on Saturday, Oct 3 at 4:30pm. Otherwise the day is yours.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="label">Five things to read</div>
+    <div class="card">
+      <div class="read-item">
+        <div class="read-tag">Beauty Independent · Deal Flow</div>
+        <div class="read-title"><a href="https://www.beautyindependent.com/aiza-parent-amaani-raises-5m-scale-middle-eastern-beauty-brand-gulf-beyond/">Aïza Parent Amaani Raises $5M To Scale The Middle Eastern Beauty Brand Across The Gulf And Beyond</a></div>
+        <div class="read-why">A Dubai-born brand with a top-10 spot at Ulta UAE and a plan to build a portfolio of regional brands. It shows what investors are paying for in GCC beauty right now, which is useful input for your Q4 plan.</div>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">Beauty Independent · Brand Report</div>
+        <div class="read-title"><a href="https://www.beautyindependent.com/scarlett-johansson-skincare-brand-the-outset-shuts-down/">Scarlett Johansson's Skincare Brand The Outset Shuts Down</a></div>
+        <div class="read-why">A well-funded, famous-founder brand ran 50% off in its final weeks and closed anyway. This is a good argument for your "curated sets, no percentage-discount framing" line on launch eve.</div>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">Beauty Independent · No Stupid Questions</div>
+        <div class="read-title"><a href="https://www.beautyindependent.com/eye-patch-grinder-packaging-ended-up-everywhere-once/">How The Eye-Patch Grinder Packaging Ended Up Everywhere At Once</a></div>
+        <div class="read-why">Fenty, Glow Recipe and Huda all launched the same supplier packaging together, because nobody negotiated exclusivity. If PHASE 42 is a real own-brand thread, this is what to ask Vanscent and Beanstalk before you sign anything.</div>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">Hypebae · Beauty</div>
+        <div class="read-title"><a href="https://hypebae.com/2026/9/best-beauty-trends-spring-summer-2027-new-york-london-milan-paris">All of the Beauty Trends That Are Yet to Pop Off, According to SS27 Runways</a></div>
+        <div class="read-why">Bold primary colours, full-face glitter and barely-there blush. A five-minute skim while you plan PIGMNT and October content, and it may help your November and December themes.</div>
+      </div>
+      <div class="read-item">
+        <div class="read-tag">Lenny's Newsletter · Growth</div>
+        <div class="read-title"><a href="https://www.lennysnewsletter.com/p/60-creative-growth-ideas">60+ new creative growth ideas</a></div>
+        <div class="read-why">Unconventional tactics for standing out. The first four sections are free and enough to steal one idea for launch week; the rest is paywalled, so don't chase it.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="label">If you have time</div>
+    <div class="card">
+      <p class="if-time-text">Nothing on the calendar means you get to decide where the gap goes. Take a 90-minute nap between 1 and 3pm, then do the monthly review afterwards. A landing at 4:25am doesn't give you a sharp brain for reflection, and the review is better done when you're rested than when you're tired.</p>
+    </div>
+  </div>
+
+  <p class="flag-note">Data notes: Gmail, Google Calendar (Work, Personal, Side Hustle and Sameer &amp; Mukta) and Notion's My Tasks were all reachable. There is no Weekly OS page for Sep 28–Oct 4 yet, so today's priorities come from My Tasks and the calendar, and Notion statuses may lag reality. Shopify, Klaviyo and Gmail-side launch status were not checked live. mukta@misspalettable.com is free/busy only, and the Family calendar was not queried. Reading sources: MOJEH, TimeOut Dubai and Vogue Business didn't yield a verifiable link today, so all five reads come from Beauty Independent, Hypebae and Lenny's, each confirmed live.</p>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  var stored = null;
+  try { stored = localStorage.getItem('mb-theme'); } catch (e) {}
+  var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  root.setAttribute('data-theme', stored || (prefersDark ? 'dark' : 'light'));
+  document.getElementById('themeBtn').addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('mb-theme', next); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>
